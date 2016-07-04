@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr;
+
+		<h1>镜头光晕（[name]）</h1>
+
+		<div class="desc">创建一个模拟的跟踪光线的镜头光晕。<br /><br />
+		注意：[page:WebGL渲染器(WebGLRenderer)] 必须把 *alpha* 设置为 *true*，镜头光晕才工作。</div>
+
+		<h2>例子</h2>
+
+		<div>[example:webgl_lensflares lensflares]</div>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:纹理(Texture) texture], [page:Float size], [page:Float distance], [page:材料(Material)s blending], [page:Color color] )</h3>
+		<div>
+		texture -- THREE.Texture （可选） <br />
+		size -- 像素尺寸 (-1 = 使用 texture.width) <br />
+		distance -- 介于 (0-1) 的光源距离（0 = 在光源处）<br />
+		blending -- [page:材料(Material)s 混合模式] - 缺省为 THREE.NormalBlending <br />
+		color -- 镜头光晕的颜色。
+		</div>
+		<div>
+		构造一个镜头光晕对象。如果还设置了一个纹理，则自动添加一个镜头光晕到lensFlares数组中。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+
+		<h3>[property:array lensFlares]</h3>
+		<div>
+		通过 [page:LensFlare.add] 方法添加的镜头光晕数组。
+		</div>
+
+		<h3>[property:Vector3 positionScreen]</h3>
+		<div>
+		镜头光晕在屏幕上的位置。
+		</div>
+
+		<h3>[property:Function customUpdateCallback]</h3>
+		<div>
+		一个自定义的更新回调。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+		<h3>[method:null add]( [page:纹理(Texture) texture], [page:Float size], [page:Float distance], [page:材料(Material)s blending], [page:Color color] )</h3>
+		<div>
+		添加一个镜头光晕。参考构造器的参数描述。
+		</div>
+
+
+		<h3>[method:null updateLensFlares]()</h3>
+		<div>
+		基于 [page:LensFlare.positionScreen positionScreen] 属性更新镜头光晕。
+		</div>
+
+		<h3>[method:Lens Flare clone]()</h3>
+		<div>
+		返回该镜头光晕对象及其后代的克隆。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

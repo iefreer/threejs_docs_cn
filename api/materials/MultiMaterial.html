@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>多种材料（[name]）</h1>
+
+		<div class="desc">
+		一种用于定义相同几何模型的多个材料的材料。
+		模型使用 [page:Face3 faces materialindex] 来决定哪个面使用哪个材料。
+		其中materialindex对应于材料数组中的材料索引值。
+		</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Array materials] )</h3>
+		<div>
+		materials -- 模型的材料数组。
+		</div>
+		<div>
+		创建一个多种材料。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+
+		<h3>[property:Array materials]</h3>
+		<div>
+		获取或设置模型的材料。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

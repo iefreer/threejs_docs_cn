@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>三维矩阵（[name]）</h1>
+
+		<div class="desc">一个3乘3的矩阵。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		创建和初始化一个3x3的单位矩阵。
+		</div>
+
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float32Array elements]</h3>
+		<div>
+		矩阵值的列主（column-major）列表。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Matrix3 set]( [page:Float n11], [page:Float n12], [page:Float n13], [page:Float n21], [page:Float n22], [page:Float n23], [page:Float n31], [page:Float n32], [page:Float n33] ) [page:Matrix3 this]</h3>
+		<div>
+		n11 -- [page:Float] <br />
+		n12 -- [page:Float] <br />
+		n13 -- [page:Float] <br />
+		n21 -- [page:Float] <br />
+		n22 -- [page:Float] <br />
+		n23 -- [page:Float] <br />
+		n31 -- [page:Float] <br />
+		n32 -- [page:Float] <br />
+		n33 -- [page:Float]
+		</div>
+		<div>
+		使用给定的行主(row-major)序列数值来设置该3x3矩阵。
+		</div>
+
+		<h3>[method:Matrix3 copy]( [page:Matrix3 m] ) [page:Matrix3 this]</h3>
+		<div>
+		m -- [page:Matrix4]
+		</div>
+		<div>
+		将矩阵 *m* 的值复制到这个矩阵中。
+		</div>
+
+		<h3>[method:Matrix3 fromArray]( [page:Array array] ) [page:Matrix3 this]</h3>
+		<div>
+		array -- [page:Array] 从中读取元素的数组。
+		</div>
+		<div>
+		使用给定的列主(column-major)数组的数值来设置该矩阵的元素。
+		</div>
+
+		<h3>[method:Matrix3 transpose]() [page:Matrix3 this]</h3>
+		<div>
+		矩阵置换。
+		</div>
+
+		<h3>[method:Matrix3 transposeIntoArray]( [page:Array array] ) [page:Matrix3 this]</h3>
+		<div>
+		array -- [page:Array] <br />
+		</div>
+		<div>
+		把矩阵置换进给定的数组，并返回自身。
+		</div>
+
+		<h3>[method:Float determinant]() [page:Matrix3 this]</h3>
+		<div>
+		计算和返回此矩阵的行列式。
+		</div>
+
+		<h3>[method:Matrix3 multiplyScalar]( [page:Float s] ) [page:Matrix3 this]</h3>
+		<div>
+		scalar -- [page:Float]
+		</div>
+		<div>
+		把矩阵中的每个元素乘以标量值*s*。
+		</div>
+
+		<h3>[method:Array applyToVector3Array]( [page:Array array] ) [page:Matrix3 this]</h3>
+		<div>
+		array -- 一个格式为 [vector1x, vector1y, vector1z, vector2x, vector2y, vector2z, ...] 的数组。
+		</div>
+		<div>
+		把这个矩阵乘以数组中的每一个vector3。
+		</div>
+
+		<h3>[method:Matrix3 getNormalMatrix]( [page:Matrix4 m] ) [page:Matrix3 this]</h3>
+		<div>
+		m -- [page:Matrix4]
+		</div>
+		<div>
+		设置此矩阵为给定matrix4参数的归一化矩阵（左上3乘3）。该法线矩阵是矩阵 *m* 的逆矩阵的转置。
+		</div>
+
+		<h3>[method:Matrix3 getInverse]( [page:Matrix4 m], [page:Boolean throwOnDegenerate] ) [page:Matrix3 this]</h3>
+		<div>
+		m -- [page:Matrix4]<br />
+		throwOnDegenerate -- [Page:Boolean] 如果是true，当矩阵不可逆时会抛出一个错误。
+		</div>
+		<div>
+		将此矩阵设置为传递的矩阵参数的逆。
+		</div>
+
+		<h3>[method:Matrix3 identity]() [page:Matrix3 this]</h3>
+		<div>
+		重置该矩阵为单位矩阵。<br/><br/>
+
+		1, 0, 0<br/>
+		0, 1, 0<br/>
+		0, 0, 1<br/>
+		</div>
+
+		<h3>[method:Matrix3 clone]() [page:Matrix3 this]</h3>
+		<div>
+		创建此矩阵的副本。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array], [page:Integer offset] ) [page:Matrix3 this]</h3>
+		<div>
+		array -- [page:Array] 可选。存储向量的数组。 <br />
+		offset -- [page:Integer] 可选。数组内的偏移。
+		</div>
+		<div>
+		将此矩阵的元素写入列主格式的数组中。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

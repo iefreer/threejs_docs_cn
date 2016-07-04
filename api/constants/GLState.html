@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>GL状态常量（GL State Constants）</h1>
+        <p>这里定义的常量用来指定多边形正反面是否可以被剔除。背面一般是不可见的，进行剔除后，可以提高渲染效率。详细定义请参考：</p>
+        <ul>
+            <li>http://www.khronos.org/registry/webgl/specs/1.0/#5.14</li>
+            <li>http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml</li>
+        </ul>
+		<h2>剔除面（Cull Face）</h2>
+		<div>
+		THREE.CullFaceNone：多边形面不剔除。<br />
+		THREE.CullFaceBack：多边形的反面进行剔除。<br />
+		THREE.CullFaceFront：多边形的正面进行剔除。<br />
+		THREE.CullFaceFrontBack：多边形的正面和反面都进行剔除。
+		</div>
+
+		<h2>正面方向（Front Face Direction）</h2>
+		<div>
+		THREE.FrontFaceDirectionCW：定义多边形正面的方向：顺时针为0（CW=Clockwise）。<br />
+		THREE.FrontFaceDirectionCCW：定义多边形正面的方向：逆时针为1（CCW=Count Clockwise）<br />
+		</div>
+	
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/Three.js src/Three.js]
+	</body>
+</html>

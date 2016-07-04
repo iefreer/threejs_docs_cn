@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>三角面（[name]）</h1>
+
+		<div class="desc">
+		三角面（Triangle face）。
+		</div>
+
+
+		<h2>代码示例</h2>
+
+		<code>var normal = new THREE.Vector3( 0, 1, 0 );
+		var color = new THREE.Color( 0xffaa00 );
+		var face = new THREE.Face3( 0, 1, 2, normal, color, 0 );</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:Integer a], [page:Integer b], [page:Integer c], [page:Vector3 normal], [page:Color color], [page:Integer materialIndex] )</h3>
+		<div>
+		a — 顶点索引A。<br />
+		b — 顶点索引B。<br />
+		c — 顶点索引C。<br />
+		normal — 面法向量或顶点法向量数组。<br />
+		color — 面颜色或顶点颜色的数组。<br />
+		materialIndex — 材料索引。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Integer a]</h3>
+		<div>
+		顶点索引A。
+		</div>
+
+		<h3>[property:Integer b]</h3>
+		<div>
+		顶点索引B。
+		</div>
+
+		<h3>[property:Integer c]</h3>
+		<div>
+		顶点索引C。
+		</div>
+
+		<h3>[property:Vector3 normal]</h3>
+		<div>
+		面法向量。
+		</div>
+
+		<h3>[property:Color color]</h3>
+		<div>
+		面颜色。
+		</div>
+
+		<h3>[property:Array vertexNormals]</h3>
+		<div>
+		3个顶点法向量的数组。
+		</div>
+
+		<h3>[property:Array vertexColors]</h3>
+		<div>
+		3个顶点颜色的数组。
+		</div>
+
+
+		<h3>[property:Integer materialIndex]</h3>
+		<div>
+		材料索引 (指向 [page:多种材料(MultiMaterial) MultiMaterial.materials]).
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Face3 clone]()</h3>
+		<div>
+		创建一个新的Face3克隆对象。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

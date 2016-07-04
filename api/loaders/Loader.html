@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>加载器（[name]）</h1>
+
+		<div class="desc">所有加载器的基类。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		创建一个新的 [name]。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Function onLoadStart]</h3>
+		<div>将在加载开始时被调用。</div>
+		<div>缺省是一个空函数体。</div>
+
+		<h3>[property:Function onLoadProgress]</h3>
+		<div>将在加载过程中被调用。</div>
+		<div>缺省是一个空函数体。</div>
+
+		<h3>[property:Function onLoadComplete]</h3>
+		<div>将在加载结束时被调用。</div>
+		<div>缺省是一个空函数体。</div>
+
+		<h3>[property:string crossOrigin]</h3>
+		<div>
+		实现CORS来从不同的域名（允许CORS）加载资源。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Material createMaterial]( [page:object m], [page:字符串(String) texturePath] )</h3>
+		<div>
+		[page:Object m] — 创建材料的参数。 <br />
+		[page:字符串(String) texturePath] — 纹理的基本路径。
+		</div>
+		<div>
+		根据参数m创建材料。
+		</div>
+
+		<h3>[method:Array initMaterials]( [page:Array materials], [page:字符串(String) texturePath] )</h3>
+		<div>
+		[page:Array materials] — 创建材料的一个参数数组。 <br />
+		[page:字符串(String) texturePath] — 纹理的基本路径。
+		</div>
+		<div>
+		根据参数数组materials创建一个 [page:材料(Material)] 对象数组。 参数的索引决定材料的正确索引。
+		</div>
+
+		<h3>[method:String extractUrlBase]( [page:字符串(String) url] )</h3>
+		<div>
+		[page:字符串(String) url] — 从中提取基础路径的网址URL。
+		</div>
+		<div>
+		从网址URL中提取基础路径。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

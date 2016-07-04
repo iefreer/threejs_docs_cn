@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>[name]</h1>
+
+		<div class="desc">从一个原点向特定方向发射的射线。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Vector3 origin], [page:Vector3 direction] )</h3>
+		<div>
+		origin -- [page:Vector3] [page:射线(Ray)]原点。<br />
+		direction -- [page:Vector3] [page:射线(Ray)]方向。这个参数必须是归一化的（使用 [page:Vector3].normalize方法）。
+		</div>
+		<div>
+		使用给定值来初始化origin和direction属性。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Vector3 origin]</h3>
+		<div>
+		[page:射线(Ray)]原点。
+		</div>
+
+		<h3>[property:Vector3 direction]</h3>
+		<div>
+		[page:射线(Ray)]方向。这个参数必须是归一化的（使用 [page:Vector3].normalize方法）。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Ray applyMatrix4]( [page:Matrix4 matrix4] )</h3>
+		<div>
+		matrix4 -- [page:Matrix4] 用来变换该射线的 [page:Matrix4] 。
+		</div>
+		<div>
+		使用[page:Matrix4]来变换[page:Ray]。
+		</div>
+
+		<h3>[method:Vector3 at]( [page:Float t], [page:Vector3 optionalTarget] = null ) [page:Vector3]</h3>
+		<div>
+		t -- [page:Float] 该位置到射线的距离。<br />
+		optionalTarget -- [page:Vector3] 如果设置了该参数，则获取射线方向上的一个位置；否则新建一个 [page:Vector3] 对象。
+		</div>
+		<div>
+		获取沿射线方向指定距离的一个 [page:Vector3] 位置点。
+		</div>
+
+		<h3>[method:Ray clone]()</h3>
+		<div>
+		克隆该 [page:Ray].
+		</div>
+
+		<h3>[method:Vector3 closestPointToPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] )</h3>
+		<div>
+		point -- [page:Vector3] 用来获取射线上最近点的参照点位置。 <br />
+		optionalTarget -- [page:Vector3] 如果设置了该参数，用来获取返回值；否则新建一个 [page:Vector3] 对象。
+		</div>
+		<div>
+		获取沿着射线方向和给定 [page:Vector3] 距离最近的点。
+		</div>
+
+		<h3>[method:Ray copy]( [page:Ray ray] )</h3>
+		<div>
+		ray -- 拷贝源。
+		</div>
+		<div>
+		拷贝给定ray对象的属性并返回。
+		</div>
+
+		<h3>[method:Float distanceSqToSegment]( [page:Vector3 v0], [page:Vector3 v1], [page:Vector3 optionalPointOnRay] = null, [page:Vector3 optionalPointOnSegment] = null ) [page:Float]</h3>
+		<div>
+		v0 -- [page:Vector3] 线段起点。
+		v1 -- [page:Vector3] 线段终点。
+		optionalPointOnRay -- [page:Vector3] 如果给定了该参数，则用来接收距离线段最近的射线上的点。
+		optionalPointOnSegment -- [page:Vector3] 如果给定了该参数，则用来接收距离射线最近的线段上的点。
+		</div>
+		<div>
+		获取一个线段和该射线之间的平方距离。
+		</div>
+
+		<h3>[method:Float distanceToPlane]( [page:Plane plane] )</h3>
+		<div>
+		plane -- [page:Plane] 计算距离的目标平面。
+		</div>
+		<div>
+		获取原点到给定平面的距离，或者为*null*，如果射线并不和平面相交。
+		</div>
+
+		<h3>[method:Float distanceToPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3] 计算距离的目标点。
+		</div>
+		<div>
+		获取目标点和射线之间的最短距离。
+		</div>
+
+		<h3>[method:Float distanceSqToPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3] 计算距离的目标点。
+		</div>
+		<div>
+		获取目标点和射线之间的最短平方距离。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Ray ray] )</h3>
+		<div>
+		ray -- [page:Ray] 要比较的射线。
+		</div>
+		<div>
+		返回两条射线是否具有相同的偏移和方向。
+		</div>
+
+		<h3>[method:Vector3 intersectBox]( [page:Box3 box], [page:Vector3 optionalTarget] = null ) [page:Vector3]?</h3>
+		<div>
+		box  -- [page:Box3] 相交的box3盒子。<br />
+		optionalTarget -- [page:Vector3] 用来保存结果的[page:Vector3], 默认为新建一个 [page:Vector3] 对象。
+		</div>
+		<div>
+		使得射线和一个盒子相交，返回交点。如果没有交点，则返回 *null*。
+		</div>
+
+		<h3>[method:Vector3 intersectPlane]( [page:Plane plane], [page:Vector3 optionalTarget] = null ) [page:Vector3]?</h3>
+		<div>
+		plane -- [page:Plane] 相交的平面。<br />
+		optionalTarget -- [page:Vector3] 用来保存结果的[page:Vector3], 默认为新建一个 [page:Vector3] 对象。
+		</div>
+		<div>
+		使得射线和一个平面相交，返回交点。如果没有交点，则返回 *null*。
+		</div>
+		function ( a, b, c, backfaceCulling, optionalTarget )
+
+		<h3>[method:Vector3 intersectTriangle]( [page:Vector3 a], [page:Vector3 b], [page:Vector3 c], [page:Boolean backfaceCulling], [page:Vector3 optionalTarget] = null ) [page:Vector3]?</h3>
+		<div>
+		a, b, c -- [page:Vector3] 用来定义三角形的3个点。<br />
+		backfaceCulling -- [page:Boolean] Whether to use backface culling.<br />
+		optionalTarget -- [page:Vector3] 用来保存结果的[page:Vector3], 默认为新建一个 [page:Vector3] 对象。
+		</div>
+		<div>
+		使得射线和一个三角形相交，返回交点。如果没有交点，则返回 *null*。
+		</div>
+
+		<h3>[method:Boolean intersectsBox]( [page:Box3 box] )</h3>
+		<div>
+		box  -- [page:Box3] 相交的box3盒子。<br />
+		</div>
+		<div>
+		返回是否射线和盒子相交，这是一个布尔值。
+		</div>
+
+		<h3>[method:Boolean intersectsPlane]( [page:Plane plane] )</h3>
+		<div>
+		plane -- [page:Plane] 相交的平面。<br />
+		</div>
+		<div>
+		返回是否射线和平面相交。
+		</div>
+
+		<h3>[method:Boolean intersectsSphere]( [page:Sphere sphere] )</h3>
+		<div>
+		sphere -- [page:Sphere] 相交的球体。
+		</div>
+		<div>
+		返回是否射线和球体相交。
+		</div>
+
+		<h3>[method:Ray recast]( [page:Float t] )</h3>
+		<div>
+		t -- 需要插值的沿着射线方向的距离。
+		</div>
+		<div>
+		按给定的距离沿着射线方向迁移原点。
+		</div>
+
+		<h3>[method:Ray set]( [page:Vector3 origin], [page:Vector3 direction] )</h3>
+		<div>
+		origin -- [page:Vector3] [page:射线(Ray)]原点。<br />
+		direction -- [page:Vector3] [page:射线(Ray)]方向。这个参数必须是归一化的（使用 [page:Vector3].normalize方法）。
+		</div>
+		<div>
+		拷贝参数给origin和direction属性。
+		</div>
+
+		<h3>[method:Ray lookAt]( [page:Vector3 v] )</h3>
+		<div>
+		v -- [page:Vector3] 观察点位置。
+		</div>
+		<div>
+		把射线方向调整为世界坐标中该vector所在的点。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

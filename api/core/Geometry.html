@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>几何模型（[name]）</h1>
+
+		<div class="desc">
+		这是所有几何模型的基类。<br />
+		一个Geometry存有用来描述一个三维模型的所有必要数据。
+		</div>
+
+
+		<h2>示例</h2>
+
+		<code>var geometry = new THREE.Geometry();
+
+		geometry.vertices.push(
+			new THREE.Vector3( -10,  10, 0 ),
+			new THREE.Vector3( -10, -10, 0 ),
+			new THREE.Vector3(  10, -10, 0 )
+		);
+
+		geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+
+		geometry.computeBoundingSphere();
+		</code>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		该构造器没有参数。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Integer id]</h3>
+		<div>
+		这个geometry实例的唯一标识。
+		</div>
+
+		<h3>[property:String name]</h3>
+		<div>
+		这个geometry的名称，缺省是一个空字符串。
+		</div>
+
+		<h3>[property:Array vertices]</h3>
+		<div>
+		[page:Vector3 vertices]数组。<br />
+		用来保存模型中所有顶点位置的数组。<br />
+		要更新该数组，[page:几何模型(Geometry) Geometry.verticesNeedUpdate] 需要被设置为true。
+		</div>
+
+		<h3>[property:Array colors]</h3>
+		<div>
+		顶点[page:颜色(Color) colors]数组，和上述vertices属性的个数和顺序一致。<br />
+		用于 [page:点(Points)] 和 [page:线条(Line)]。<br />
+		[page:网孔(Mesh) Meshes] 使用嵌在表面的每面用的顶点颜色。<br />
+		要更新该数组，[page:几何模型(Geometry) Geometry.colorsNeedUpdate] 需要被设置为true。
+		</div>
+
+		<h3>[property:Array faces]</h3>
+		<div>
+		[page:三角面(Face3) triangles]数组。<br />
+		三角面数组，用来描述模型中的每个顶点是如何相互连接的。<br />
+        要更新该数组，[page:几何模型(Geometry) Geometry.elementsNeedUpdate] 需要被设置为true。
+		</div>
+
+		<h3>[property:Array faceVertexUvs]</h3>
+		<div>
+		面 [page:UV] 层数组。<br />
+		每个UV层都是一个 [page:UV]s 数组，和面上的顶点数量和顺序一致。<br />
+		要更新该数组，[page:几何模型(Geometry) Geometry.uvsNeedUpdate] 需要被设置为true。
+		</div>
+
+		<h3>[property:Array morphTargets]</h3>
+		<div>
+		变形目标数组。每个变形目标是一个具备如下形式的JavaScript对象：
+		<code>{ name: "targetName", vertices: [ new THREE.Vector3(), ... ] }</code>
+		变形顶点数和主顶点的数量和顺序一致。
+		</div>
+
+		<h3>[property:Array morphNormals]</h3>
+		<div>
+		变形法向量数组。变形法向量和变形目标的数据结构类似：
+		<code>morphNormal = { name: "NormalName", normals: [ new THREE.Vector3(), ... ] }</code>
+		</div>
+
+		<h3>[property:Array skinWeights]</h3>
+		<div>
+		蒙皮权重数组。当使用 [page:蒙皮网孔(SkinnedMesh)]时，每个顶点最多可以有4个[page:骨骼(Bone) bones]会对它产生影响。
+		skinWeights 属性是一组权重值，对应于模型中的顶点顺序。比如，第一个 skinWeight 将对应于模型（geometry）中的第一个顶点（vertex）。
+		由于每个顶点可以被4个bones所修改，我们用 [page:Vector4] 来表示该顶点的蒙皮权重（skin weights）。
+		</div>
+		<div>
+        向量的值通常在1到0之间。例如，当设置为0的骨骼变换（bone transformation）不起作用。
+        当设置为0.5时，将有50%影响。当设置为100%，它将有100%影响。如果只有1个骨骼与顶点关联，那么你只需要关心向量的第一个元素，其余的可以被忽略并设置为0。
+		</div>
+
+		<h3>[property:Array skinIndices]</h3>
+		<div>
+		就和 skinWeights 属性一样，skinIndices 的值和模型的顶点相匹配。
+		每个顶点可以有最多4个骨骼与之相关，所以如果你看第1个顶点，和第1个skinIndex，将得到与之对应的骨骼。
+        比如第一个顶点值为 <strong>( 10.05, 30.10, 12.12 )</strong>，然后第一个蒙皮索引的值可能是<strong>( 10, 2, 0, 0 )</strong>。
+        第一个蒙皮权重值可能是 <strong>( 0.8, 0.2, 0, 0 )</strong>。那么实际上对于第1个顶点，有两个bone权重会起作用，第一个为
+		<strong>mesh.bones[10]</strong> 并应用80%的权重，第二个是<strong>skeleton.bones[2]</strong>应用20%的权重。其余2个bone的值权重为0，不起作用。
+		</div>
+		<div>
+		在代码中，另一个例子可能看起来像这样：
+		<code>
+		// e.g.
+		geometry.skinIndices[15] = new THREE.Vector4(   0,   5,   9, 0 );
+		geometry.skinWeights[15] = new THREE.Vector4( 0.2, 0.5, 0.3, 0 );
+
+		// 与下列顶点相对应
+		geometry.vertices[15];
+
+		// 这些bones会像下面这样使用：
+		skeleton.bones[0]; // weight of 0.2
+		skeleton.bones[5]; // weight of 0.5
+		skeleton.bones[9]; // weight of 0.3
+		skeleton.bones[10]; // weight of 0
+		</code>
+		</div>
+
+		<h3>[property:Object boundingBox]</h3>
+		<div>
+		包围盒（Bounding box）。
+		<code>{ min: new THREE.Vector3(), max: new THREE.Vector3() }</code>
+		</div>
+
+		<h3>[property:Object boundingSphere]</h3>
+		<div>
+		包围球（Bounding sphere）。
+		<code>{ radius: float }</code>
+		</div>
+
+		<h3>[property:Boolean verticesNeedUpdate]</h3>
+		<div>
+		如果顶点数组被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:Boolean elementsNeedUpdate]</h3>
+		<div>
+		如果面数组被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:Boolean uvsNeedUpdate]</h3>
+		<div>
+		如果UV数组被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:Boolean normalsNeedUpdate]</h3>
+		<div>
+		如果法向量数组被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:Boolean colorsNeedUpdate]</h3>
+		<div>
+		如果颜色数组或者一个三角面颜色被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:Boolean groupsNeedUpdate]</h3>
+		<div>
+		如果一个三角面材料索引（materialIndex）被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:Boolean lineDistancesNeedUpdate]</h3>
+		<div>
+		如果线间距数组被更新则设置为 *true* 。
+		</div>
+
+		<h3>[property:array lineDistances]</h3>
+		<div>
+        一个包含线条模型(Line geometry)顶点之间距离的数组。
+        LinePieces / LineDashedMaterial 需要使用该属性来正确渲染。
+        线的间距也可以由 computeLineDistances 方法所生成。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>该类可以使用 [page:事件分发器(EventDispatcher) EventDispatcher] 方法。</h3>
+
+		<h3>[method:null applyMatrix]( [page:Matrix4 matrix] )</h3>
+		<div>
+		给顶点坐标施加矩阵变换。
+		</div>
+
+		<h3>[method:null center] ()</h3>
+		<div>
+		使基于包围盒的几何模型居中。
+		</div>
+
+		<h3>[method:Geometry rotateX] ( [page:Float radians] )</h3>
+		<div>
+		使模型绕X轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).rotation]。
+		</div>
+
+		<h3>[method:Geometry rotateY] ( [page:Float radians] )</h3>
+		<div>
+		使模型绕Y轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).rotation]。
+		</div>
+
+		<h3>[method:Geometry rotateZ] ( [page:Float radians] )</h3>
+		<div>
+		使模型绕Z轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).rotation]。
+		</div>
+
+		<h3>[method:Geometry translate] ( [page:Float x], [page:Float y], [page:Float z] )</h3>
+		<div>
+		平移模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).position]。
+		</div>
+
+		<h3>[method:Geometry scale] ( [page:Float x], [page:Float y], [page:Float z] )</h3>
+		<div>
+		缩放模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).scale]。
+		</div>
+
+		<h3>[method:Geometry lookAt] ( [page:Vector3 vector] )</h3>
+		<div>
+		vector - 一个观察点世界向量<br />
+		</div>
+		<div>
+		旋转模型以面对观察点。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).lookAt]。
+		</div>
+
+		<h3>[method:null computeFaceNormals]()</h3>
+		<div>
+		计算面法向量。
+		</div>
+
+		<h3>[method:null computeVertexNormals]( [page:Boolean areaWeighted] )</h3>
+		<div>
+		areaWeighted - 如果为true，则每个面法线对顶点法线的贡献由该面的面积所确定。默认为true。
+		</div>
+		<div>
+		通过平均面法线来计算顶点法线。<br />
+		面法线必须已存在（预先计算好）。
+		</div>
+
+		<h3>[method:null computeMorphNormals]()</h3>
+		<div>
+		计算变形法线。
+		</div>
+
+		<h3>[method:null computeBoundingBox]()</h3>
+		<div>
+		计算该模型的包围盒，更新 [page:几何模型(Geometry) Geometry.boundingBox] 属性。<br />
+		</div>
+
+		<h3>[method:null computeBoundingSphere]()</h3>
+		<div>
+		计算该模型的包围球，更新 [page:几何模型(Geometry) Geometry.boundingSphere] 属性。<br />
+		</div>
+
+		<div>包围盒和包围球都不会被默认计算，需要显式计算，否则它们为 *null*。</div>
+
+		<h3>[method:null merge]( [page:几何模型(Geometry) geometry], [page:Matrix4 matrix], [page:Integer materialIndexOffset] )</h3>
+		<div>合并几何模型。</div>
+
+		<h3>[method:null mergeVertices]()</h3>
+		<div>
+		使用哈希表检查重复的顶点。<br />
+		重复的顶点被删除，同时面的vertices属性被更新。
+		</div>
+
+		<h3>[method:null normalize]()</h3>
+		<div>
+		正规化模型。<br />
+		使模型居中，并且有一个半径等于1的包围球。
+		</div>
+
+		<h3>[method:Geometry clone]()</h3>
+		<div>
+		创建一个新的几何模型克隆。
+		</div>
+		
+		<div>此方法只复制顶点、面和UVs。它不复制模型的任何其他属性。</div>
+
+		<h3>[method:null dispose]()</h3>
+		<div>
+		从内存中删除对象。<br />
+		当你删除一个模型时，别忘了调用这个方法，否则可能会导致内存泄漏。
+		</div>
+
+		<h3>[method:null computeLineDistances]()</h3>
+		<div>
+		线条模型（Line Geometry）的顶点之间的距离计算。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

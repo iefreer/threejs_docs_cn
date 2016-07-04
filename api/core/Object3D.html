@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>3D对象（[name]）</h1>
+
+		<div class="desc">3D场景中图形对象的基类。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		该构造函数没有参数。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Integer id]</h3>
+		<div>
+		只读 – 此对象实例的唯一编号。
+		</div>
+
+		<h3>[property:String uuid]</h3>
+		<div>
+		该对象的[link:http://en.wikipedia.org/wiki/Universally_unique_identifier UUID]
+		由程序自动分配，所以不可编辑。
+		</div>
+
+		<h3>[property:String name]</h3>
+		<div>
+		对象的可选名称（不需要是唯一的）。
+		</div>
+
+		<h3>[property:Object3D parent]</h3>
+		<div>
+		该对象在场景图中的父对象。
+		</div>
+
+		<h3>[property:Object3D children]</h3>
+		<div>
+		该对象的子对象数组。
+		</div>
+
+		<h3>[property:Vector3 position]</h3>
+		<div>
+		对象的局部位置。
+		</div>
+
+		<h3>[property:Euler rotation]</h3>
+		<div>
+		对象的局部旋转，单位为弧度。 (<a href="https://en.wikipedia.org/wiki/Euler_angles" target="_blank">欧拉角（Euler angles）</a>)。
+		</div>
+
+		<h3>[property:Vector3 scale]</h3>
+		<div>
+		对象的局部缩放因子。
+		</div>
+
+		<h3>[property:Vector3 up]</h3>
+		<div>
+		空间的向上方向。缺省是 THREE.Vector3( 0, 1, 0 )。
+		</div>
+
+		<h3>[property:Matrix4 matrix]</h3>
+		<div>
+		局部变换。
+		</div>
+
+		<h3>[property:Quaternion quaternion]</h3>
+		<div>
+		使用[page:四元数(Quaternion) Quaternion]表示的对象局部旋转。
+		</div>
+
+		<h3>[property:Boolean visible]</h3>
+		<div>
+		是否可见，如果为true，则对象被渲染。
+		</div>
+		<div>
+		缺省值 – true
+		</div>
+
+		<h3>[property:Boolean castShadow]</h3>
+		<div>
+		是否被渲染到阴影映射中。
+		</div>
+		<div>
+		缺省值 – false
+		</div>
+
+		<h3>[property:Boolean receiveShadow]</h3>
+		<div>
+		材料接受阴影效果。
+		</div>
+		<div>
+		缺省值 – false
+		</div>
+
+		<h3>[property:Boolean frustumCulled]</h3>
+		<div>
+		当设置为true时，每一帧都会检查该对象是否在相机的视椎体中。否则，即使它是不可见的，对象也会得到绘制。
+		</div>
+		<div>
+		缺省值 – true
+		</div>
+
+		<h3>[property:Boolean matrixAutoUpdate]</h3>
+		<div>
+		当设置为true时会自动更新矩阵，包括计算位置矩阵（旋转或四元数），逐帧缩放，也会重新计算世界矩阵（matrixWorld）属性。
+		</div>
+		<div>
+		缺省值 – true
+		</div>
+
+		<h3>[property:Boolean matrixWorldNeedsUpdate]</h3>
+		<div>
+		当设置为true时，会计算该帧中的世界矩阵属性，然后重置该属性为false。
+		</div>
+		<div>
+		缺省值 – false
+		</div>
+
+		<h3>[property:object userData]</h3>
+		<div>
+		可以用来存储该Object3D对象的自定义数据，它不应该保存有函数的引用，因为这些不会被克隆。
+		</div>
+
+		<h3>[property:Matrix4 matrixWorld]</h3>
+		<div>
+		对象的全局变换。如果该Object3D没有父对象，那么它和局部变换相同。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>该类可以使用方法 [page:事件分发器(EventDispatcher) EventDispatcher]</h3>
+
+		<h3>[method:null applyMatrix]( [page:Matrix4 matrix] )</h3>
+		<div>
+		matrix - 矩阵
+		</div>
+		<div>
+		使用矩阵变换更新对象的位置、旋转和大小。
+		</div>
+
+		<h3>[method:null translateX]( [page:Float distance] )</h3>
+		<div>
+		distance - 距离。<br />
+		</div>
+		<div>
+		沿X轴平移对象。
+		</div>
+
+		<h3>[method:null translateY]( [page:Float distance] )</h3>
+		<div>
+		distance - 距离。<br />
+		</div>
+		<div>
+		沿Y轴平移对象。
+		</div>
+
+		<h3>[method:null translateZ]( [page:Float distance] )</h3>
+		<div>
+		distance - 距离。<br />
+		</div>
+		<div>
+		沿Z轴平移对象。
+		</div>
+
+		<h3>[method:null rotateX]( [page:Float rad] )</h3>
+		<div>
+		rad - 以弧度为单位的旋转角度<br />
+		</div>
+		<div>
+		在局部空间中绕X轴旋转对象。
+		</div>
+
+		<h3>[method:null rotateY]( [page:Float rad] )</h3>
+		<div>
+		rad - 以弧度为单位的旋转角度<br />
+		</div>
+		<div>
+		在局部空间中绕Y轴旋转对象。
+		</div>
+
+		<h3>[method:null rotateZ]( [page:Float rad] )</h3>
+		<div>
+		rad - 以弧度为单位的旋转角度<br />
+		</div>
+		<div>
+		在局部空间中绕Z轴旋转对象。
+		</div>
+
+		<h3>[method:Vector3 localToWorld]( [page:Vector3 vector] )</h3>
+		<div>
+		vector - 一个局部向量<br />
+		</div>
+		<div>
+		从局部空间到世界空间（全局空间）的向量转换。
+		</div>
+
+		<h3>[method:Vector3 worldToLocal]( [page:Vector3 vector] )</h3>
+		<div>
+		vector - 一个全局向量<br />
+		</div>
+		<div>
+		从世界空间到局部空间的向量转换。
+		</div>
+
+		<h3>[method:null lookAt]( [page:Vector3 vector] )</h3>
+		<div>
+		vector - 一个世界向量观察点<br />
+		</div>
+		<div>
+		旋转模型以面对观察点。
+		</div>
+
+		<h3>[method:null add]( [page:3D对象(Object3D) object], ... )</h3>
+		<div>
+		object - 一个对象<br />
+		</div>
+		<div>
+		添加 *object* 为该对象的子对象。可以添加任意数量的对象。
+		</div>
+
+		<h3>[method:null remove]( [page:3D对象(Object3D) object], ... )</h3>
+		<div>
+		object - 一个对象<br />
+		</div>
+		<div>
+		删除该对象中的 *object* 子对象。可以删除任意数量的对象。
+		</div>
+
+		<h3>[method:null traverse]( [page:函数(Function) callback] )</h3>
+		<div>
+		callback - 第一个参数为Object3D对象的回调函数。<br />
+		</div>
+		<div>
+		在这个对象和所有的子对象上执行回调。
+		</div>
+
+		<h3>[method:null traverseVisible]( [page:函数(Function) callback] )</h3>
+		<div>
+		callback - 第一个参数为Object3D对象的回调函数。<br />
+		</div>
+		<div>
+		和 traverse 方法类似，但是这个callback将只在可见对象上执行。
+		不可见对象的后代不会被遍历。
+		</div>
+
+		<h3>[method:null traverseAncestors]( [page:函数(Function) callback] )</h3>
+		<div>
+		callback - 第一个参数为Object3D对象的回调函数。<br />
+		</div>
+		<div>
+		执行所有祖先的回调。
+		</div>
+
+		<h3>[method:null updateMatrix]()</h3>
+		<div>
+		更新对象的局部变换。
+		</div>
+
+		<h3>[method:null updateMatrixWorld]( [page:Boolean force] )</h3>
+		<div>
+		更新对象和它的子对象的全局变换。
+		</div>
+
+		<h3>[method:Object3D clone]( [page:Boolean recursive] )</h3>
+		<div>
+		recursive -- 如果为true，对象的后代也会被克隆（概念上类似于C语言的深度拷贝）。默认是true。
+		</div>
+		<div>
+		返回该对象的克隆以及可选的所有后代对象。
+		</div>
+
+
+		<h3>[method:Object3D getObjectByName]( [page:字符串(String) name] )</h3>
+		<div>
+		name -- 和子对象的Object3d.name属性匹配的字符串<br />
+		</div>
+		<div>
+		搜索对象的子对象，并返回第一个和name匹配的对象。
+		</div>
+
+		<h3>[method:Object3D getObjectById]( [page:Integer id] )</h3>
+		<div>
+		id -- 对象实例的唯一编号<br />
+		</div>
+		<div>
+		搜索对象的子对象，并返回第一个和id匹配的对象。
+		</div>
+
+		<h3>[method:Vector3 getWorldPosition]( [page:Vector3 optionalTarget] )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Vector3`对象。（可选）<br />
+		</div>
+		<div>
+		返回一个表示对象在世界空间中的位置的向量。
+		</div>
+
+		<h3>[method:Quaternion getWorldQuaternion]( [page:四元数(Quaternion) optionalTarget] )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Quaternion`对象。<br />
+		</div>
+		<div>
+		返回一个表示在世界空间中对象的旋转的四元数。
+		</div>
+
+		<h3>[method:Euler getWorldRotation]( [page:欧拉角(Euler) optionalTarget] )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Euler`对象。<br />
+		</div>
+		<div>
+		返回一个表示在世界空间中对象的旋转的欧拉角。
+		</div>
+
+		<h3>[method:Vector3 getWorldScale]( [page:Vector3 optionalTarget] )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Vector3`对象。（可选）<br />
+		</div>
+		<div>
+		返回用在世界空间中每个轴的对象上的缩放因子的向量。
+		</div>
+
+		<h3>[method:Vector3 getWorldDirection]( [page:Vector3 optionalTarget] )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Vector3`对象。（可选）<br />
+		</div>
+		<div>
+		返回一个向量，表示在世界空间物体的正Z轴方向。
+		</div>
+
+		<h3>[method:Object3D translateOnAxis]( [page:Vector3 axis], [page:Float distance] )</h3>
+		<div>
+		axis -- 对象空间中的正规化（也称之为归一化）轴向量。<br />
+		distance -- 平移距离。
+		</div>
+		<div>
+		在对象空间中沿轴线平移一个物体。这里的轴假定为已正规化。
+		</div>
+
+		<h3>[method:Object3D rotateOnAxis]( [page:Vector3 axis], [page:Float angle] )</h3>
+		<div>
+		axis -- 对象空间中的正规化轴向量。<br />
+		angle -- 以弧度为单位的角度。
+		</div>
+		<div>
+		在对象空间中绕轴线旋转一个物体。这里的轴假定为已正规化。
+		</div>
+
+		<h3>[method:Array raycast]( [page:Raycaster raycaster], [page:数组(Array) intersects] )</h3>
+		<div>
+		获取光线投射和该对象之间交点的抽象方法。子类（Subclasses）如 [page:网孔(Mesh)], [page:线条(Line)], 和 [page:点(Points)] 实现了该方法以参与光线投射（raycasting）。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

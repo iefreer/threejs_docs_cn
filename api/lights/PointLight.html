@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr; [page:Light] &rarr;
+
+		<h1>点光源（[name]）</h1>
+
+		<div class="desc">
+			使用 [page:MeshLambertMaterial] 或 [page:Phong网孔材料(MeshPhongMaterial)] 来影响对象。
+		</div>
+
+
+		<h2>例子</h2>
+
+		<div>[example:canvas_lights_pointlights lights / pointlights ]</div>
+		<div>[example:webgl_lights_pointlights lights / pointlights ]</div>
+		<div>[example:webgl_lights_pointlights2 lights / pointlights2 ]</div>
+		<div>[example:webgldeferred_animation animation ]</div>
+		<div>[example:webgldeferred_pointlights pointlights ]</div>
+		<div>[example:webgl_effects_anaglyph effects / anaglyph ]</div>
+		<div>[example:webgl_geometry_large_mesh geometry / large / mesh ]</div>
+		<div>[example:webgl_geometry_text geometry / text ]</div>
+		<div>[example:webgl_lensflares lensflares ]</div>
+
+		<code>var light = new THREE.PointLight( 0xff0000, 1, 100 );
+light.position.set( 50, 50, 50 );
+scene.add( light );</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Integer color], [page:Float intensity], [page:Number distance], [page:Float decay] )</h3>
+		<div>
+		[page:Integer color] — 颜色的RBG数值。<br />
+		[page:Float intensity] — 光强的数值。<br />
+		[page:Number distance] -- 光强为0处到光源的距离，0表示无穷大。<br />
+		[page:Float decay] -- 沿着光照距离的衰退量。
+		</div>
+		<div>
+		在场景中的特定位置创建一个光源。光线照射在各个方向上（好比一个灯泡）。
+
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		通用属性可查看基类 [page:光照(Light) Light] 。
+
+		<h3>[property:Float power]</h3>
+		<div>
+			光功率。<br />
+			在“物理正确”模式中，表示以"流明（光通量单位）"为单位的光功率。<br/>
+			Default - *4PI*。
+		</div>
+
+		<h3>[property:Float distance]</h3>
+		<div>
+			如果非0，光照将沿着光源处到该距离处线性衰减为零。<br />
+			缺省值 — *0.0*，表示光照一直到无穷远才衰减为零。
+		</div>
+
+		<h3>[property:Float decay]</h3>
+		<div>
+			沿着光照距离的衰退量。<br />
+			在“物理正确”模式中，decay = 2将实现现实世界的光衰减。<br/>
+			缺省值 — *1*。
+		</div>
+
+		<h3>[property:LightShadow shadow]</h3>
+		<div>
+			此属性存储用来渲染光照阴影的所有相关信息。<br />
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		通用方法可查看基类 [page:光照(Light) Light] 。
+
+		<h3>[method:PointLight copy]( [page:PointLight source] )</h3>
+		<div>
+		<br />
+		把 *source* 的数值拷贝给这个点光源对象。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

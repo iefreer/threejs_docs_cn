@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>二维向量（[name]）</h1>
+
+		<div class="desc">二维向量。</div>
+
+		<h2>例子</h2>
+
+		<code>var a = new THREE.Vector2( 0, 1 );
+		var b = new THREE.Vector2( 1, 0 );
+
+		var d = a.distanceTo( b );
+		</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Float x], [page:Float y] )</h3>
+		<div>
+		x -- [page:Float] 该向量的x分量。<br />
+		y -- [page:Float] 该向量的y分量。
+		</div>
+		<div>
+		2维空间中的一个向量。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float x]</h3>
+
+		<h3>[property:Float y]</h3>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Vector2 set]( [page:Float x], [page:Float y] ) [page:Vector2 this]</h3>
+		<div>
+		设置此向量的值。
+		</div>
+
+		<h3>[method:Vector2 setX]( [page:Float x] ) [page:Vector2 this]</h3>
+		<div>
+		x -- [page:Float]
+		</div>
+		<div>
+		使用参数x的值设置该向量的x分量。
+		</div>
+
+		<h3>[method:Vector2 setY]( [page:Float y] ) [page:Vector2 this]</h3>
+		<div>
+		y -- [page:Float]
+		</div>
+		<div>
+		使用参数y的值设置该向量的y分量。
+		</div>
+
+		<h3>[method:Vector2 copy]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		拷贝v中的值到该向量。
+		</div>
+
+		<h3>[method:Vector2 fromArray]( [page:Array array], [page:Integer offset] ) [page:Vector2 this]</h3>
+		<div>
+		array -- 长度为2的数组 <br />
+		offset -- 一个可选的数组内偏移。
+		</div>
+		<div>
+		设置此向量的x值为array[0]和y值为array[1]。
+		</div>
+
+		<h3>[method:Vector2 add]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		返回 *v* 和 该vector 的向量之和。
+		</div>
+
+		<h3>[method:Vector2 addVectors]( [page:Vector2 a], [page:Vector2 b] ) [page:Vector2 this]</h3>
+		<div>
+		返回 *a + b* 向量之和。
+		</div>
+
+		<h3>[method:Vector2 addScaledVector]( [page:Vector2 v], [page:Float s] ) [page:Vector2 this]</h3>
+		<div>
+		将v和s的乘积添加到该向量中。
+		</div>
+
+		<h3>[method:Vector2 sub]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		从这个向量中减去*v*。
+		</div>
+
+		<h3>[method:Vector2 subVectors]( [page:Vector2 a], [page:Vector2 b] ) [page:Vector2 this]</h3>
+		<div>
+		设置向量为 *a - b*。
+		</div>
+
+		<h3>[method:Vector2 multiplyScalar]( [page:Float s] ) [page:Vector2 this]</h3>
+		<div>
+		将这个向量乘以标量*s*。
+		</div>
+
+		<h3>[method:Vector2 divideScalar]( [page:Float s] ) [page:Vector2 this]</h3>
+		<div>
+		将这个向量除以标量*s*。<br />
+		如果*s*==0, 那么设置为 *( 0, 0 )*。
+		</div>
+
+		<h3>[method:Vector2 negate]() [page:Vector2 this]</h3>
+		<div>
+		反转该向量。
+		</div>
+
+		<h3>[method:Float dot]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		计算这个向量和*v*的点积。
+		</div>
+
+		<h3>[method:Float lengthSq]() [page:Vector2 this]</h3>
+		<div>
+		计算该向量的平方长度。
+		</div>
+
+		<h3>[method:Float length]() [page:Vector2 this]</h3>
+		<div>
+		计算该向量的长度。
+		</div>
+
+		<h3>[method:Float lengthManhattan]() [page:Vector2 this]</h3>
+		<div>
+		计算该向量的曼哈顿长度。<br />
+		[link:http://en.wikipedia.org/wiki/Taxicab_geometry]
+		</div>
+
+		<h3>[method:Vector2 normalize]() [page:Vector2 this]</h3>
+		<div>
+		归一化该向量。
+		</div>
+
+		<h3>[method:Float angle]() [page:Vector2 this]</h3>
+		<div>
+		计算这个向量和x轴之间的弧度角。
+		</div>
+
+		<h3>[method:Float distanceTo]( [page:Vector2 v] )</h3>
+		<div>
+		计算该向量到*v*的距离，即计算两点间距离。
+		</div>
+
+		<h3>[method:Float distanceToSquared]( [page:Vector2 v] )</h3>
+		<div>
+		计算该向量到*v*的平方距离。
+		</div>
+
+		<h3>[method:Vector2 setLength]( [page:Float l] ) [page:Vector2 this]</h3>
+		<div>
+		归一化该向量并乘以 *l*（即设置该向量长度为l（注意是小写的L））。
+		</div>
+
+		<h3>[method:Vector2 clamp]( [page:Vector2 min], [page:Vector2 max] ) [page:Vector2 this]</h3>
+		<div>
+		min -- [page:Vector2] 目标区域的最小点。 <br />
+		max -- [page:Vector2] 目标区域的最大点。
+		</div>
+		<div>
+		如果这个向量的x或y值大于最大向量的x或y值，它被相应的值所取代。 <br /><br />
+		如果这个向量的x或y值小于最小向量的x或y值，则被相应的值所取代。
+		</div>
+
+		<h3>[method:Vector2 clampScalar]( [page:Float min], [page:Float max] ) [page:Vector2 this]</h3>
+		<div>
+		min -- [page:Float] 要夹住的向量值的最小值。 <br />
+		max -- [page:Float] 要夹住的向量值的最大值。
+		</div>
+		<div>
+		如果这个向量的x或y值大于最大值，则被最大值所取代。<br /><br />
+		如果这个向量的x或y值小于最小值，则被最小值所取代。
+		</div>
+
+		<h3>[method:Vector2 clampLength]( [page:Float min], [page:Float max] ) [page:Vector2 this]</h3>
+		<div>
+		min -- [page:Float] 要夹住的长度的最小值。<br />
+		max -- [page:Float] 要夹住的长度的最大值。
+		</div>
+		<div>
+		如果这个向量的长度大于最大值，则被最大值所取代。 <br /><br />
+		如果这个向量的长度小于最小值，它被替换为最小值。
+		</div>
+
+		<h3>[method:Vector2 floor]() [page:Vector2 this]</h3>
+		<div>
+		把向量值取floor（向下取整，也就是舍去小数部分）。
+		</div>
+
+		<h3>[method:Vector2 ceil]() [page:Vector2 this]</h3>
+		<div>
+		把向量值取ceil（向上取整）。
+		</div>
+
+		<h3>[method:Vector2 round]() [page:Vector2 this]</h3>
+		<div>
+		把向量值取round（四舍五入）。
+		</div>
+
+		<h3>[method:Vector2 roundToZero]() [page:Vector2 this]</h3>
+		<div>
+		把向量值向零取整。（如果为负数，则向上取整。如果为正，则向下取整）。
+		</div>
+
+		<h3>[method:Vector2 lerp]( [page:Vector2 v], [page:Float alpha] ) [page:Vector2 this]</h3>
+		<div>
+		v -- [page:Vector2] <br />
+		alpha -- [page:Float] 百分比值，0到1之间。
+		</div>
+		<div>
+		该向量和v之间的线性插值，其中α是沿线的百分比。
+		</div>
+
+		<h3>[method:Vector2 lerpVectors]( [page:Vector2 v1], [page:Vector2 v2], [page:Float alpha] ) [page:Vector2 this]</h3>
+		<div>
+		v1 -- [page:Vector2] <br />
+		v2 -- [page:Vector2] <br />
+		alpha -- [page:Float] 百分比值，0到1之间。
+		</div>
+		<div>
+		设置这个向量为基于α因子介于v1和v2之间的线性插值向量。
+		</div>
+
+		<h3>[method:undefined setComponent]( [page:Integer index], [page:Float value] ) [page:Vector2 this]</h3>
+		<div>
+		index -- 0 或 1 <br />
+		value -- [page:Float]
+		</div>
+		<div>
+		如果索引为0，则使用value来设置该向量的x值(也就是this.x)。<br />
+		如果索引为0，则使用value来设置该向量的y值(也就是this.y)。
+		</div>
+
+		<h3>[method:Vector2 addScalar]( [page:Float s] ) [page:Vector2 this]</h3>
+		<div>
+		s -- [page:Float]
+		</div>
+		<div>
+		将标量值s添加给这个向量的x和y值。
+		</div>
+
+		<h3>[method:Float getComponent]( [page:Integer index] ) [page:Vector2 this]</h3>
+		<div>
+		index -- 0 或 1
+		</div>
+		<div>
+		如果指数等于0返回x值。<br />
+		如果指数等于1返回y值。
+		</div>
+
+		<h3>[method:Vector2 min]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		v -- [page:Vector2]
+		</div>
+		<div>
+		如果这个向量的x或y值大于参数v的x或y值，用相应的最小值替换该值。
+		</div>
+
+		<h3>[method:Vector2 max]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		v -- [page:Vector2]
+		</div>
+		<div>
+		如果这个向量的x或y值小于参数v的x或y值，用相应的最大值替换该值。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Vector2 v] ) [page:Vector2 this]</h3>
+		<div>
+		检查该向量和v是否严格相等。
+		</div>
+
+		<h3>[method:Vector2 clone]() [page:Vector2 this]</h3>
+		<div>
+		克隆该向量。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array], [page:Integer offset] ) [page:Vector2 this]</h3>
+		<div>
+		array -- 一个可选的数组来存储向量。 <br />
+		offset -- 一个可选的数组内偏移量。
+		</div>
+		<div>
+		返回一个 [x, y] 数组。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

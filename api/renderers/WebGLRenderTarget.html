@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>WebGL渲染器（[name]）</h1>
+
+		<div class="desc">一个渲染目标是一个缓冲区，显卡在该缓冲区中为一个后台渲染的场景绘制像素。它被用于多种效果。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]([page:Number width], [page:Number height], [page:Object options])</h3>
+
+		<div>
+		width -- 渲染目标对象的宽度。 <br />
+		height -- 渲染目标对象的高度。
+		</div>
+
+		<div>options是可选的对象，保存一个自动生成的目标纹理的纹理参数以及depthBuffer / stencilBuffer布尔值。
+        关于纹理参数请参考阅读 [page:纹理(Texture) Texture]。</div>
+
+		<div>
+		wrapS — [page:Number] default is *THREE.ClampToEdgeWrapping*. <br />
+		wrapT — [page:Number] default is *THREE.ClampToEdgeWrapping*. <br />
+		magFilter — [page:Number], default is *THREE.LinearFilter*. <br />
+		minFilter — [page:Number], default is *THREE.LinearFilter*. <br />
+		format — [page:Number], default is *THREE.RGBAFormat*. <br />
+		type — [page:Number], default is *THREE.UnsignedByteType*. <br />
+		anisotropy — [page:Number], default is *1*. <br />
+		encoding — [page:Number], default is *THREE.LinearEncoding*. <br />
+		depthBuffer — [page:Boolean], default is *true*. Set this to false if you don't need it. <br />
+		stencilBuffer — [page:Boolean], default is *true*. Set this to false if you don't need it.
+		</div>
+
+		<div>
+		创建一个新的具有一定宽度和高度的渲染目标。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:number uuid]</h3>
+		<div>
+		这个渲染目标实例的一个唯一标识。
+		</div>
+
+		<h3>[property:number width]</h3>
+		<div>
+		渲染目标的宽度。
+		</div>
+
+		<h3>[property:number height]</h3>
+		<div>
+		渲染目标的高度。
+		</div>
+		
+		<h3>[property:Vector4 scissor]</h3>
+		<div>
+		在渲染目标视口内部的一个矩形区域。在该区域以外的片段将被遗弃。
+		</div>
+
+		<h3>[property:boolean scissorTest]</h3>
+		<div>
+		指示裁剪测试是否激活。
+		</div>
+
+		<h3>[property:Vector4 viewport]</h3>
+		<div>
+		该渲染目标的视口。
+		</div>
+
+		<h3>[property:Texture texture]</h3>
+		<div>
+		该纹理实例保存所要渲染的像素。使用它作为进一步处理的输入。
+		</div>
+
+		<h3>[property:boolean depthBuffer]</h3>
+		<div>
+		渲染到深度缓冲区。默认是true。
+		</div>
+
+		<h3>[property:boolean stencilBuffer]</h3>
+		<div>
+		渲染到模板缓冲区。默认是true。
+		</div>
+
+		<h3>[property:DepthTexture depthTexture]</h3>
+		<div>
+		如果设置了该参数，则场景深度将被渲染到这个纹理。默认为null。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null setSize]( [page:Number width], [page:Number height] )</h3>
+		<div>
+		设置渲染目标的大小。
+		</div>
+
+		<h3>[method:WebGLRenderTarget clone]()</h3>
+		<div>
+		克隆该渲染目标。
+		</div>
+
+		<h3>[method:WebGLRenderTarget copy]( [page:WebGL渲染器目标(WebGLRenderTarget) source] )</h3>
+		<div>
+		拷贝给定渲染目标的设置。
+		</div>
+
+		<h3>[method:null dispose]()</h3>
+		<div>
+		分发一个dispose事件。
+		</div>
+		
+
+		<h3>该类适用 [page:事件分发器(EventDispatcher) EventDispatcher] 方法。</h3>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

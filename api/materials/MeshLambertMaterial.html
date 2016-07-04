@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:材料(Material)] &rarr;
+
+		<h1>兰伯特网孔材料（[name]）</h1>
+
+		<div class="desc">一种非发光材料（兰伯特）的表面，计算每个顶点。</div>
+
+		<iframe src='scenes/material-browser.html#MeshLambertMaterial'></iframe>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Object parameters] )</h3>
+		<div>参数是一个使用一个或多个属性定义材料外观的对象。</div>
+		<div>
+		color — 线条的十六进制颜色。缺省值为 0xffffff。<br />
+		map — 设置纹理贴图。缺省为null。<br />
+		lightMap — 设置光照贴图。缺省为null。<br />
+		lightMapIntensity — 设置光照贴图强度。缺省值为1。<br />
+		aoMap — 设置环境遮挡贴图（ao = ambient occlusion）。缺省为null。<br />
+		aoMapIntensity — 设置环境遮挡贴图强度。缺省为1。<br />
+		emissive - 设置放射光颜色。默认是0x000000.<br />
+		emissiveMap — 设置放射光贴图。缺省为null。<br />
+		emissiveIntensity — 设置放射光贴图强度。缺省值为1。<br />
+		specularMap — 设置高光贴图。默认为null。<br />
+		alphaMap — 设置阿尔法贴图。默认为null。<br />
+		envMap — 设置环境贴图。默认为null。<br />
+		combine — 设置组合操作。默认值是THREE.MultiplyOperation.<br />
+		reflectivity — 设置反射率。默认值是 1.<br />
+		refractionRatio — 设置折射率。默认值是 0.98.<br />
+		fog — 定义材质颜色是否受全局雾设置的影响。默认是true。<br />
+		shading — 定义着色类型。缺省为 THREE.SmoothShading。<br />
+		wireframe — 渲染模型为线框。默认是false。<br />
+		wireframeLinewidth — 线框线宽。默认是1。<br />
+		wireframeLinecap — 定义线端的外观。默认值是 'round'.<br />
+		wireframeLinejoin — 定义线连接节点的外观。默认值是 'round'.<br />
+		vertexColors — 定义顶点如何着色。默认值是 THREE.NoColors.<br />
+		skinning — 定义材料是否使用皮肤。默认值是false.<br />
+		morphTargets — 定义材料是否使用 morphTargets。默认值是 false。<br />
+		morphNormals — 定义材料是否使用morphNormals。默认是false。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+		<div>通用属性请查看基类 [page:材料(Material)] 。</div>
+
+		<h3>[property:Color color]</h3>
+		<div>
+		材料的扩散色。默认是白色。<br />
+		</div>
+
+		<h3>[property:Texture map]</h3>
+		<div>设置颜色纹理贴图。默认为空。</div>
+
+		<h3>[property:Texture lightMap]</h3>
+		<div>设置光照贴图。默认为空。lightMap需要第二组UVs。</div>
+
+		<h3>[property:Float lightMapIntensity]</h3>
+		<div>设置光照贴图强度。</div>
+
+		<h3>[property:Texture aoMap]</h3>
+		<div>设置环境遮挡贴图。默认为空。aoMap需要第二套UV。</div>
+
+		<h3>[property:Float aoMapIntensity]</h3>
+		<div>设置环境遮挡贴图强度。</div>
+
+		<h3>[property:Color emissive]</h3>
+		<div>
+		放射（光）材料的颜色，基本上是一个不受其他光照影响的固有颜色。默认是黑色。<br />
+		</div>
+
+		<h3>[property:Texture emissiveMap]</h3>
+		<div>设置放射（发光）贴图。默认为空。放射贴图颜色使用放射颜色和强度所调节。如果你有一个放射贴图，确保设置放射颜色不是黑色的。</div>
+
+		<h3>[property:Float emissiveIntensity]</h3>
+		<div>放射光强度。调节发光颜色。默认为1。</div>
+
+		<h3>[property:Texture specularMap]</h3>
+		<div>由于这种材料没有一个specular组件，specular值只影响环境贴图影响表面的程度。默认为空。</div>
+
+		<h3>[property:Texture alphaMap]</h3>
+		<div>阿尔法贴图是一个灰度纹理，控制整个表面的不透明度（黑色：完全透明；白色：完全不透明）。默认为空。</div>
+		<div>只有该纹理的颜色被使用，忽略透明度。 对于 RGB 和 RGBA 纹理，[page:WebGL渲染器(WebGLRenderer) WebGL] 在纹理采样时将使用绿色通道，这是因为在DXT压缩和非压缩RGB 565种格式中的绿色提供了额外的精度位。纯亮度（Luminance-only）和 亮度/透明度（luminance/alpha）纹理也如预期正常工作。</div>
+
+		<h3>[property:TextureCube envMap]</h3>
+		<div>设置环境贴图。默认为null。</div>
+
+		<h3>[property:Integer combine]</h3>
+		<div>如何组合表面颜色结果与环境贴图，如果有的话。</div>
+
+		<div>可选项有： [page:纹理(Texture)s THREE.Multiply] (default), [page:纹理(Texture)s THREE.MixOperation], [page:纹理(Texture)s THREE.AddOperation]. 
+        如果选择混合（mix），则将反射率用于两种颜色之间的混合。</div>
+        
+		<h3>[property:Float reflectivity]</h3>
+		<div>设置反射率。默认值是 1</div>
+
+		<h3>[property:Float refractionRatio]</h3>
+		<div>使用 [page:纹理(Texture)s THREE.CubeRefractionMapping] 环境贴图的折射率，缺省为 *0.98*.</div>
+
+		<h3>[property:Boolean fog]</h3>
+		<div>定义材质颜色是否受全局雾设置的影响。</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。比如，该属性被 [page:Canvas渲染器(CanvasRenderer) Canvas] 所忽略，但是对 [page:WebGL渲染器(WebGLRenderer) WebGL] 有效。</div>
+
+		<h3>[property:String shading]</h3>
+		<div>定义着色类型。缺省为 THREE.SmoothShading。</div>
+
+		<h3>[property:Boolean wireframe]</h3>
+		<div>渲染模型为线框。默认是false（也就是，渲染为平面多边形）。</div>
+
+		<h3>[property:Float wireframeLinewidth]</h3>
+		<div>控制线框图的线宽。缺省为1.</div>
+		<div>由于 <a href="https://code.google.com/p/angleproject/" target="_blank">角度层（ANGLE layer）</a>的限制，在Windows平台上使用 [page:WebGL渲染器(WebGLRenderer) WebGL]，线宽将总是为1而不管设置的值。</div>
+
+		<h3>[property:String wireframeLinecap]</h3>
+		<div>定义线的两端的样式，可用值为 "butt", "round" 和 "square"。缺省为 'round'。可参考：<a href="http://techbrood.com/en/tagsref?p=canvas-linecap">Canvas Linecap</a>中的定义和演示。</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。比如，该属性被 [page:WebGL渲染器(WebGLRenderer) WebGL] 所忽略，但是对 [page:Canvas渲染器(CanvasRenderer) Canvas] 有效。</div>
+
+		<h3>[property:String wireframeLinejoin]</h3>
+		<div>定义线连接点的外观。可选值为 "round", "bevel" 和 "miter". 缺省是 'round'。</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。比如，该属性被 [page:WebGL渲染器(WebGLRenderer) WebGL] 所忽略，但是对 [page:Canvas渲染器(CanvasRenderer) Canvas] 有效。</div>
+
+		<h3>[property:Integer vertexColors]</h3>
+		<div>定义顶点如何着色。可用值为 THREE.NoColors, THREE.FaceColors 和 THREE.VertexColors。缺省值为 THREE.NoColors.</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。</div>
+        
+		<h3>[property:Boolean skinning]</h3>
+		<div>定义材料是否使用皮肤。默认值是false.</div>
+
+		<h3>[property:Boolean morphTargets]</h3>
+		<div>定义材料是否使用 morphTargets。默认值是 false。</div>
+
+		<h3>[property:boolean morphNormals]</h3>
+		<div>
+			定义材料是否使用 morphNormals。设置为true，将从 [page:几何模型(Geometry)] 传递morphNormal属性给着色器。默认值是 *false*.
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

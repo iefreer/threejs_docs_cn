@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>光线投射器（[name]）</h1>
+
+		<div class="desc">
+		This class makes raycasting easier. Raycasting is used for picking and more.
+		</div>
+        
+        <p>光线投射方法是基于图像序列的直接体绘制（Volume Rendering）算法。<br />
+        从图像的每一个像素，沿固定方向（通常是视线方向）发射一条光线，光线穿越整个图像序列，<br/>
+        并在这个过程中，对图像序列进行采样获取颜色信息，同时依据光线吸收模型将颜色值进行累加，直至光线穿越整个图像序列，最后得到的颜色值就是渲染图像的颜色。</p>
+        <p>光线投射的基本步骤可以分为如下4步：</p>
+        <ul>
+            <li>光线投射（Ray casting）：对最终图像的每个像素，都有一条光线穿过体素。在这一阶段，认为体素被接触并封闭于一个<strong>包围图元</strong>中是有帮助的：一个简单的几何对象（通常是一个长方体）用来与光线和体相交。</li>
+            <li>采样（Sampling）：沿着光线的射线部分位于体的内部，等距离的点采样被选择。通常体和表示光线的射线对齐，样本点通常被放于体素中间。因此，有必要对从它周围的体素的样本点的值进行插值。</li>
+            <li>着色（Shading）：对每个样本点，计算出梯度。这些代表体内局部表面的方向。然后给这些样本着色，也就是根据它们的表面方向和实际的光源添加阴影和颜色。</li>
+            <li>组合（Compositing）：在所有的样本点被着色后，沿着光线组合它们，得到该像素最终的颜色值。</li>
+        </ul>
+        <p>这个过程被不断重复。计算开始于视图中最远的样本点，并且结束于最近的一个。这个工作流水线会确保被遮挡的体部分不影响上述过程得到的结果像素。</p>
+        <p><img style="width:500px;" src="images/raycasting.png"></p>
+        
+		<h2>代码示例</h2>
+		<code>
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+
+		function onMouseMove( event ) {
+
+			// calculate mouse position in normalized device coordinates
+			// (-1 to +1) for both components
+
+			mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+			mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;		
+		
+		}
+
+		function render() {
+
+			// update the picking ray with the camera and mouse position	
+			raycaster.setFromCamera( mouse, camera );	
+
+			// calculate objects intersecting the picking ray
+			var intersects = raycaster.intersectObjects( scene.children );
+
+			for ( var i = 0; i < intersects.length; i++ ) {
+
+				intersects[ i ].object.material.color.set( 0xff0000 );
+			
+			}
+			
+			renderer.render( scene, camera );
+
+		}
+
+		window.addEventListener( 'mousemove', onMouseMove, false );
+
+		window.requestAnimationFrame(render);
+
+		</code>
+		<div>例子: [example:webgl_interactive_cubes Raycasting to a Mesh], 
+			[example:webgl_interactive_cubes_ortho Raycasting to a Mesh in using an OrthographicCamera], 
+			[example:webgl_interactive_buffergeometry Raycasting to a Mesh with BufferGeometry], 
+			[example:webgl_interactive_lines Raycasting to a Line], 
+			[example:webgl_interactive_raycasting_points Raycasting to Points], 
+			[example:webgl_geometry_terrain_raycast Terrain raycasting], 
+			[example:webgl_octree_raycasting Raycasting using an octree],
+			[example:webgl_interactive_voxelpainter Raycasting to paint voxels]</div>
+
+
+		<div>
+		</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:Vector3 origin], [page:Vector3 direction], [page:Float near], [page:Float far] ) {</h3>
+		<div>
+		[page:Vector3 origin] — 光线投射的起点向量。<br />
+		[page:Vector3 direction] — 光线投射的方向向量，应该是被归一化的。<br />
+		[page:Float near] — 投射近点，用来限定返回比near要远的结果。near不能为负数。缺省为0。<br />
+		[page:Float far] — 投射远点，用来限定返回比far要近的结果。far不能比near要小。缺省为无穷大。
+		</div>
+		<div>
+		这将创建一个新的光线投射器对象。<br />
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Ray ray]</h3>
+		<div>
+		用于光线投射的射线。
+		</div>
+
+		<h3>[property:float near]</h3>
+		<div>
+		光线投射器的近点因子，这个值指示基于这个距离哪些对象可以被舍弃。<br />
+		这个值不能是负的，且应该小于far属性。
+		</div>
+
+		<h3>[property:float far]</h3>
+		<div>
+		光线投射器的远点因子，这个值指示基于这个距离哪些对象可以被舍弃。<br />
+		这个值不能是负的，且应该大于near属性。
+		</div>
+
+		<h3>.[page:float linePrecision]</h3>
+		<div>
+		和 [page:线条(Line)] 对象相交时的精度因子。 
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null set]( [page:Vector3 origin], [page:Vector3 direction] )</h3>
+		<div>
+		[page:Vector3 origin] — 光线投射的起点向量。<br />
+		[page:Vector3 direction] — 被归一化的光线投射的方向向量。
+		</div>
+		<div>
+		用一个新的起点和方向向量来更新射线（ray）。
+		</div>
+
+		<h3>[method:null setFromCamera]( [page:Vector2 coords], [page:Camera camera] )</h3>
+		<div>
+		[page:Vector2 coords] — 鼠标的二维坐标，在归一化的设备坐标(NDC)中，也就是X 和 Y 分量应该介于 -1 和 1 之间。<br />
+		[page:Camera camera] — 射线起点处的相机，即把射线起点设置在该相机位置处。
+		</div>
+		<div>
+		用一个新的原点和方向向量来更新射线（ray）。
+		</div>
+
+
+		<h3>[method:Array intersectObject]( [page:3D对象(Object3D) object], [page:Boolean recursive] )</h3>
+		<div>
+		<p>
+		[page:3D对象(Object3D) object] — 用来检测和射线相交的物体。<br />
+		[page:Boolean recursive] — 如果为true，它还检查所有后代。否则只检查该对象本身。缺省值为false。
+		</p>
+		</div>
+		<div>
+		检查射线和物体之间的所有交叉点（包含或不包含后代）。交叉点返回按距离排序，最接近的为第一个。
+        返回一个交叉点对象数组。
+        <code>
+            [ { distance, point, face, faceIndex, indices, object }, ... ]
+        </code>
+        <p>
+        [page:Float distance] – 射线的起点到相交点的距离<br />
+        [page:Vector3 point] – 在世界坐标中的交叉点<br />
+        [page:Face3 face] – 相交的面<br />
+        [page:Integer faceIndex] – 相交的面的索引<br />
+        [page:Array indices] – 组成相交面的顶点索引<br />
+        [page:3D对象(Object3D) object] – 相交的对象
+    	</p>
+        <p>
+        当一个[page:网孔(Mesh)]对象和一个[page:缓存几何模型(BufferGeometry)]相交时，*faceIndex* 将是 *undefined*，并且 *indices* 将被设置；
+        而当一个[page:网孔(Mesh)]对象和一个[page:几何模型(Geometry)]相交时，*indices* 将是 *undefined*。 
+        </p>
+		<p>
+		当计算这个对象是否和射线相交时，*Raycaster* 把传递的对象委托给 [page:3D对象(Object3D).raycast raycast] 方法。
+        这允许 [page:网孔(Mesh) meshes] 对于光线投射的响应可以不同于 [page:线条(Line) lines] 和 [page:点(Points) pointclouds]。
+		</p>
+		<p>
+		*注意*，对于网格，面（faces）必须朝向射线原点，这样才能被检测到；通过背面的射线的交叉点将不被检测到。
+        为了光线投射一个对象的正反两面，你得设置 [page:Mesh.material material] 的 [page:材料(Material).side side] 属性为 *THREE.DoubleSide*。
+		</p>
+		</div>
+
+		<h3>[method:Array intersectObjects]( [page:Array objects], [page:Boolean recursive] )</h3>
+		<div>
+		[page:Array objects] — 检查是否和射线相交的一组对象。<br />
+		[page:Boolean recursive] — 如果为true，还同时检查所有的后代对象。否则只检查对象本身。缺省值为 false。
+		</div>
+		<div>
+		检查射线和对象之间的所有交叉点（包含或不包含后代）。交叉点返回按距离排序，最接近的为第一个。返回结果类似于 [page:.intersectObject]。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

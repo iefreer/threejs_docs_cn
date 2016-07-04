@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr;
+
+		<h1>网孔（[name]）</h1>
+
+		<div class="desc">网孔对象的基类，如 [page:MorphAnimMesh] 和 [page:蒙皮网孔(SkinnedMesh)]。</div>
+		<p class="info">本文档中，为了避免和“grid”网格冲突，使用“网孔”一词来翻译“Mesh”。</p>
+
+		<h2>例子</h2>
+
+		<code>var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+		var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+		var mesh = new THREE.Mesh( geometry, material );
+		scene.add( mesh );
+		</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:几何模型(Geometry) geometry], [page:材料(Material) material] )</h3>
+
+		<div>
+		geometry — An instance of [page:几何模型(Geometry)].<br />
+		material — An instance of [page:材料(Material)] (optional).
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Geometry geometry]</h3>
+
+		<div>一个 [page:几何模型(Geometry)] 实例，用来定义对象的结构。</div>
+
+		<h3>[property:Material material]</h3>
+
+		<div>一个 [page:材料(Material)] 实例，用来定义对象的外观。缺省是一个启用线框模式和随机颜色的 [page:基础网孔材料(MeshBasicMaterial)] 。</div>
+		
+		<h3>[property:Array morphTargetInfluences]</h3>
+
+		<div>
+		一个权重值数组，取值从0到1，指定变形程度。
+		默认为undefined，在调用 [page:Mesh.updateMorphTargets updateMorphTargets] 方法时，会被重置为一个空数组。
+		</div>
+
+		<h3>[property:Array morphTargetDictionary]</h3>
+
+		<div>
+		一种基于morphTarget.name属性的morphTargets对象词典。
+		默认为undefined，在调用 [page:Mesh.updateMorphTargets updateMorphTargets] 方法时，会被重构。
+		</div>
+
+		<h3>[property:Integer morphTargetBase]</h3>
+
+		<div>
+		指定该索引处的morphTarget为基础变形。
+		默认为undefined，在调用 [page:Mesh.updateMorphTargets updateMorphTargets] 方法时，会被重置为 -1。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Integer getMorphTargetIndexByName]( [page:字符串(String) name] )</h3>
+		<div>
+		name — 一个变形标的（morph target）对象的名称。<br />
+		</div>
+		<div>
+		返回一个给定名字的变形标的的索引。
+		</div>
+
+
+		<h3>[method:null updateMorphTargets]()</h3>
+		<div>
+		更新 morphtargets 使其不对对象产生影响。重置
+		[page:Mesh.morphTargetForcedOrder morphTargetForcedOrder],
+		[page:Mesh.morphTargetInfluences morphTargetInfluences],
+		[page:Mesh.morphTargetDictionary morphTargetDictionary], 和
+		[page:Mesh.morphTargetBase morphTargetBase] 属性。
+		</div>
+
+		<h3>[method:Array raycast]( [page:Raycaster raycaster], [page:Array intersects] )</h3>
+		<div>
+		得到光线投射和网孔之间的交叉点。[page:Raycaster.intersectObject] 将调用该方法。
+		</div>
+
+		<h3>[method:Mesh clone]()</h3>
+		<div>
+		返回这个网孔对象及其子对象的克隆。
+		</div>
+
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>三维向量（[name]）</h1>
+
+		<div class="desc">三维向量。</div>
+
+
+		<h2>例子</h2>
+
+		<code>var a = new THREE.Vector3( 1, 0, 0 );
+		var b = new THREE.Vector3( 0, 1, 0 );
+
+		var c = new THREE.Vector3();
+		c.crossVectors( a, b );
+		</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Float x], [page:Float y], [page:Float z] )</h3>
+		<div>
+		x -- [page:Float] 向量的x值。 <br />
+		y -- [page:Float] 向量的y值。<br />
+		z -- [page:Float] 向量的z值。
+		</div>
+		<div>
+		3维向量。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float x]</h3>
+
+		<h3>[property:Float y]</h3>
+
+		<h3>[property:Float z]</h3>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Vector3 set]( [page:Float x], [page:Float y], [page:Float z] ) [page:Vector3 this]</h3>
+		<div>
+		设置此向量的值。
+		</div>
+
+		<h3>[method:Vector3 setX]( [page:Float x] ) [page:Vector3 this]</h3>
+		<div>
+		使用参数x的值设置该向量的x分量。
+		</div>
+
+		<h3>[method:Vector3 setY]( [page:Float y] ) [page:Vector3 this]</h3>
+		<div>
+		使用参数y的值设置该向量的y分量。
+		</div>
+
+		<h3>[method:Vector3 setZ]( [page:Float z] ) [page:Vector3 this]</h3>
+		<div>
+		使用参数z的值设置该向量的y分量。
+		</div>
+
+		<h3>[method:Vector3 copy]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		拷贝v中的值到该向量。
+		</div>
+
+		<h3>[method:Vector3 fromArray]( [page:Array array], [page:Integer offset] ) [page:Vector3 this]</h3>
+		<div>
+		array -- 格式为[x,y,z]的一个数组 <br />
+		offset -- 一个可选的数组内偏移。
+		</div>
+		<div>
+		以一个[x,y,z]数组中的值来设置该向量。
+		</div>
+
+		<h3>[method:Vector3 add]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		返回 *v* 和 该vector 的向量之和。
+		</div>
+
+		<h3>[method:Vector3 addVectors]( [page:Vector3 a], [page:Vector3 b] ) [page:Vector3 this]</h3>
+		<div>
+		返回 *a + b* 向量之和。
+		</div>
+
+		<h3>[method:Vector3 addScaledVector]( [page:Vector3 v], [page:Float s] ) [page:Vector3 this]</h3>
+		<div>
+		将v和s的乘积添加到该向量中。
+		</div>
+
+		<h3>[method:Vector3 sub]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		从这个向量中减去*v*。
+		</div>
+
+		<h3>[method:Vector3 subVectors]( [page:Vector3 a], [page:Vector3 b] ) [page:Vector3 this]</h3>
+		<div>
+		设置向量为 *a - b*。
+		</div>
+
+		<h3>[method:Vector3 multiplyScalar]( [page:Float s] ) [page:Vector3 this]</h3>
+		<div>
+		将这个向量乘以标量*s*。
+		</div>
+
+		<h3>[method:Vector3 divideScalar]( [page:Float s] ) [page:Vector3 this]</h3>
+		<div>
+		将这个向量除以标量*s*。<br />
+		如果*s*==0, 那么设置为 *( 0, 0, 0 )*。
+		</div>
+
+		<h3>[method:Vector3 negate]() [page:Vector3 this]</h3>
+		<div>
+		反转该向量。
+		</div>
+
+		<h3>[method:Float dot]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		计算这个向量和*v*的点积。
+		</div>
+
+		<h3>[method:Float lengthSq]() [page:Vector3 this]</h3>
+		<div>
+		计算该向量的平方长度。
+		</div>
+
+		<h3>[method:Float length]() [page:Vector3 this]</h3>
+		<div>
+		计算该向量的长度。
+		</div>
+
+		<h3>[method:Float lengthManhattan]() [page:Vector3 this]</h3>
+		<div>
+		计算该向量的曼哈顿长度。<br />
+		[link:http://en.wikipedia.org/wiki/Taxicab_geometry]
+		</div>
+
+		<h3>[method:Vector3 normalize]() [page:Vector3 this]</h3>
+		<div>
+		归一化该向量。将这个向量转换成一个单位向量，也就是除以它的长度。
+		</div>
+
+		<h3>[method:Float distanceTo]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		计算该向量到*v*的距离，即计算两点间距离。
+		</div>
+
+		<h3>[method:Float distanceToSquared]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		计算该向量到*v*的平方距离。
+		</div>
+
+		<h3>[method:Vector3 setLength]( [page:Float l] ) [page:Vector3 this]</h3>
+		<div>
+		归一化该向量并乘以 *l*（即设置该向量长度为l（注意是小写的L））。
+		</div>
+
+		<h3>[method:Vector3 cross]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		将此向量设置为自身和*v*的叉积。
+		</div>
+
+		<h3>[method:Vector3 crossVectors]( [page:Vector3 a], [page:Vector3 b] ) [page:Vector3 this]</h3>
+		<div>
+		将此向量设置为*a*和*b*的叉积。
+		</div>
+
+		<h3>[method:Vector3 setFromMatrixPosition]( [page:Matrix4 m] ) [page:Vector3 this]</h3>
+		<div>
+		从矩阵变换中提取位置来设置该向量。
+		</div>
+
+		<h3>[method:Vector3 setFromMatrixScale]( [page:Matrix4 m] ) [page:Vector3 this]</h3>
+		<div>
+		从矩阵变换中提取缩放来设置该向量。
+		</div>
+
+		<h3>[method:Vector3 clamp]( [page:Vector3 min], [page:Vector3 max] ) [page:Vector3 this]</h3>
+		<div>
+		min -- [page:Vector3] <br />
+		max -- [page:Vector3]
+		</div>
+		<div>
+		如果这个向量的x,y,z值大于最大向量的x,y,z值，它被相应的值所取代。 <br /><br />
+		如果这个向量的x,y,z值小于最小向量的x,y,z值，则被相应的值所取代。
+		</div>
+
+		<h3>[method:Vector3 clampScalar]( [page:Float min], [page:Float max] ) [page:Vector3 this]</h3>
+		<div>
+		min -- [page:Float] 要夹住的向量值的最小值。 <br />
+		max -- [page:Float] 要夹住的向量值的最大值。
+		</div>
+		<div>
+		如果这个向量的x,y,z值大于最大值，则被最大值所取代。<br /><br />
+		如果这个向量的x,y,z值小于最小值，则被最小值所取代。
+		</div>
+
+		<h3>[method:Vector3 clampLength]( [page:Float min], [page:Float max] ) [page:Vector3 this]</h3>
+		<div>
+		min -- [page:Float] 要夹住的长度的最小值。<br />
+		max -- [page:Float] 要夹住的长度的最大值。
+		</div>
+		<div>
+		如果这个向量的长度大于最大值，则被最大值所取代。 <br /><br />
+		如果这个向量的长度小于最小值，它被替换为最小值。
+		</div>
+
+		<h3>[method:Vector2 floor]() [page:Vector2 this]</h3>
+		<div>
+		把向量值取floor（向下取整，也就是舍去小数部分）。
+		</div>
+
+		<h3>[method:Vector2 ceil]() [page:Vector2 this]</h3>
+		<div>
+		把向量值取ceil（向上取整）。
+		</div>
+
+		<h3>[method:Vector2 round]() [page:Vector2 this]</h3>
+		<div>
+		把向量值取round（四舍五入）。
+		</div>
+
+		<h3>[method:Vector3 roundToZero]() [page:Vector3 this]</h3>
+		<div>
+		把向量值向零取整。（如果为负数，则向上取整。如果为正，则向下取整）。
+		</div>
+
+		<h3>[method:Vector3 applyMatrix3]( [page:Matrix3 m] ) [page:Vector3 this]</h3>
+		<div>
+		m -- [page:Matrix3]
+		</div>
+		<div>
+		将这个向量乘以一个3×3矩阵。
+		</div>
+
+		<h3>[method:Vector3 applyMatrix4]( [page:Matrix3 m] ) [page:Vector3 this]</h3>
+		<div>
+		m -- [page:Matrix4]
+		</div>
+		<div>
+		将这个向量乘以一个Matrix4的4×3的子矩阵。
+		</div>
+
+		<h3>[method:Vector3 projectOnPlane]( [page:Vector3 planeNormal] ) [page:Vector3 this]</h3>
+		<div>
+		planeNormal -- [page:Vector3 planeNormal] 表示平面法线的向量。
+		</div>
+		<div>
+		将此向量投影到一个平面上，通过减去从这个向量投影到平面法线上的向量。
+		</div>
+
+		<h3>[method:Vector3 projectOnVector]( [page:Vector3] ) [page:Vector3 this]</h3>
+		<div>
+		vector -- [page:Vector3]
+		</div>
+		<div>
+		将此向量投射到另一个向量。
+		</div>
+
+		<h3>[method:Vector3 addScalar]( [page:Float] ) [page:Vector3 this]</h3>
+		<div>
+		s -- [page:Float]
+		</div>
+		<div>
+		将标量值s添加给这个向量。
+		</div>
+
+		<h3>[method:Vector3 divide]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		v -- [page:Vector3]
+		</div>
+		<div>
+		把这个向量除以v。
+		</div>
+
+		<h3>[method:Vector3 min]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		v -- [page:Vector3]
+		</div>
+		<div>
+		如果这个向量的x,y,z值大于参数v的x,y,z值，用相应的最小值替换该值。
+		</div>
+
+		<h3>[method:Vector3 max]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		v -- [page:Vector3]
+		</div>
+		<div>
+		如果这个向量的x,y,z值小于参数v的x,y,z值，用相应的最大值替换该值。
+		</div>
+
+		<h3>[method:Vector3 setComponent]( [page:Integer index], [page:Float value] ) [page:Vector3 this]</h3>
+		<div>
+		index -- 0, 1, 或 2 <br />
+		value -- [page:Float]
+		</div>
+		<div>
+		如果索引为0，该方法将该向量x值设置为value。<br />
+		如果索引为1，该方法将该向量y值设置为value。<br />
+		如果索引为2，该方法将该向量z值设置为value。
+		</div>
+
+		<h3>[method:Vector3 transformDirection]( [page:Matrix4 m] ) [page:Vector3 this]</h3>
+		<div>
+		m -- [page:Matrix4]
+		</div>
+		<div>
+		使用一个矩阵（Matrix4的3×3的子矩阵）变换这个向量的方向，然后将结果归一化。
+		</div>
+
+		<h3>[method:Vector3 multiplyVectors]( [page:Vector3 a], [page:Vector3 b] ) [page:Vector3 this]</h3>
+		<div>
+		a -- [page:Vector3] <br />
+		b -- [page:Vector3]
+		</div>
+		<div>
+		将此向量设置为等于向量a乘以向量b的结果。
+		</div>
+
+		<h3>[method:Float getComponent]( [page:Integer index] ) [page:Vector3 this]</h3>
+		<div>
+		index -- [page:Integer] 0, 1, 或 2
+		</div>
+		<div>
+		通过索引值返回向量的x,y或z的值。<br /><br />
+
+		Index 0: x <br />
+		Index 1: y <br />
+		Index 2: z <br />
+		</div>
+
+		<h3>[method:Vector3 applyAxisAngle]( [page:Vector3 axis], [page:Float angle] ) [page:Vector3 this]</h3>
+		<div>
+		axis -- 一个归一化的 [page:Vector3] <br />
+		angle -- 一个弧度角。
+		</div>
+		<div>
+		给这个向量应用由一个轴和一个角度所指定的旋转。
+		</div>
+
+		<h3>[method:Vector3 lerp]( [page:Vector3 v], [page:Float alpha] ) [page:Vector3 this]</h3>
+		<div>
+		v -- [page:Vector3] <br />
+		alpha -- [page:Float] 介于 0 和 1 之间。
+		</div>
+		<div>
+		该向量和向量v之间的线性插值，其中α是沿线的百分比。
+		</div>
+
+		<h3>[method:Vector3 lerpVectors]( [page:Vector3 v1], [page:Vector3 v2], [page:Float alpha] ) [page:Vector3 this]</h3>
+		<div>
+		v1 -- [page:Vector2] <br />
+		v2 -- [page:Vector2] <br />
+		alpha -- [page:Float] 百分比值，0到1之间。
+		</div>
+		<div>
+		设置这个向量为基于α因子介于v1和v2之间的线性插值向量。
+		</div>
+
+		<h3>[method:Float angleTo]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		v -- [page:Vector3]
+		</div>
+		<div>
+		返回以弧度表示的这个向量和向量v之间的夹角。
+		</div>
+
+		<h3>[method:Vector3 setFromMatrixColumn]( [page:Integer index], [page:Matrix4 matrix] ) [page:Vector3 this]</h3>
+		<div>
+		index -- 0, 1, 2, 或 3 <br />
+		matrix -- [page:Matrix4]
+		</div>
+		<div>
+		设置此向量的x、y和z等于由索引指定的矩阵的列值。
+		</div>
+
+		<h3>[method:Vector3 reflect]( [page:Vector3 normal] ) [page:Vector3 this]</h3>
+		<div>
+		normal -- [page:Vector3] 反射面法线。
+		</div>
+		<div>
+		基于给定平面法线的反射线向量。法线具有单位长度。
+		</div>
+
+		<h3>[method:Vector3 multiply]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		v -- [page:Vector3] <br />
+		</div>
+		<div>
+		用向量v乘以这个向量。
+		</div>
+
+		<h3>[method:Vector3 applyProjection]( [page:Matrix4 m] ) [page:Vector3 this]</h3>
+		<div>
+		m -- [page:Matrix4] 投影矩阵。
+		</div>
+		<div>
+		用向量m乘以这个向量，并除以视角。
+		</div>
+
+		<h3>[method:Vector3 applyEuler]( [page:欧拉角(Euler) euler] ) [page:Vector3 this]</h3>
+		<div>
+		euler -- [page:欧拉角(Euler)]
+		</div>
+		<div>
+		对该向量应用欧拉角变换。通过把 [page:欧拉角(Euler)] 对象转换为一个 [page:四元数(Quaternion)] 并应用。
+		</div>
+
+		<h3>[method:Vector3 applyQuaternion]( [page:四元数(Quaternion) quaternion] ) [page:Vector3 this]</h3>
+		<div>
+		quaternion -- [page:四元数(Quaternion)]
+		</div>
+		<div>
+		对该向量应用四元数变换。
+		</div>
+
+		<h3>[method:Vector3 project]( [page:Camera camera] ) [page:Vector3 this]</h3>
+		<div>
+		[page:Camera camera] — 在投影中使用的相机。<br />
+		</div>
+		<div>
+		用相机投影该向量。
+		</div>
+
+		<h3>[method:Vector3 unproject]( [page:Camera camera] ) [page:Vector3 this]</h3>
+		<div>
+		[page:Camera camera] — 在投影中使用的相机。<br />
+		</div>
+		<div>
+		用相机反投影该向量。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Vector3 v] ) [page:Vector3 this]</h3>
+		<div>
+		检查这个向量和*v*是否严格相等。
+		</div>
+
+		<h3>[method:Vector3 clone]() [page:Vector3 this]</h3>
+		<div>
+		克隆该向量。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array], [page:Integer offset] ) [page:Vector3 this]</h3>
+		<div>
+		array -- 一个可选的数组来存储向量。<br />
+		offset -- 一个可选的数组内偏移量。
+		</div>
+		<div>
+		把该向量的x值赋予array[0]。<br />
+		把该向量的y值赋予array[1]。<br />
+		把该向量的z值赋予array[2]。<br />
+		返回创建的数组。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

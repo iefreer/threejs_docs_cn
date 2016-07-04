@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>TGA加载器（[name]）</h1>
+
+		<div class="desc">用来加载一个 <em>.tga</em> [page:数据纹理(DataTexture) texture] 的类。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:加载管理器(LoadingManager) manager] )</h3>
+		<div>
+		[page:加载管理器(LoadingManager) manager] — [page:加载管理器(LoadingManager) loadingManager] 对象。缺省是 [page:加载管理器(LoadingManager) THREE.DefaultLoadingManager]。
+		</div>
+		<div>
+		创建一个新的 [name].
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:DataTexture load]( [page:字符串(String) url], [page:函数(Function) onLoad], [page:函数(Function) onProgress], [page:函数(Function) onError] )</h3>
+		<div>
+		[page:字符串(String) url] 资源链接，必选参数<br />
+		[page:函数(Function) onLoad] — 当加载完成时被调用。参数将是已加载的 [page:数据纹理(DataTexture)].<br />
+		[page:函数(Function) onProgress] — 当加载在进行中时被调用。参数将是处理事件。<br />
+		[page:函数(Function) onError] — 如果加载有错误将调用该函数。<br />
+		</div>
+		<div>
+		从url中加载并传递已加载的 [page:数据纹理(DataTexture) texture] 给 onLoad函数。
+        而该 [page:数据纹理(DataTexture) texture] 也被直接返回以便立即使用（不过可能尚未完全加载）。
+		</div>
+
+
+		<h2>例子</h2>
+
+		<code>
+		// 实例化一个加载器
+		var loader = new THREE.TGALoader();
+
+		// 加载一个资源
+		var texture = loader.load(
+			// 资源链接
+			'textures/crate_grey8.tga'
+			// 资源加载完成后的回调函数
+			function ( texture ) {
+				console.log( 'Texture is loaded' );
+			},
+			// 资源加载过程中的回调函数
+			function ( xhr ) {
+				console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+			},
+			// 资源下载出错时的回调函数
+			function ( xhr ) {
+				console.log( 'An error happened' );
+			}
+		);
+
+		var material = new THREE.MeshPhongMaterial( {
+			color: 0xffffff,
+			map: texture
+		} );
+		</code>
+
+		[example:webgl_materials_texture_tga]
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/TGALoader.js examples/js/loaders/TGALoader.js]
+	</body>
+</html>

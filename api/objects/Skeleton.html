@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		
+		<h1>骨架（[name]）</h1>
+
+		<div class="desc">
+		使用一个 [page:骨骼(Bone) bones] 数组来创建一个骨架，可被一个 [page:蒙皮网孔(SkinnedMesh)] 所使用。只对WebGL渲染器有用。
+		</div>
+
+		<h2>例子</h2>
+
+		<code>
+		// 创建一个胳膊
+		
+		var bones = [];
+		
+		var shoulder = new THREE.Bone();
+		var elbow = new THREE.Bone();
+		var hand = new THREE.Bone();
+		
+		shoulder.add( elbow );
+		elbow.add( hand );
+
+		bones.push( shoulder );
+		bones.push( elbow );
+		bones.push( hand );
+		
+		shoulder.position.y = -5;
+		elbow.position.y = 0;
+		hand.position.y = 5;
+		
+		var armSkeleton = new THREE.Skeleton( bones );
+		
+		// 查看 THREE.SkinnedMesh 中结合网孔使用的一个示例。
+		</code>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Array bones], [page:Array boneInverses], [page:Boolean useVertexTexture]  )</h3>
+		<div>
+		bones — [page:骨骼(Bone) bones] 数组。<br/>
+		boneInverses — (可选) 一个 [page:Matrix4 Matrix4s] 数组。<br/>
+		useVertexTexture — (可选) 是否在着色器中使用顶点纹理。
+		</div>
+		<div>
+		构造函数会自动设置下面的所有属性。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+		
+		<h3>[property:Array bones]</h3>
+		<div>
+		[page:骨骼(Bone) bones] 数组。
+		</div>
+		
+		
+		<h3>[property:Boolean useVertexTexture]</h3>
+		<div>
+		是否在着色器中使用一个顶点纹理，该参数在构造函数中设置。
+        不是所有的设备都支持浮点像素纹理。如果这个选项被设置，那么骨骼矩阵将被包装成一个纹理，并发送到着色器。
+        这种方法允许使用一个更大的骨骼集合。否则顶点着色将使用uniforms，这将不允许使用许多骨骼。不同设备下确切的个数也不尽相同。
+		</div>
+		
+		
+		<h3>[property:Array boneInverses]</h3>
+		<div>
+		一个 [page:Matrix4 Matrix4s] 数组，用来代表单个骨骼的matrixWorld逆矩阵。
+		</div>
+		
+		
+		<h3>[property:Integer boneTextureWidth]</h3>
+		<div>
+		顶点数据纹理的宽度。
+		</div>
+		
+		
+		<h3>[property:Integer boneTextureHeight]</h3>
+		<div>
+		顶点数据纹理的高度。
+		</div>
+		
+		
+		<h3>[property:Float32Array boneMatrices]</h3>
+		<div>
+		使用顶点纹理时，保存骨骼数据的数组缓存。
+		</div>
+		
+		
+		<h3>[property:DataTexture boneTexture]</h3>
+		<div>
+		使用顶点纹理时保持骨骼数据的 [page:数据纹理(DataTexture)]。 
+		</div>
+		
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null calculateInverses]()</h3>
+		<div>生成 boneInverses。</div>
+		
+		
+		<h3>[method:null pose]()</h3>
+		<div>返回基本姿势的骨架。</div>
+		
+		
+		<h3>[method:null update]()</h3>
+		<div>
+		在骨骼发生变化后更新 [page:Float32Array boneMatrices] 和 [page:数据纹理(DataTexture) boneTexture]。
+		该方法由 [page:WebGL渲染器(WebGLRenderer)] 自动调用，如果骨架被一个 [page:蒙皮网孔(SkinnedMesh)] 所使用的话。
+		</div>
+		
+		<h3>[method:Skeleton clone]()</h3>
+		<div>
+		克隆该骨架对象。
+		</div>
+
+		
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

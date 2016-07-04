@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr;
+
+		<h1>点（[name]）</h1>
+
+		<div class="desc">以可变大小的点形式来显示粒子的类。比如，如果使用 [page:WebGL渲染器(WebGLRenderer)]，粒子将使用 GL_POINTS 来显示。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:几何模型(Geometry) geometry], [page:材料(Material) material] )</h3>
+
+		<div>
+		geometry — [page:几何模型(Geometry)] 的一个实例。<br />
+		material — [page:材料(Material)] 的一个实例(可选)。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Geometry geometry]</h3>
+
+		<div>一个 [page:几何模型(Geometry)] 实例，其中每个顶点指定系统中的一个粒子的位置。</div>
+
+		<h3>[property:Material material]</h3>
+
+		<div>一个 [page:材料(Material)] 实力， 定义对象的外观。默认的是随机色彩的 [page:点材料(PointsMaterial)]。</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Array raycast]( [page:Raycaster raycaster], [page:Array intersects] )</h3>
+		<div>
+		得到光线投射和该线条之间的交点。 [page:Raycaster.intersectObject] 将调用该方法。
+		</div>
+
+		<h3>[method:Points clone]()</h3>
+		<div>
+		返回此点对象及其后代的克隆。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+
+	</body>
+</html>

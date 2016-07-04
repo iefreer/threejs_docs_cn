@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:材料(Material)] &rarr;
+
+		<h1>点材料（[name]）</h1>
+
+		<div class="desc">[page:Points particle] 粒子系统所使用的缺省材料。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:Object parameters] )</h3>
+
+		<div>参数是一个使用一个或多个属性定义材料外观的对象。</div>
+
+		<div>
+		color — 16进制的粒子颜色。默认为 0xffffff.<br />
+		map — 一个 [page:纹理(Texture) texture]。如果被定义，那么一个点（point）从纹理中获取颜色数据。缺省为null。<br />
+		size — 定义粒子的大小。默认为1.0。<br />
+		sizeAttenuation — 启用/禁用随距离而发生尺寸衰减。<br />
+		vertexColors — 定义材料是否使用顶点颜色。默认是false。<br />
+		fog — 定义材质颜色是否受全局雾设置的影响。默认是true。
+		</div>
+
+		<h2>属性（Properties）</h2>
+		<div>通用属性请查看基类 [page:材料(Material)] 。</div>
+
+		<h3>[property:Number color]</h3>
+
+		<div>设置粒子的颜色。默认值是 0xffffff.</div>
+
+		<h3>[property:Texture map]</h3>
+
+		<div>使用纹理数据设置粒子的颜色。</div>
+
+		<h3>[property:Number size]</h3>
+
+		<div>设置粒子的大小。默认为1.0。</div>
+
+		<h3>[property:Boolean sizeAttenuation]</h3>
+
+		<div>指明粒子大小是否随距离而变。默认为true。</div>
+
+		<h3>[property:Integer vertexColors]</h3>
+		<div>定义顶点如何着色。可用值为 THREE.NoColors, THREE.FaceColors 和 THREE.VertexColors。缺省值为 THREE.NoColors.</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。</div>
+        
+		<h3>[property:Boolean fog]</h3>
+		<div>定义材质颜色是否受全局雾设置的影响。</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。比如，该属性被 [page:Canvas渲染器(CanvasRenderer) Canvas] 所忽略，但是对 [page:WebGL渲染器(WebGLRenderer) WebGL] 有效。</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

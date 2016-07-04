@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>二维空间盒子（[name]）</h1>
+
+		<div class="desc">表示二维空间中的一个包围盒。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Vector2 min], [page:Vector2 max] )</h3>
+		<div>
+		min -- 包围盒的(x, y)下边界。<br />
+		max -- 包围盒的(x, y)上边界。
+		</div>
+		<div>
+		创建一个介于最小和最大值之间的包围盒。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+		<h3>[property:Vector2 min]</h3>
+		<div>
+		包围盒的下边界(x, y)。
+		</div>
+
+		<h3>[property:Vector2 max]</h3>
+		<div>
+		包围盒的上边界(x, y)。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h3>[method:Box2 set]( [page:Vector2 min], [page:Vector2 max] ) [page:Box2 this]</h3>
+		<div>
+		min -- 包围盒的(x, y)下边界。 <br />
+		max -- 包围盒的(x, y)上边界。
+		</div>
+		<div>
+		设置这个包围盒的上下(x, y)的界限。
+		</div>
+
+		<h3>[method:Box2 expandByPoint]( [page:Vector2 point] ) [page:Box2 this]</h3>
+		<div>
+		point -- 应包含在盒子中的一个点。
+		</div>
+		<div>
+		扩展盒子的边界来包含该 *point*。
+		</div>
+
+		<h3>[method:Vector2 clampPoint]( [page:Vector2 point], [page:Vector2 optionalTarget] ) [page:Box2 this]</h3>
+		<div>
+		point -- clamp位置。 <br />
+		optionalTarget -- 如果指定，则clamp的结果将被复制在这里。
+		</div>
+		<div>
+		在该盒子范围内夹紧*point*。
+		</div>
+
+		<h3>[method:Boolean intersectsBox]( [page:Box2 box] ) [page:Box2 this]</h3>
+		<div>
+		box -- 用来检查相交的盒子。
+		</div>
+		<div>
+		确定该盒子是否和*box*相交。
+		</div>
+
+		<h3>[method:Box2 setFromPoints]( [page:Array points] ) [page:Box2 this]</h3>
+		<div>
+		points -- 点的集合，由这些点确定的框空间将被包围。
+		</div>
+		<div>
+		设置这个盒子的上下边界，来包含所有设置在*points*参数中的点。
+		</div>
+
+		<h3>[method:Vector2 size]( [page:Vector2 optionalTarget] ) [page:Box2 this]</h3>
+		<div>
+		optionalTarget -- 如果指定，结果将被复制在这里。
+		</div>
+		<div>
+		返回此盒子的宽度和高度。
+		</div>
+
+		<h3>[method:Box2 union]( [page:Box2 box] ) [page:Box2 this]</h3>
+		<div>
+		box -- 要联合的箱子。
+		</div>
+		<div>
+		在box参数的上边界和已有box对象的上边界之间取较大者，而对两者的下边界取较小者，这样获得一个新的较大的联合盒子。
+		</div>
+
+		<h3>[method:Vector2 getParameter]( [page:Vector2 point], [page:Vector2 optionalTarget] ) [page:Box2 this]</h3>
+		<div>
+		point -- [page:Vector2]<br/>
+		optionalTarget -- [page:Vector2]<br/>
+
+		</div>
+		<div>
+		返回一个点作为这个框的宽度和高度的比例。
+		</div>
+
+		<h3>[method:Box2 expandByScalar]( [page:float scalar] ) [page:Box2 this]</h3>
+		<div>
+		scalar -- 扩展距离。
+		</div>
+		<div>
+		在每个维度上扩展参数scalar所指定的距离，如果为负数，则盒子空间将收缩。
+		</div>
+
+		<h3>[method:Box2 intersect]( [page:Box2 box] ) [page:Box2 this]</h3>
+		<div>
+		box -- 要相交的盒子。
+		</div>
+		<div>
+		和联合（union）相反，相交（intersect）将取两个box上边界的较小者，和下边界的较大者，这样获得一个新的较小的相交盒子。
+		</div>
+
+		<h3>[method:Boolean containsBox]( [page:Box2 box] ) [page:Box2 this]</h3>
+		<div>
+		box -- 要测试是否包容的盒子。
+		</div>
+		<div>
+		如果这个box完全包含了*box*的空间，则返回true。如果该box和*box*刚好重叠，该函数也返回true。
+		</div>
+
+		<h3>[method:Box2 translate]( [page:Vector2 offset] ) [page:Box2 this]</h3>
+		<div>
+		offset -- 偏移方向和距离。
+		</div>
+		<div>
+		添加 *offset* 到这个框的上下边界，实际上在2D空间移动这个框 *offset* 个单位。
+		</div>
+
+		<h3>[method:Boolean isEmpty]() [page:Box2 this]</h3>
+		<div>
+		如果这个盒子包含0个顶点，则返回true。</br>
+		请注意，一个下上边界相等的的盒子仍然包括一个点，一个两个边界共享的点。
+		</div>
+
+		<h3>[method:Box2 clone]() [page:Box2 this]</h3>
+		<div>
+		返回该box的一个拷贝。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Box2 box] ) [page:Box2 this]</h3>
+		<div>
+		box -- 要对比的box。
+		</div>
+		<div>
+		如果这个box和*box*共享相同的上下边界，则返回真。
+		</div>
+
+		<h3>[method:Box2 expandByVector]( [page:Vector2 vector] ) [page:Box2 this]</h3>
+		<div>
+		vector -- 在每个维度中按该向量的数值进行扩展。
+		</div>
+		<div>
+		在每个维度中按*vector*的数值进行扩展。宽度扩展将由*vector*的x分量确定，高度扩展则由y分量确定。
+		</div>
+
+		<h3>[method:Box2 copy]( [page:Box2 box] ) [page:Box2 this]</h3>
+		<div>
+		box -- 要拷贝的box。
+		</div>
+		<div>
+		将*box*的值复制到这个box中。
+		</div>
+
+		<h3>[method:Box2 makeEmpty]() [page:Box2 this]</h3>
+		<div>
+		清空盒子。
+		</div>
+
+		<h3>[method:Vector2 center]( [page:Vector2 optionalTarget] ) [page:Box2 this]</h3>
+		<div>
+		optionalTarget -- 如果指定，结果将被复制在这里。
+		</div>
+		<div>
+		返回此box的中心点。
+		</div>
+
+		<h3>[method:Float distanceToPoint]( [page:Vector2 point] ) [page:Box2 this]</h3>
+		<div>
+		point -- 用来测量距离的点。
+		</div>
+		<div>
+		返回这个box的任何边缘到指定点的距离。如果这个点位于这个盒子里，距离将是0。
+		</div>
+
+		<h3>[method:Boolean containsPoint]( [page:Vector2 point] ) [page:Box2 this]</h3>
+		<div>
+		point -- [page:Vector2] 检查是否被包含的点。
+		</div>
+		<div>
+		如果指定的点位于此框的边界内，则返回真。
+		</div>
+
+		<h3>[method:Box2 setFromCenterAndSize]( [page:Vector2 center], [page:Vector2 size] ) [page:Box2 this]</h3>
+		<div>
+		center -- 盒子所要设置的中心位置。<br />
+		size -- 盒子所要设置的x和y尺寸（宽高）。
+		</div>
+		<div>
+		使盒子的中心点位于*center*，并设置宽高为*size*中指定的值。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

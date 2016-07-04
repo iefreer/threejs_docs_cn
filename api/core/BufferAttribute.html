@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>缓存属性（[name]）</h1>
+
+		<div class="desc">
+		这个类保存了和 [page:缓存几何模型(BufferGeometry)] 关联的属性数据。该类用来保存内置属性比如顶点位置、法相量和颜色等，也可以被用于保存自定义属性。
+		</div>
+
+		<h2>构造器（Constructor）</h2>
+		<h3>[name]( [page:TypedArray array], [page:Integer itemSize], [page:Boolean normalized] )</h3>
+		<div>
+		从相关缓存中的数据来实例化这个属性。
+		itemSize 给定缓存中和1个顶点关联的数组中数据的个数。normalized 表示如何将相关的缓冲区中的数据映射到GLSL着色器中代码的值。 
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:TypedArray array]</h3>
+		<div>
+		用来保存和这个属性关联的数据。应该有 <code>itemSize * numVertices</code> 个元素，这里 numVertices 是相关联的[page:缓存几何模型(BufferGeometry)]的顶点个数。[page:TypedArray array] 可以是 UInt8Array, Int8Array, UInt16Array, Int16Array, 或 Float32Array的实例。
+		</div>
+
+		<h3>[property:Integer itemSize]</h3>
+		<div>
+		记录一个顶点和多少数组项关联。比如，如果这个属性用来保存3维向量（比如坐标、法向量或颜色），那么 itemSize 应该是3。
+		</div>
+
+		<h3>[property:Integer length]</h3>
+		<div>
+		数组元素的总数目。
+		</div>
+
+		<h3>[property:Boolean needsUpdate]</h3>
+		<div>
+		标识该属性是否被改变并应该重新提交给GPU。当你修改数组数据时，应设置该属性为true。
+		</div>
+
+		<h3>[property:Boolean normalized]</h3>
+		<div>
+		标识如何将关联的缓冲区中的数据映射到GLSL代码中的值，也就是是否正规化。比如，如果 [page:TypedArray array] 是UInt16Array的一个实例，<br />
+        并且 [page:Boolean normalized] 为true，那么数组数据中的 0 - +65535 取值将被映射为GLSL属性中的 0.0f - +1.0f。<br />
+        而一个Int16Array（有符号的）将把 -32767 - +32767 映射到 -1.0f - +1.0f。<br />
+        如果 [page:Boolean normalized] 为 false，那么这些值将被转换成相等的浮点数，也就是 32767 会映射成 32767.0f。
+		</div>
+
+		<h3>[property:Integer version]</h3>
+		<div>
+		版本号，但needsupdate属性设置为true时递增。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null copyAt] ( [page:Integer index1], attribute, [page:Integer index2] ) </h3>
+		<div>
+		拷贝数组中itemSize个数值，从index2处的顶点（vertex）到index1处的顶点（vertex）。
+		</div>
+
+		<h3>[method:null set] ( [page:Array value] ) </h3>
+		<div>
+		从传递的数组中取值来设置关联数组。
+		</div>
+
+		<h3>[method:null setX]( index, x ) </h3>
+		<div>
+		设置数组位于<code>index * itemSize</code>的值为 x。
+		</div>
+
+		<h3>[method:null setY]( index, y ) </h3>
+		<div>
+		设置数组位于<code>index * itemSize + 1</code>的值为 y。
+		</div>
+
+		<h3>[method:null setZ]( index, z ) </h3>
+		<div>
+		设置数组位于<code>index * itemSize + 2</code>的值为 z。
+		</div>
+
+		<h3>[method:null setXY]( index, x, y ) </h3>
+		<div>
+		设置数组位于<code>index * itemSize</code>的值为 x，并且
+		设置数组位于<code>index * itemSize + 1</code>的值为 y。
+		</div>
+
+		<h3>[method:null setXYZ]( index, x, y, z ) </h3>
+		<div>
+		设置数组位于<code>index * itemSize</code>的值为 x，且
+		设置数组位于<code>index * itemSize + 1</code>的值为 y，且
+        设置数组位于<code>index * itemSize + 2</code>的值为 z。
+		</div>
+
+		<h3>[method:null setXYZW]( index, x, y, z, w ) </h3>
+		<div>
+		设置数组位于<code>index * itemSize</code>的值为 x，且
+		设置数组位于<code>index * itemSize + 1</code>的值为 y，且
+        设置数组位于<code>index * itemSize + 2</code>的值为 z，且
+		设置数组位于<code>index * itemSize + 3</code>的值为 w。
+		</div>
+
+		<h3>[method:BufferAttribute clone]() </h3>
+		<div>
+		拷贝属性。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

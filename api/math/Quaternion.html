@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>四元数（[name]）</h1>
+
+		<div class="desc">是对 <a href="http://en.wikipedia.org/wiki/Quaternion">四元数</a> 的一个实现。
+        该方法用于解决欧拉角旋转存在的可能的<a href="http://en.wikipedia.org/wiki/Gimbal_lock">万向节锁（gimbal lock）</a>问题。</div>
+
+
+		<h2>例子</h2>
+
+		<code>var quaternion = new THREE.Quaternion();
+		quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+
+		var vector = new THREE.Vector3( 1, 0, 0 );
+		vector.applyQuaternion( quaternion );
+		</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Float x], [page:Float y], [page:Float z], [page:Float w] )</h3>
+		<div>
+		x - x 坐标<br />
+		y - y 坐标<br />
+		z - z 坐标<br />
+		w - w 坐标。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float x]</h3>
+
+		<h3>[property:Float y]</h3>
+
+		<h3>[property:Float z]</h3>
+
+		<h3>[property:Float w]</h3>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Quaternion set]( [page:Float x], [page:Float y], [page:Float z], [page:Float w] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		设置该四元数的值。
+		</div>
+
+		<h3>[method:Quaternion copy]( [page:四元数(Quaternion) q] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		将*q*的值复制到这个四元数。
+		</div>
+
+		<h3>[method:Quaternion fromArray]( [page:Array array], [page:Integer offset] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		array -- 用于构造四元数的格式为(x, y, z, w)的数组。<br />
+		offset -- 一个可选的数组中的偏移量。
+		</div>
+		<div>
+		从数组来设置此四元数的值。
+		</div>
+
+		<h3>[method:Quaternion setFromEuler]( [page:欧拉角(Euler) euler] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		用欧拉角指定的旋转来设置此四元数。
+		</div>
+
+		<h3>[method:Quaternion setFromAxisAngle]( [page:Vector3 axis], [page:Float angle] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		使用由轴和角度指定的旋转来设置此四元数。<br />
+		基于 [link:http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm].<br />
+		*axis* 应该是归一化的，*angle* 的单位是弧度。
+		</div>
+
+		<h3>[method:Quaternion setFromRotationMatrix]( [page:Matrix4 m] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		从*m*的旋转分量来设置该四元数。<br />
+		基于 [link:http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm].
+		</div>
+
+		<h3>[method:Quaternion setFromUnitVectors]( [page:Vector3 vFrom], [page:Vector3 vTo] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		通过从向量*vFrom*到*vTo*所需的旋转来设置这四元数。<br />
+		基于 [link:http://lolengine.net/blog/2013/09/18/beautiful-maths-quaternion-from-vectors].<br />
+		*vFrom* 和 *vTo* 应该是归一化的。
+		</div>
+
+		<h3>[method:Quaternion inverse]() [page:四元数(Quaternion) this]</h3>
+		<div>
+		倒置该四元数。
+		</div>
+
+		<h3>[method:Float length]() [page:四元数(Quaternion) this]</h3>
+		<div>
+		计算此四元数的长度。
+		</div>
+
+		<h3>[method:Quaternion normalize]() [page:四元数(Quaternion) this]</h3>
+		<div>
+		归一化该四元数。
+		</div>
+
+		<h3>[method:Quaternion multiply]( [page:四元数(Quaternion) q] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		把该四元数和*q*相乘。
+		</div>
+
+		<h3>[method:Quaternion premultiply]( [page:四元数(Quaternion) q] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		使用*q*左乘以(pre-multiply)该四元数。
+		</div>
+
+		<h3>[method:Quaternion multiplyQuaternions]( [page:四元数(Quaternion) a], [page:四元数(Quaternion) b] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		设置该四元数为 *a x b*<br />
+		基于 [link:http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm].
+		</div>
+
+		<h3>[method:Quaternion multiplyVector3]( [page:Vector3 vector], [page:Vector3 dest] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		使用该四元数旋转vector到dest。<br />
+		如果 *dest* 未指定，则结果到 *vector*。
+		</div>
+
+		<h3>[method:Float lengthSq]() [page:四元数(Quaternion) this]</h3>
+		<div>
+		计算四元数的平方长度。
+		</div>
+
+		<h3>[method:Quaternion conjugate]() [page:四元数(Quaternion) this]</h3>
+		<div>
+		返回此四元数的旋转共轭。四元数的共轭。表示旋转轴在相反方向上的同一个旋转。
+		</div>
+
+		<h3>[method:Quaternion slerp]( [page:四元数(Quaternion) quaternionB], [page:float t] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		quaternionB -- 其他四元数旋转。<br />
+		t -- 0到1之间的归一化插值因子。
+		</div>
+		<div>
+		处理四元数之间的球面线性插值。*t* 代表quaternion（这里*t*为0）和quaternionB（这里*t*为1）这两个四元数之间的旋转量。
+        quaternion 被设置为结果。您也可以查看下面的 *slerp* 静态版本。
+		</div>
+		<code>
+		// 向目标四元数旋转网孔
+		mesh.quaternion.slerp( endQuaternion, 0.01 );
+		</code>
+
+		<h3>[method:Boolean equals]( [page:四元数(Quaternion) v] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		v -- 用来比较的四元数。
+		</div>
+		<div>
+		比较*v*和这个四元数的各个分量，以确定两者是否代表同样的旋转。
+		</div>
+
+		<h3>[method:Quaternion clone]() [page:四元数(Quaternion) this]</h3>
+		<div>
+		克隆此四元数。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array], [page:Integer offset] ) [page:四元数(Quaternion) this]</h3>
+		<div>
+		array -- [page:Array] 可选。存储四元数的数组。 <br />
+		offset -- [page:Integer] 可选。输出数组内的偏移。
+		</div>
+		<div>
+		以数组格式 (x, y, z, w)返回此四元数的数值。
+		</div>
+
+		<h2>静态方法</h2>
+
+		<h3>[method:Quaternion slerp]( [page:四元数(Quaternion) qStart], [page:四元数(Quaternion) qEnd], [page:四元数(Quaternion) qTarget], [page:Float t] )</h3>
+		<div>
+		qStart -- 起点四元数（这里*t*为0）<br />
+		qEnd -- 终点四元数（这里*t*为1）<br />
+		qTarget -- 用结果设置的目标四元数<br />
+		t --  0到1之间的归一化插值因子。
+		</div>
+		<div>
+		不同于常规的方法，静态版本的slerp方法把插值运算的结果放到一个目标四元数对象中。
+		</div>
+		<code>
+		// 代码设置
+		var startQuaternion = new THREE.Quaternion().set( 0, 0, 0, 1 ).normalize();
+		var endQuaternion = new THREE.Quaternion().set( 1, 1, 1, 1 ).normalize();
+		var t = 0;
+		</code>
+		<code>
+		// 更新循环中的网孔的旋转
+		t = ( t + 0.01 ) % 1; // 恒定的角动量
+		THREE.Quaternion.slerp( startQuaternion, endQuaternion, mesh.quaternion, t );
+		</code>
+
+		<h3>[method:Quaternion slerpFlat]( [page:Array dst], [page:Integer dstOffset], [page:Array src0], [page:Integer srcOffset0], [page:Array src1], [page:Integer srcOffset1], [page:Float t] )</h3>
+		<div>
+		dst -- 输出数组。<br />
+		dstOffset -- 输出数组中的偏移。<br />
+		src0 -- 起点四元数的源数组。<br />
+		srcOffset0 -- 数组 *src0* 中的偏移。<br />
+		src1 -- 目标四元数的源数组。<br />
+		srcOffset1 -- 数组 *src1* 中的偏移。<br />
+		t -- 介于0和1之间的插值因子。
+		</div>
+		<div>
+		和 上述静态版本的 *slerp* 方法类似，但直接操作平面数组。
+		</div>
+
+		<!-- Note: Do not add non-static methods to the bottom of this page. Put them above the <h2>Static Methods</h2> -->
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

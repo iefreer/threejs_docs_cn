@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:Loader] &rarr;
+		<h1>glTF加载器（[name]）</h1>
+
+		<div class="desc">
+		一个用来加载JSON格式的<em>.gltf</em>资源的加载器。
+		<br /><br />
+		<a href="https://www.khronos.org/gltf">glTF文件格式</a> 是一个JSON文件格式，用来快速递交和加载3D内容。
+		</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( )</h3>
+		<div>
+		创建一个新的 [name].
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Object3D load]( [page:字符串(String) url], [page:函数(Function) callback] )</h3>
+		<div>
+		[page:字符串(String) url] 必选参数<br />
+		[page:函数(Function) callback] — 加载完成时被调用。参数将是一个 [page:Object]，包含已加载的 .[page:3D对象(Object3D) scene], .[page:Array cameras] 以及 .[page:Array animations]。<br />
+		</div>
+		<div>
+		从url处开始加载，并使用应答内容调用callback函数。
+		</div>
+
+
+		<h2>注意</h2>
+
+		<div>
+		该类常和 [page:glTFAnimator THREE.glTFAnimator] 一起使用来完成动画解析。
+		</div>
+
+
+		<h2>例子</h2>
+
+		<code>
+		// 实例化一个加载器
+		var loader = new THREE.glTFLoader();
+
+		// 加载一个 glTF 资源
+		loader.load(
+			// 资源链接
+			'models/gltf/duck/duck.json',
+			// 资源加载完成后的回调函数
+			function ( object ) {
+				scene.add( object.scene );
+			}
+		);
+		</code>
+
+		[example:webgl_loader_gltf]
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/gltf/glTFLoader.js examples/js/loaders/gltf/glTFLoader.js]
+	</body>
+</html>

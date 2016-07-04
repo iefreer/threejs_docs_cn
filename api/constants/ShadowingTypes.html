@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>阴影类型常量（Shadowing Type Constants）</h1>
+        <p>下面定义了三种阴影类型的常量，关于这三种阴影类型的详细定义和实际效果请参考：</p>
+        <ul>
+            <li>http://codeflow.org/entries/2013/feb/15/soft-shadow-mapping/</li>
+            <li>http//www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/#Basic_shader*/</li>
+        </ul>
+		<h2>阴影映射（Shadow Map）</h2>
+        <p>阴影映射也称之为阴影贴图，这些常量用来确定阴影效果的处理方式。</p>
+        <p>关于这几种阴影映射，我们补充说明其工作原理和特征。</p>
+        <p><img src="//wow.techbrood.com/uploads/160601/pcf.gif"></p>
+        <p>如上图所示，如果利用点采样或者线性采样得到一个深度值，然后在于即将渲染的像素的深度进行比较的话，最终结果是二值化的（0或1）。<br />
+        就是说即将渲染的像素只有两种情况，在阴影内部或者外部。这种二值化的特性直接导致阴影映射没有半影现象了，<br />
+        当其被放大观察的时候，会导致阴影边缘出现严重的锯齿现象。当然优点是计算简单，速度最快。<br />
+        而PCF则不仅考虑到该点的情况，还通盘考虑周围区域，通过把周边区域的比较值做平均，得到介于0到1之间的浮点型数值。<br />
+        换个角度理解，就是说这种采样的结果可以描述当前像素被阴影覆盖的程度，而不是简单的是否被阴影覆盖。这样就使得阴影在边缘处有一个更为真实的平滑过渡。</p>
+        <p>在把目标点换到目标区域之后，我们需要确定都读取哪些像素。最简单的办法就是就近均匀读取，不过这种办法可能会产生一些规律性，<br />
+        所以用泊松分布来读取周围的采样点更自然一些。按照常识，半影的情况应该和物体距离光源的远近有关，越是远的物体阴影越清晰，也就是说半影区域越小。<br/>
+        我们引入一个采样点范围值用来动态控制半影的大小，半影越大，需要的采样点也越多一些，否则依然会有走样问题。</p>
+        <p>如果<strong>PCF</strong>能够动态适应半影的大小，就演变成了<strong>PCSS(Percentage-Closer Soft Shadows)</strong>方式。</p>
+        <p>关于PCF SOFT，你可以参考NVIDIA的Paper：<br />
+            <a href="http://developer.download.nvidia.com/shaderlibrary/docs/shadow_PCSS.pdf">Shadow_PCSS.pdf</a>
+        </p>
+        
+		<div>
+		THREE.BasicShadowMap：普通阴影映射<br />
+		THREE.PCFShadowMap：柔化边缘的阴影映射<br />
+		THREE.PCFSoftShadowMap：柔化边缘的软阴影映射
+		</div>
+        
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/Three.js src/Three.js]
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+
+		<h1>PDB加载器（[name]）</h1>
+
+		<div class="desc">
+		用来加载一个 <em>.pdb</em> 资源的加载器。
+		<br /><br />
+		<a href="http://en.wikipedia.org/wiki/Protein_Data_Bank_(file_format)">蛋白质数据库文件格式</a> 是一个描述分子的三维结构的文本文件格式。
+		</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:加载管理器(LoadingManager) manager] )</h3>
+		<div>
+		[page:加载管理器(LoadingManager) manager] — The [page:加载管理器(LoadingManager) loadingManager] for the loader to use. Default is [page:加载管理器(LoadingManager) THREE.DefaultLoadingManager].
+		</div>
+		<div>
+		创建一个新的 [name].
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null load]( [page:字符串(String) url], [page:函数(Function) onLoad], [page:函数(Function) onProgress], [page:函数(Function) onError] )</h3>
+		<div>
+		[page:字符串(String) url] 必选参数. URL to the <em>.pdb</em> file<br />
+		[page:函数(Function) onLoad] — 当加载完成时被调用。参数将是一个 [page:几何模型(Geometry) geometryAtoms], [page:几何模型(Geometry) geometryBonds] and the [page:Object JSON] structure.<br />
+		[page:函数(Function) onProgress] — 当加载在进行中时被调用。参数是 XmlHttpRequest 实例，包含 .[page:Integer total] 和 .[page:Integer loaded] 字节。<br />
+		[page:函数(Function) onError] — 如果加载有错误将调用该函数。<br />
+		</div>
+		<div>
+		从url处开始加载，并使用应答内容调用onLoad函数。
+		</div>
+
+		<h3>[method:Object parsePDB]( [page:字符串(String) text] )</h3>
+		<div>
+		[page:字符串(String) text] — 要解析的 <em>pdb</em> 结构化文本。
+		</div>
+		<div>
+		解析一个 <em>pdb</em> 文本并返回一个 <em>JSON</em> 格式数据。<br />
+		</div>
+
+		<h3>[method:null createModel]( [page:Object json], [page:函数(Function) callback] )</h3>
+		<div>
+		[page:Object json] — 要解析的 <em>(JSON) pdb</em> 结构化数据。<br />
+		[page:函数(Function) callback] — 解析完成时的回调函数，有3个参数：[page:几何模型(Geometry) geometryAtoms], [page:几何模型(Geometry) geometryBonds] 以及原来的 [page:Object json].<br />
+		</div>
+		<div>
+		把一个 <em>(JSON) pdb</em> 结构化数据解析为2个 [page:几何模型(Geometry)] 对象：1个为了原子（atoms），一个为了连接关系（bonds）。<br />
+		</div>
+
+		<h2>例子</h2>
+
+		<code>
+		// 实例化一个加载器
+		var loader = new THREE.PDBLoader();
+
+		// load a PDB resource
+		loader.load(
+			// 资源链接
+			'models/molecules/caffeine.pdb',
+			// 资源加载完成后的回调函数
+			function ( geometryAtoms, geometryBonds, json ) {
+				console.log( 'This molecule has ' + json.atoms.length + ' atoms' );
+			},
+			// 资源加载过程中的回调函数
+			function ( xhr ) {
+				console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+			},
+			// 资源下载出错时的回调函数
+			function ( xhr ) {
+				console.log( 'An error happened' );
+			}
+		);
+		</code>
+
+		[example:webgl_loader_pdb]
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/PDBLoader.js examples/js/loaders/PDBLoader.js]
+	</body>
+</html>

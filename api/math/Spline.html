@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>样条（[name]）</h1>
+
+		<div class="desc">代表一个样条（spline）。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Array points] )</h3>
+
+		<div>使用*points*初始化该spline，spline将穿过这些点。</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Array points]</h3>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null initFromArray]( [page:Array a] )</h3>
+		<div>
+		a — 包含x,y,z坐标的点的数组。<br />
+		</div>
+		<div>使用一组点来初始化样条数据。a[n]表示第n个点的取值v，其中v[0],v[1],v[2]分别是该点的x,y,z坐标。
+		</div>
+
+		<h3>[method:Vector3 getPoint]( [page:Integer k] )</h3>
+		<div>
+		k — 点的索引。
+		</div>
+		<div>返回*k*处的插值点。</div>
+
+		<h3>[method:Array getControlPointsArray]( )</h3>
+		<div>返回控制点数组。
+		</div>
+
+		<h3>[method:Object getLength]( [page:Integer nSubDivisions] )</h3>
+		<div>
+		nSubDivisions — 控制点之间的分割数。默认为 *100*。
+		</div>
+		<div>
+			返回一个包含2个属性的对象。属性 .[page:Number total] 包含使用nSubDivisions时的样条长度。
+            属性 .[page:Array chunkLength] 包含该样条每一段的长度数组。
+		</div>
+
+		<h3>[method:null reparametrizeByArcLength]( [page:Float samplingCoef] )</h3>
+		<div>
+		samplingCoef — 样条点之间使用多少中间值。
+		</div>
+		<div>修改样条曲线，使它看起来类似于原来的，但点沿着曲线的分布更均匀。</div>
+		<div>这是通过对原样条进行重采样来完成的，采样密度由参数*samplingcoef*所控制。要注意的是，更密集的采样不一定是好的：如果采样太高，你可能在曲率得到奇怪的扭结。</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

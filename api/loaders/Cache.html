@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>缓存（[name]）</h1>
+
+		<div class="desc">一个简单的缓存类，被 [page:XHR加载器(XHRLoader)] 内部所使用。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]()</h3>
+		<div>
+		创建一个新的 [name].
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Boolean enabled]</h3>
+		<div>
+		是否启用缓存。缺省为 *false*。
+		</div>
+
+		<h3>[property:Object files]</h3>
+		<div>
+		一个保存缓存数据的 [page:Object object]。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null add]( [page:字符串(String) key], value )</h3>
+		<div>
+		[page:字符串(String) key] 必选参数. 一个字符串key。 <br />
+		[page:Object] value — 一个值。 <br />
+		</div>
+		<div>
+		添加一个键/值对（key/value）的缓存条目。如果key已存在，则覆盖其相应的value。
+		</div>
+
+		<h3>[method:null get]( [page:字符串(String) key] )</h3>
+		<div>
+		[page:字符串(String) key] 必选参数. 一个字符串key <br />
+		</div>
+		<div>
+		通过键（key）获取值（value）。如果key不存在则返回未定义（*undefined*）。
+		</div>
+
+		<h3>[method:null remove]( [page:字符串(String) key] )</h3>
+		<div>
+		[page:字符串(String) key] 必选参数. 一个字符串key。 <br />
+		</div>
+		<div>
+		删除与key相关联的缓存值。
+		</div>
+
+		<h3>[method:null clear]()</h3>
+		<div>
+		清除缓存。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

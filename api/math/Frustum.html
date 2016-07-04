@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>视锥体（[name]）</h1>
+
+		<div class="desc"><a href="http://en.wikipedia.org/wiki/Frustum">视锥体（Frustums）</a> 用来决定什么在相机视角范围内。用来加速渲染过程。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]([page:Plane p0], [page:Plane p1], [page:Plane p2], [page:Plane p3], [page:Plane p4], [page:Plane p5])</h3>
+		<div>
+		p0 -- [page:Plane] <br />
+		p1 -- [page:Plane] <br />
+		p2 -- [page:Plane] <br />
+		p3 -- [page:Plane] <br />
+		p4 -- [page:Plane] <br />
+		p5 -- [page:Plane]
+		</div>
+		<div>
+		使用6个面来构建一个视锥体。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Array planes]</h3>
+		<div>
+		包含6个平面的数组。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Frustum setFromMatrix]( [page:Matrix4 matrix] )</h3>
+
+		<h3>[method:Boolean intersectsObject]( [page:3D对象(Object3D) object] )</h3>
+		<div>
+		检查对象的包围球是否和视锥体相交。
+		</div>
+
+		<h3>[method:Frustum clone]()</h3>
+		<div>
+		返回该视锥体的一个拷贝。
+		</div>
+
+		<h3>[method:Boolean set]( [page:Plane p0], [page:Plane p1], [page:Plane p2], [page:Plane p3], [page:Plane p4], [page:Plane p5] )</h3>
+		<div>
+		p0 -- [page:Plane] <br />
+		p1 -- [page:Plane] <br />
+		p2 -- [page:Plane] <br />
+		p3 -- [page:Plane] <br />
+		p4 -- [page:Plane] <br />
+		p5 -- [page:Plane]
+		</div>
+		<div>
+		以给定的平面来创建当前视锥体。没有隐式的顺序。
+		</div>
+
+		<h3>[method:Frustum copy]( [page:视锥体(Frustum) frustum] ) [page:视锥体(Frustum) this]</h3>
+		<div>
+		frustum -- 要拷贝的视锥体。
+		</div>
+		<div>
+		拷贝传递的视锥体数据。
+		</div>
+
+		<h3>[method:Boolean containsPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3] to test
+		</div>
+		<div>
+		检查该视锥体是否包含给定的点。
+		</div>
+
+		<h3>[method:Boolean intersectsBox]( [page:Box3 box] )</h3>
+		<div>
+		box -- [page:Box3]
+		</div>
+		<div>
+		检查该视锥体是否和给定的盒子相交。
+		</div>
+
+		<h3>[method:Boolean intersectsSphere]( [page:Sphere sphere] )</h3>
+		<div>
+		sphere -- [page:Sphere]
+		</div>
+		<div>
+		检查该视锥体是否和给定的球体相交。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

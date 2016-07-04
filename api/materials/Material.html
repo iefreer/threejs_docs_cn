@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>材料（[name]）</h1>
+
+		<div class="desc">材料用来描述 [page:Object objects] 的外观。它们以一种和渲染器无关的方式定义，这样当决定更换渲染器时无需重写材料。</div>
+        <p class="info">在本文档中混用材料、材质和Material这些词汇。</p>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		该方法创建一个通用材料。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Integer id]</h3>
+		<div>
+		此材料实例的唯一编号。
+        
+		</div>
+
+		<h3>[property:String name]</h3>
+		<div>
+		材料名称。默认是一个空字符串。
+		</div>
+
+		<h3>[property:Float opacity]</h3>
+		<div>
+		在0.0 - 1.0的范围内浮动，表示材料的透明度。0表示完全透明，1是完全不透明。
+        如果 *transparent* 属性未设置为true，材料将保持完全不透明，这个值将只会影响它的颜色。
+		</div>
+		<div>缺省是 *1.0*.</div>
+
+		<h3>[property:Boolean transparent]</h3>
+		<div>
+		定义此材质是否是透明的。这对渲染效果有影响，因为透明物体需要特殊的处理，并在所有非透明物体之后被渲染。
+        对于该行为的一个实际例子，请查看 [page:WebGL渲染器(WebGLRenderer) WebGLRenderer] 代码。<br />
+		当设置为true时，该材料的透明度由 *opacity* 属性所确定。
+		</div>
+		<div>缺省是 *false*.</div>
+
+		<h3>.[page:Blending blending]</h3>
+		<div>
+		当显示该材质的对象时使用何种混合模式。缺省值为 [page:材料(Material)s NormalBlending]。
+        可在<a href="http://threejs.org/docs/#Reference/Constants/Materials">材料常量</a>页查看所有可用的混合模式。
+
+		</div>
+
+		<h3>.[page:Integer blendSrc]</h3>
+		<div>
+		混合源。这是Three.js中定义的一个混合模式常量。缺省为 [page:CustomBlendingEquation SrcAlphaFactor]。查看目标因子 [page:自定义混合方程(CustomBlendingEquation) constants] 以获取所有可能的取值。
+		</div>
+
+		<h3>[property:Integer blendDst]</h3>
+		<div>
+		混合目标。这是Three.js中定义的一个混合模式常量。缺省为  [page:自定义混合方程(CustomBlendingEquation) OneMinusSrcAlphaFactor]。
+		</div>
+
+		<h3>[property:Integer blendEquation]</h3>
+		<div>
+		应用混合时所用的混合方程式。这是Three.js中定义的一个常量。 缺省为 [page:自定义混合方程(CustomBlendingEquation) AddEquation.]
+		</div>
+
+		<h3>[property:Boolean depthTest]</h3>
+		<div>
+		是否在渲染这种材料时启用深度测试。缺省为 *true*.
+		</div>
+
+		<h3>[property:Boolean depthWrite]</h3>
+		<div>
+		渲染此材质是否对深度缓冲区有什么影响。缺省为 *true*.
+		</div>
+		<div>
+		当绘制二维叠加图层时，可以禁用深度写入，这样可以把多个东西叠放在一起而无须创建z-index组件。
+		</div>
+
+		<h3>[property:Boolean polygonOffset]</h3>
+		<div>
+		是否使用多边形偏移。缺省为 *false*。这对应于 *POLYGON_OFFSET_FILL* WebGL 特性。
+		</div>
+
+		<h3>[property:Integer polygonOffsetFactor]</h3>
+		<div>
+		设置多边形偏移因子。默认为*0*。
+		</div>
+
+		<h3>[property:Integer polygonOffsetUnits]</h3>
+		<div>
+		设置多边形偏移单位。默认为*0*。
+		</div>
+
+		<h3>[property:Number alphaTest]</h3>
+		<div>
+		设置运行α测试时要使用的α值。默认为*0*。
+		</div>
+
+		<h3>[property:Array clippingPlanes]</h3>
+
+		<div>
+		用户定义的裁剪平面，指定为世界空间中的THREE.Plane对象。
+        这些平面应用于该材料所附的对象。空间中与平面点积为负的点将被裁剪掉。缺省为空 []。
+		</div>
+
+		<h3>[property:Boolean clipShadows]</h3>
+		<div>
+		定义是否要根据在这种材料上指定的裁剪平面来剪辑阴影。默认是false。
+		</div>
+
+		<h3>[property:Float overdraw]</h3>
+		<div>
+		绘制时的三角形扩展量。这是为了解决使用 [page:Canvas渲染器(CanvasRenderer)] 绘制时在三角形之间出现间隙的情况。*0.5* 可在跨浏览器中提供较好的结果。 缺省为 *0*。
+		</div>
+
+		<h3>[property:Boolean visible]</h3>
+		<div>
+		定义此材质是否可见。默认是 *true*。
+		</div>
+
+		<h3>[property:Enum side]</h3>
+		<div>
+		定义表面两侧的哪一个将呈现 - 前面，后面或双面。
+		</div>
+		<div>
+		缺省是 [page:材料(Material)s THREE.FrontSide]。其他可选项为 [page:材料(Material)s THREE.BackSide] 和 [page:材料(Material)s THREE.DoubleSide]。
+		</div>
+
+		<h3>[property:Boolean needsUpdate]</h3>
+		<div>
+		指定该材料需要在WebGL级更新。设置为true，如果你的更新需要体现在WebGL上。
+		</div>
+		<div>
+		当实例化一个新的材料时，此属性自动设置为*true*。
+		</div>
+
+		
+		<h2>方法（Methods）</h2>
+		
+		<h3>该类可使用 [page:事件分发器(EventDispatcher) EventDispatcher]。</h3>
+		
+		<h3>[method:Material clone]( [page:材料(Material) material] )</h3>
+		<div>
+		material -- 从该材料获取克隆信息（可选）。
+		</div>
+		<div>
+		该方法克隆可选参数中的材料，并返回它。
+		</div>
+
+		<h3>[method:null dispose]()</h3>
+		<div>
+		该方法释放材料。材料的纹理不会被释放，需要通过 [page:纹理(Texture) Texture] 来释放。 
+		</div>
+
+		<h3>[method:null setValues]( [page:object values] )</h3>
+		<div>
+		values -- 一个带参数的容器对象。
+		</div>
+		<div>
+		设置基于*values*的属性。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>缓存几何模型加载器（[name]）</h1>
+
+		<div class="desc">用来加载一个 [page:缓存几何模型(BufferGeometry)] 的加载器</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:加载管理器(LoadingManager) manager] )</h3>
+		<div>
+		[page:加载管理器(LoadingManager) manager] — [page:加载管理器(LoadingManager) loadingManager] 对象。缺省是 [page:加载管理器(LoadingManager) THREE.DefaultLoadingManager]。
+		</div>
+		<div>
+		创建一个新的 [name].
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null load]( [page:字符串(String) url], [page:函数(Function) onLoad], [page:函数(Function) onProgress], [page:函数(Function) onError] )</h3>
+		<div>
+		[page:字符串(String) url] 必选参数<br />
+		[page:函数(Function) onLoad] — 当加载完成时被调用。参数将是已加载的 [page:缓存几何模型(BufferGeometry)].<br />
+		[page:函数(Function) onProgress] — 当加载在进行中时被调用。参数是 XmlHttpRequest 实例，包含 .[page:Integer total] 和 .[page:Integer loaded] 字节。<br />
+		[page:函数(Function) onError] — 如果加载有错误将调用该函数。<br />
+		</div>
+		<div>
+		从url处开始加载，并传递已解析的应答内容给onLoad函数。
+		</div>
+
+		<h3>[method:BufferGeometry parse]( [page:Object json] )</h3>
+		<div>
+		[page:Object json] — 要解析的JSON数据。
+		</div>
+		<div>
+		把一个 <em>JSON</em> 内容解析成一个 [page:缓存几何模型(BufferGeometry)].
+		</div>
+
+
+		<h2>例子</h2>
+
+		<code>
+		// 实例化一个加载器
+		var loader = new THREE.BufferGeometryLoader();
+
+		// 加载一个资源
+		loader.load(
+			// 资源链接
+			'models/json/pressure.json',
+			// 资源加载完成后的回调函数
+			function ( geometry ) {
+				var material = new THREE.MeshLambertMaterial( { color: 0xF5F5F5 } );
+				var object = new THREE.Mesh( geometry, material );
+				scene.add( object );
+			},
+			// 资源加载过程中的回调函数
+			function ( xhr ) {
+				console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+			},
+			// 资源下载出错时的回调函数
+			function ( xhr ) {
+				console.log( 'An error happened' );
+			}
+		);
+		</code>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

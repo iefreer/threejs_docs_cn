@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>音频加载器（[name]）</h1>
+
+		<div class="desc">用来加载一个 [page:字符串(String) AudioBuffer] 对象的类。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:字符串(String) context], [page:加载管理器(LoadingManager) manager] )</h3>
+		<div>
+		[page:字符串(String) context] — 加载器要使用的 [page:字符串(String) AudioContext] 对象。默认是 [page:字符串(String) window.AudioContext]。<br />
+		[page:加载管理器(LoadingManager) manager] — [page:加载管理器(LoadingManager) loadingManager] 对象。缺省是 [page:加载管理器(LoadingManager) THREE.DefaultLoadingManager].
+		</div>
+		<div>
+		创建一个新的 [name]。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null load]( [page:字符串(String) url], [page:函数(Function) onLoad], [page:函数(Function) onProgress], [page:函数(Function) onError] )</h3>
+		<div>
+		[page:字符串(String) url] — 音频资源的链接。必需的参数。<br />
+		[page:函数(Function) onLoad] — 当加载完成时被调用。参数将是加载的文本应答。<br />
+		[page:函数(Function) onProgress] — 当加载在进行中时被调用。参数是 XmlHttpRequest 实例，包含 .[page:Integer total] 和 .[page:Integer loaded] 字节。<br />
+		[page:函数(Function) onError] — 如果加载有错误将调用该函数。<br />
+		</div>
+		<div>
+		从url处开始加载，并传递已加载的 [page:字符串(String) AudioBuffer] 给onLoad函数。
+		</div>
+
+
+
+		<h2>例子</h2>
+
+		<code>
+		// 初始化一个侦听器
+		var audioListener = new THREE.AudioListener();
+
+		// 添加该侦听器到相机中
+		camera.add( audioListener );
+
+		// 实例化一个音频（环境音）对象
+		var oceanAmbientSound = new THREE.Audio( audioListener );
+
+		// 把该对象添加到场景中去
+		scene.add( oceanAmbientSound );
+
+		// 实例化一个加载器
+		var loader = new THREE.AudioLoader();
+
+		// 通过URL加载一个资源
+		loader.load(
+			// 资源链接
+			'audio/ambient_ocean.ogg',
+			// 资源加载完成后的回调函数
+			function ( audioBuffer ) {
+				// set the audio object buffer to the loaded object
+				oceanAmbientSound.setBuffer( audioBuffer );
+
+				// 播放音频
+				oceanAmbientSound.play();
+			},
+			// 资源加载过程中的回调函数
+			function ( xhr ) {
+				console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+			},
+			// 资源下载错误的回调函数
+			function ( xhr ) {
+				console.log( 'An error happened' );
+			}
+		);
+		</code>
+
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

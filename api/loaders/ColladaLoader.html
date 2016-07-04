@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+
+		<h1>Collada加载器（[name]）</h1>
+
+		<div class="desc"><em>Collada</em>文件加载器</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]()</h3>
+		<div>
+		创建一个新的 [name].
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Array options]</h3>
+		<div>
+		&nbsp;.[page:Boolean centerGeometry] — 是否强制 [page:几何模型(Geometry)] 处于包含[page:网孔(Mesh)]对象的局部原点居中位置。<br />
+		&nbsp;.[page:Boolean convertUpAxis] — 是否已完成几何模型，动画和控制器的轴转换。<br />
+		&nbsp;.[page:Boolean subdivideFaces] — 是否强制切分为多个 [page:三角面(Face3)]。<br />
+		&nbsp;.[page:字符串(String) upAxis] — X, Y 或 Z<br />
+		&nbsp;.[page:Boolean defaultEnvMap] — 用于反射或折射材料的环境贴图。<br />
+		</div>
+
+		<h3>[property:Object geometries]</h3>
+		<div>
+		已解析的 <em>.dae</em> 模型。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null load]( [page:字符串(String) url], [page:函数(Function) onLoad], [page:函数(Function) onProgress] )</h3>
+		<div>
+		[page:字符串(String) url] 必选参数<br />
+		[page:函数(Function) onLoad] — 当加载完成时被调用。参数将是包含已加载资源的[page:Object object]对象。<br />
+		[page:函数(Function) onProgress] — 当加载在进行中时被调用。参数是 XmlHttpRequest 实例，包含 .[page:Integer total] 和 .[page:Integer loaded] 字节。<br />		</div>
+		<div>
+		从url处开始加载，并使用应答内容调用onLoad函数。
+		</div>
+
+		<h3>[method:Object parse]( [page:Document doc], [page:函数(Function) callBack], [page:字符串(String) url] )</h3>
+		<div>
+		[page:Document doc] — 要解析的 <em>XML</em> 文档。<br />
+		[page:函数(Function) callBack] — 解析完成时的回调函数。<br />
+		[page:字符串(String) url] — 查找后续资源的基础链接。<br />
+		</div>
+		<div>
+		把一个<em>XML Document</em>解析为一个 [page:Object object]，包含已加载的 .[page:Scene scene], .[page:Array morphs], .[page:Array skins], .[page:Array animations], .[page:Object dae]
+		</div>
+
+		<h3>[method:null setPreferredShading]( [page:Integer shading] )</h3>
+		<div>
+		[page:Integer shading] — 必选参数。
+		</div>
+		<div>
+		设置资源材料上的 .[page:Integer shading] 属性。<br />
+		选项可以是 [page:材料(Material)s THREE.SmoothShading], [page:材料(Material)s THREE.FlatShading]。
+		</div>
+
+		<h3>[method:null applySkin]( [page:几何模型(Geometry) geometry], [page:Object instanceCtrl], [page:Integer frame] )</h3>
+		<div>
+		[page:几何模型(Geometry) geometry] — 必选参数<br />
+		[page:Object instanceCtrl] — 必选参数. 这是一个collada <em>skinController</em><br />
+		[page:Integer frame] — 可选参数。缺省值为 40<br />
+		</div>
+		<div>
+		在给定的[page:几何模型(Geometry)]上，从一个<em>collada 皮肤控制器</em>应用一个皮肤（vertices（顶点）, animation（动画）, bones（骨骼））。
+		</div>
+
+
+		<h2>例子</h2>
+
+		<code>
+		// 实例化一个加载器
+		var loader = new THREE.ColladaLoader();
+
+		loader.load(
+			// 资源链接
+			'models/collada/monster/monster.dae',
+			// 资源加载完成后的回调函数
+			function ( collada ) {
+				scene.add( collada.scene );
+			},
+			// 资源加载过程中的回调函数
+			function ( xhr ) {
+				console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+			}
+		);
+		</code>
+
+		[example:webgl_loader_collada]<br />
+		[example:webgl_loader_collada_keyframe]<br />
+		[example:webgl_loader_collada_skinning]<br />
+		[example:webgl_loader_collada_kinematics]
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/ColladaLoader.js examples/js/loaders/ColladaLoader.js]
+	</body>
+</html>

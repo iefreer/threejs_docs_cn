@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>颜色（[name]）</h1>
+
+		<div class="desc">
+		代表一个颜色。
+		</div>
+
+
+		<h2>例子</h2>
+		<code>var color = new THREE.Color();</code>
+		<code>var color = new THREE.Color( 0xff0000 );</code>
+		<code>var color = new THREE.Color("rgb(255, 0, 0)");</code>
+		<code>var color = new THREE.Color("rgb(100%, 0%, 0%)");</code>
+		<code>var color = new THREE.Color("hsl(0, 100%, 50%)");</code>
+		<code>var color = new THREE.Color( 1, 0, 0 );</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( r, g, b )</h3>
+		<div>
+		r - 如果参数g和b被定义，则r表示颜色中的红色分量。如果未被定义，r可以是一个十六进制颜色值或CSS样式的字符串或一个Color实例。<br />
+		g - 如果被定义，则表示颜色中的绿色分量。<br />
+		b - 如果被定义，则表示颜色中的蓝色分量。
+		</div>
+		<div>
+		所有参数都是可选的。默认颜色为白色。<br />
+		当所有的参数都被定义，那么r是红色分量，g是绿色分量，b是蓝色分量。<br />
+		当只有r被定义时：<br />
+		<ul>
+			<li>它可以是一个十六进制的颜色。</li>
+			<li>它可以是一个另一个颜色实例。</li>
+			<li>它可以是另外一个CSS样式。例如：
+				<ul>
+					<li>rgb(250, 0,0)</li>
+					<li>rgb(100%,0%,0%)</li>
+					<li>hsl(0, 100%, 50%)</li>
+					<li>#ff0000</li>
+					<li>#f00</li>
+					<li>red</li>
+				</ul>
+			
+			</li>
+		</ul>
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float r]</h3>
+		<div>
+		红色通道值在1和0之间。默认为1。
+		</div>
+
+		<h3>[property:Float g]</h3>
+		<div>
+		绿色通道值在1和0之间。默认为1。
+		</div>
+
+		<h3>[property:Float b]</h3>
+		<div>
+		蓝色通道值在1和0之间。默认为1。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Color set]( value ) [page:Color this]</h3>
+		<div>
+		value -- 或者是一个 [page:Color] 实例，一个 [page:Integer hexadecimal] 值，或者一个css样式 [page:字符串(String) string]
+		</div>
+		<div>
+		根据输入类型把调用委托给.copy, .setStyle, 或 .setHex方法。
+		</div>
+
+		<h3>[method:Color copy]( [page:Color color] ) [page:Color this]</h3>
+		<div>
+		color — 要拷贝的颜色。
+		</div>
+		<div>
+		拷贝给定的颜色。
+		</div>
+
+		<h3>[method:Color fromArray]( [page:Array array], [page:Integer offset] ) [page:Color this]</h3>
+		<div>
+		array -- [page:Array] [r, g, b] <br />
+		offset -- [page:Integer] 数组中的一个可选偏移量。
+		</div>
+		<div>
+		从格式为[r, g, b]的数组数据中来创建Color对象。
+		</div>
+
+		<h3>[method:Color copyGammaToLinear]( [page:Color color] ) [page:Color this]</h3>
+		<div>
+		color — 要拷贝的颜色。
+		</div>
+		<div>
+		拷贝给定颜色完成从伽玛到线性空间的转换。
+		</div>
+
+		<h3>[method:Color copyLinearToGamma]( [page:Color color] ) [page:Color this]</h3>
+		<div>
+		color — 要拷贝的颜色。
+		</div>
+		<div>
+		拷贝给定颜色完成从线性到伽玛空间的转换。
+		</div>
+
+		<h3>[method:Color convertGammaToLinear]() [page:Color this]</h3>
+		<div>
+		将此颜色从伽玛转换为线性空间。
+		</div>
+
+		<h3>[method:Color convertLinearToGamma]() [page:Color this]</h3>
+		<div>
+		将此颜色转换为线性到伽玛空间。
+		</div>
+
+		<h3>[method:Color setRGB]( [page:Float r], [page:Float g], [page:Float b] ) [page:Color this]</h3>
+		<div>
+		r — 红色通道值在1和0之间。<br />
+		g — 绿色通道值在1和0之间。<br />
+		b — 蓝色通道值在1和0之间。
+		</div>
+		<div>
+		设置颜色的RGB值。
+		</div>
+
+		<h3>[method:Integer getHex]()</h3>
+		<div>
+		返回该颜色的十六进制值。
+		</div>
+
+		<h3>[method:String getHexString]()</h3>
+		<div>
+		返回字符串格式的十六进制值颜色。
+		</div>
+
+		<h3>[method:Color setHex]( [page:Integer hex] ) [page:Color this]</h3>
+		<div>
+		hex — 颜色的十六进制。<br />
+		</div>
+		<div>
+		以一个十六进制值设置颜色。
+		</div>
+
+		<h3>[method:Color setStyle]( [page:字符串(String) style] ) [page:Color this]</h3>
+		<div>
+		style — 代表颜色的CSS样式字符串。
+		</div>
+		<div>
+		以一个CSS样式字符串来设置颜色。比如："rgb(250, 0,0)", "rgb(100%, 0%, 0%)", "hsl(0, 100%, 50%)", "#ff0000", "#f00", 或者 "red"。也可以使用透明色如 "rgba(255, 0, 0, 0.5)" and "hsla(0, 100%, 50%, 0.5)"，但是alpha通道会被忽略。
+		</div>
+
+		<h3>[method:String getStyle]()</h3>
+		<div>
+		返回一个CSS样式字符串格式的颜色值。比如：rgb(255,0,0)。
+		</div>
+
+		<h3>[method:Color setHSL]( [page:Float h], [page:Float s], [page:Float l] ) [page:Color this]</h3>
+		<div>
+		h — 色调值在0.0和1.0之间 <br />
+		s — 饱和值在0.0和1.0之间 <br />
+		l — 亮度值在0.0和1.0之间。
+		</div>
+		<div>
+		使用HSL设置颜色。
+		</div>
+
+		<h3>[method:Object getHSL]() [page:Object hsl]</h3>
+		<div>
+		返回一个属性为h、s和l的对象。
+		</div>
+
+		<h3>[method:Color offsetHSL]( [page:Float h], [page:Float s], [page:Float l] ) [page:Color this]</h3>
+		<div>
+		添加给定的HSL到这个颜色的现有的HSL值。
+		</div>
+
+		<h3>[method:Color add]( [page:Color color] ) [page:Color this]</h3>
+		<div>
+		添加给定的RGB到这个颜色的现有的RGB值。
+		</div>
+
+		<h3>[method:Color addColors]( [page:Color color1], [page:Color color2] ) [page:Color this]</h3>
+		<div>
+		设置颜色为color1和color2之和。
+		</div>
+
+		<h3>[method:Color addScalar]( [page:Number s] ) [page:Color this]</h3>
+		<div>
+		给现有的rgb颜色加上数值s。
+		</div>
+
+		<h3>[method:Color multiply]( [page:Color color] ) [page:Color this]</h3>
+		<div>
+		两个rbg颜色相乘。
+		</div>
+
+		<h3>[method:Color multiplyScalar]( [page:Number s] ) [page:Color this]</h3>
+		<div>
+		把现有的rgb颜色乘以数值s。
+		</div>
+
+		<h3>[method:Color lerp]( [page:Color color], alpha ) [page:Color this]</h3>
+		<div>
+		alpha -- 一个介于0到1之间的数字。
+		</div>
+		<div>
+		第一个参数rgb值和该Color的rgb值之间的线性插值。我们可以把alpha参数看作是一个位于两个Color之间的百分比值，0表示该Color，而1表示第一个参数Color。
+		</div>
+
+		<h3>[method:Color equals]( [page:Color c] ) [page:Color this]</h3>
+		<div>
+		将此颜色和c进行比较，如果它们是相同的，则返回为真，否则为假。
+		</div>
+
+		<h3>[method:Color clone]() [page:Color this]</h3>
+		<div>
+		克隆这种颜色。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array], [page:Integer offset] ) [page:Color this]</h3>
+		<div>
+		array -- 把Color对象转换为一个数组数据。 <br />
+		offset -- 数组中的一个可选偏移量。
+		</div>
+		<div>
+		返回一个 [r,g,b] 数组。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

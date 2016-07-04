@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>Canvas渲染器（[name]）</h1>
+
+		<div class="desc">
+			Canvas渲染器不使用WebGL来绘制场景，而使用相对较慢的<a href="http://drafts.htmlwg.org/2dcontext/html5_canvas_CR/Overview.html">Canvas 2D Context</a> API。<br /><br />
+			关于Canvas 2D绘图请参考阅读本站相关教程：<a href="http://techbrood.com/h5b2a?p=html-canvas-overview">Canvas概述</a>。
+            对于一些简单的场景，该渲染器是 [page:WebGL渲染器(WebGLRenderer)] 的一个较好的功能回退：
+
+			<code>
+			function webglAvailable() {
+				try {
+					var canvas = document.createElement( 'canvas' );
+					return !!( window.WebGLRenderingContext && (
+						canvas.getContext( 'webgl' ) ||
+						canvas.getContext( 'experimental-webgl' ) )
+					);
+				} catch ( e ) {
+					return false;
+				}
+			}
+
+			if ( webglAvailable() ) {
+				renderer = new THREE.WebGLRenderer();
+			} else {
+				renderer = new THREE.CanvasRenderer();
+			}
+			</code>
+
+            <p class="info">注意：WebGLRenderer 和 CanvasRenderer 都是使用HTML5的 &lt;canvas&gt; 直接内嵌在网页中。
+			Canvas渲染器中的 "Canvas" 表明其使用 Canvas 2D 而不是 WebGL。</p><br /><br />
+
+			同样不要把CanvasRenderer与SoftwareRenderer示例（用于模拟一个JavaScript数组的屏幕缓冲区）。
+            因为CanvasRender不是Three.js的核心部分，你必须从 /examples/js/renderers/ 中来包含它。
+		</div>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]([page:object parameters])</h3>
+        <div>parameters是一个用来定义渲染器行为的可选对象。当没有设置该参数时，将使用默认值。</div>
+
+		<div>
+		canvas — 一个用来绘制输出的 [page:Canvas] 对象。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+    <h3>[property:Object info]</h3>
+
+		<div>
+            <p>一个关于图形板内存和渲染过程的一系列统计信息的对象。用于调试和分析。该对象包含如下字段：</p>
+			<ul>
+				<li>render:
+					<ul>
+						<li>vertices</li>
+						<li>faces</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+    <h3>[property:DOMElement domElement]</h3>
+
+		<div>
+			一个用来绘制输出的 [page:Canvas] 对象。<br />
+			该对象通过构造函数中的渲染器所自动创建（如果没有提供的话）；你只需要将其添加到您的网页中。
+		</div>
+
+		<h3>[property:Boolean autoClear]</h3>
+		<div>定义渲染器是否应该在渲染之前自动清除其输出。</div>
+
+		<h3>[property:Boolean sortObjects]</h3>
+		<div>定义渲染器是否需要对对象排序。默认是true。<br />
+        <p class="info">注：排序是用来试图正确地渲染具有一定程度透明度的对象。根据定义，排序对象可能在所有情况下都不工作。
+        根据应用程序的需要，我们可能需要关闭该排序功能，而使用其他方法处理透明渲染，比如手动确定物体的绘制顺序。</p>
+        </div>
+
+		<h3>[property:boolean sortElements]</h3>
+		<div>
+			定义渲染器是否应该对每个对象的面进行排序。默认是true。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null render]([page:Scene scene], [page:Camera camera])</h3>
+		<div>
+			scene -- 需要渲染的场景。 <br />
+			camera -- 观看该场景的相机。
+		</div>
+		<div>
+        使用相机渲染一个场景。
+		</div>
+
+		<h3>[method:null clear]()</h3>
+		<div>
+			告诉渲染器使用clearColor来清除其颜色渲染缓冲。
+		</div>
+
+		<h3>[method:null setClearColor]([page:Color color], [page:number alpha])</h3>
+		<div>
+			color -- 要使用的清除色。 <br />
+			alpha -- 清除画布所用alpha通道。
+		</div>
+		<div>
+			该方法设置clearColor和clearAlpha。
+		</div>
+
+
+		<h3>[method:null setSize]([page:Number width], [page:Number height])</h3>
+		<div>
+			width -- 绘图画布的宽度。 <br />
+			height -- 绘图画布的高度。
+		</div>
+		<div>
+			该方法设置绘图画布的尺寸，并且如果设置了updateStyle，该canvas元素的样式也会被更新。
+		</div>
+
+		<h3>[method:null setClearColorHex]([page:number hex], [page:number alpha])</h3>
+		<div>
+			hex -- 要使用的16进制清除色。<br />
+	    alpha -- 清除画布所用alpha通道。
+		</div>
+		<div>
+			该方法设置clearColor和clearAlpha。
+		</div>
+
+		<h3>[method:number getClearColorHex]()</h3>
+		<div>
+			返回16进制清除色。
+		</div>
+
+		<h3>[method:number getClearAlpha]()</h3>
+		<div>
+			返回清除画布所用alpha值。
+		</div>
+
+		<h2>保持与 [page:WebGL渲染器(WebGLRenderer)] 兼容性的空方法</h2>
+		<div>
+			[method:null clearColor]()<br/>
+			[method:null clearDepth]()<br/>
+			[method:null clearStencil]()<br/>
+			[method:null setFaceCulling]()<br/>
+			[method:null supportsVertexTextures]()<br/>
+			[method:number getMaxAnisotropy]() - returns 1 <br/>
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

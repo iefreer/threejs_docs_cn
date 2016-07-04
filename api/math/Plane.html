@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>平面（[name]）</h1>
+
+		<div class="desc">在三维空间中无限延伸的一个二维表面。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Vector3 normal], [page:Float constant] )</h3>
+		<div>
+		normal -- ([Page:Vector3]) 定义平面指向原点的法向量。<br />
+		constant -- ([Page:Float]) 从原点到平面沿法线方向的负距离。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Vector3 normal]</h3>
+
+		<h3>[property:Float constant]</h3>
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h3>[method:Plane normalize]() [page:Plane this]</h3>
+		<div>
+		归一化法线向量，并调整相应的常量。
+		</div>
+
+		<h3>[method:Plane set]( [page:Vector3 normal], [page:Float constant] ) [page:Plane this]</h3>
+		<div>
+		normal -- [Page:Vector3] <br />
+		constant -- [Page:Float]
+		</div>
+		<div>
+		设置平面的属性值。
+		</div>
+
+		<h3>[method:Plane copy]( [page:Plane plane] ) [page:Plane this]</h3>
+		<div>
+		plane -- [page:Plane] to copy
+		</div>
+		<div>
+		将传递的平面参数的值复制到该平面上。
+		</div>
+
+		<h3>[method:Plane applyMatrix4]( [page:Matrix4 matrix], [page:Matrix3 optionalNormalMatrix] ) [page:Plane this]</h3>
+		<div>
+		matrix -- 要应用的 [Page:Matrix4] <br />
+		optionalNormalMatrix -- (可选) 预先计算好的上述[page:Matrix4]参数的法线矩阵 [Page:Matrix3]。
+		</div>
+		<div>
+		给该平面应用一个Matrix4变换。该矩阵必须是一个仿射，齐次变换，第二个参数是可选的。
+
+		<code>
+		var optionalNormalMatrix = new THREE.Matrix3().getNormalMatrix( matrix )
+		</code>
+		</div>
+
+		<h3>[method:Vector3 orthoPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] )</h3>
+		<div>
+		point -- [page:Vector3] <br />
+		optionalTarget -- [page:Vector3]
+		</div>
+		<div>
+		返回一个和该平面法线同向的向量，幅值为point参数到该平面的距离。
+		</div>
+
+		<h3>[method:Boolean intersectsLine]( [page:Line3 line] )</h3>
+		<div>
+		line -- [page:Line3]
+		</div>
+		<div>
+		测试线段是否和平面相交。（和共线(collinear)检查不同。）
+		</div>
+
+		<h3>[method:Vector3 intersectLine]( [page:Line3 line], [page:Vector3 optionalTarget] ) or [page:undefined]</h3>
+		<div>
+		line -- [page:Line3] <br />
+		optionalTarget -- [page:Vector3]
+		</div>
+		<div>
+		返回给定线条和平面的交点。如果不相交则返回undefined。如果线与平面共面，则返回该线条的起始点。
+		</div>
+
+		<h3>[method:Vector3 setFromNormalAndCoplanarPoint]( [page:Vector3 normal], [page:Vector3 point] ) [page:Vector3 this]</h3>
+		<div>
+		normal -- [page:Vector3] <br />
+		point -- [page:Vector3]
+		</div>
+		<div>
+		通过和平面共面的点（即平面上的一个点）以及法线来设定平面的数值。
+		</div>
+
+		<h3>[method:Plane clone]()</h3>
+		<div>
+		返回此平面的一个新副本。
+		</div>
+
+		<h3>[method:Float distanceToPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3]
+		</div>
+		<div>
+		返回从点到平面的最小距离。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Plane plane] )</h3>
+		<div>
+		plane -- [page:Planen]
+		</div>
+		<div>
+		检查两个平面是否相等（两平面法线与常量匹配）。
+		</div>
+
+		<h3>[method:Plane setComponents]( [page:Float x], [page:Float y], [page:Float z], [page:Float w] ) [page:Plane this]</h3>
+		<div>
+		x -- [page:Float] 法向量的x值 <br />
+		y -- [page:Float] 法向量的y值<br />
+		z -- [page:Float] 法向量的z值<br />
+		w -- [page:Float] 沿法线向量从原点到平面的距离。
+		</div>
+		<div>
+		设置平面的各个属性取值。
+		</div>
+
+		<h3>[method:Float distanceToSphere]( [page:Sphere sphere] )</h3>
+		<div>
+		sphere -- [Page:Sphere]
+		</div>
+		<div>
+		返回从球的边缘到平面的最小距离。
+		</div>
+
+		<h3>[method:Plane setFromCoplanarPoints]( [page:Vector3 a], [page:Vector3 b], [page:Vector3 c] ) [page:Plane this]</h3>
+		<div>
+		a -- [page:Vector3] <br />
+		b -- [page:Vector3] <br />
+		c -- [page:Vector3]
+		</div>
+		<div>
+		使用3个给定点来设置一个平面（三点可以确定一个平面）。使用右手规则（逆时针）确定法线方向。
+		</div>
+
+		<h3>[method:Vector3 projectPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] )</h3>
+		<div>
+		point -- [page:Vector3] <br />
+		optionalTarget -- [page:Vector3]
+		</div>
+		<div>
+		将一个点投射到平面上。投影点是平面上最接近该点的点，这两点之间的连线和平面正交。
+		</div>
+
+		<h3>[method:Plane negate]() [page:Plane this]</h3>
+		<div>
+		对平面法线和常量求反，实际上将生成一个基于原点的镜像平面。
+		</div>
+
+		<h3>[method:Plane translate]( [page:Vector3 offset] ) [page:Plane this]</h3>
+		<div>
+		offset -- [page:Vector3]
+		</div>
+		<div>
+		平移平面。请注意，这只会影响常量（也就是平面到原点的距离），不会影响法线向量。
+		</div>
+
+		<h3>[method:Vector3 coplanarPoint]( [page:Vector3 optionalTarget] )</h3>
+		<div>
+		optionalTarget -- [page:Vector3]
+		</div>
+		<div>
+		返回一个共面点。（由在原点的法线向量投影到平面上所产生。）
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>球体（[name]）</h1>
+
+		<div class="desc">由一个中心位置和半径定义的几何球体。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Vector3 center], [page:Float radius] )</h3>
+		<div>
+		center -- [page:Vector3] <br />
+		radius -- [page:Float]
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+		<h3>[property:Vector3 center]</h3>
+
+		<h3>[property:Float radius]</h3>
+
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h3>[method:Sphere set]( [page:Vector3 center], [page:Float radius] ) [page:Sphere this]</h3>
+		<div>
+		center -- [page:Vector3] <br />
+		radius -- [page:Float]
+		</div>
+		<div>
+		设置球心和半径。
+		</div>
+
+		<h3>[method:Sphere applyMatrix4]( [page:Matrix4 matrix] ) [page:Sphere this]</h3>
+		<div>
+		matrix -- [page:Matrix4]
+		</div>
+		<div>
+		用给定的 [page:Matrix4] 对球体进行变换。
+		</div>
+
+		<h3>[method:Vector3 clampPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] )</h3>
+		<div>
+		point -- [page:Vector3] 要夹住的点。 <br />
+		optionalTarget -- [page:Vector3] 返回可选的目标点。
+		</div>
+		<div>
+		把一个点夹进一个球体中。如果该点在球体之外，它将被夹紧到球体边缘最近的那个点。
+		</div>
+
+		<h3>[method:Sphere translate]( [page:Vector3 offset] ) [page:Sphere this]</h3>
+		<div>
+		offset -- [page:Vector3]
+		</div>
+		<div>
+		用给定的偏移量向量来平移球体的中心。
+		</div>
+
+		<h3>[method:Sphere clone]()</h3>
+		<div>
+		获取该球体一个新的副本。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Sphere sphere] )</h3>
+		<div>
+		sphere -- [page:Sphere]
+		</div>
+		<div>
+		检查两个球的球心和半径是否相等。
+		</div>
+
+		<h3>[method:Sphere setFromPoints]( [page:Array points], [page:Vector3 optionalCenter] ) [page:Sphere this]</h3>
+		<div>
+		points -- 三维点向量的数组。<br />
+		optionalCenter -- 可选的球体中心点位置。<br />
+		</div>
+		<div>
+		计算一组点的最小包围球。如果给定了*optionalcenter*，则用来作为球体的中心。否则，包围盒的中心通过计算而来。
+		</div>
+
+		<h3>[method:Float distanceToPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3]
+		</div>
+		<div>
+		返回从球体的边界到点的最接近的距离。如果球体包含了点，距离将是负的。
+		</div>
+
+		<h3>[method:Box getBoundingBox]( [page:Box optionalTarget] )</h3>
+		<div>
+		optionalTarget -- [page:Box]
+		</div>
+		<div>
+		获取一个球体的包围盒，可选目标（optionalTarget）参数用来设置结果。
+		</div>
+
+		<h3>[method:Boolean containsPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3]
+		</div>
+		<div>
+		检查球体是否包含给定的点（包括球体的边缘）。
+		</div>
+
+		<h3>[method:Sphere copy]( [page:Sphere sphere] )</h3>
+		<div>
+		sphere -- 要拷贝的[page:Sphere]对象。
+		</div>
+		<div>
+		将传递的球体参数的值复制到当前球体。
+		</div>
+
+		<h3>[method:Boolean intersectsSphere]( [page:Sphere sphere] )</h3>
+		<div>
+		sphere -- [page:Sphere]
+		</div>
+		<div>
+		检查两个球体是否相交。
+		</div>
+
+		<h3>[method:Boolean empty]()</h3>
+		<div>
+		检查球体是否为空（半径设置为0）。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

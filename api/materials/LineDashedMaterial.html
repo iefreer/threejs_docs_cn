@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:材料(Material)] &rarr;
+
+		<h1>虚线材料（[name]）</h1>
+
+		<div class="desc">一个用虚线绘制线框式结构的材料。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Object parameters] )</h3>
+		<div>参数是一个使用一个或多个属性定义材料外观的对象。</div>
+		<div>
+		color — 线条的十六进制颜色。缺省值为 0xffffff。<br />
+		linewidth — 线条的宽度。缺省为 1。<br />
+		scale  — 线条中虚线部分的占比，缺省为1.<br />
+		dashSize  — 破折号（-）的大小。默认为3。<br />
+		gapSize - 间隙的大小。默认为1。<br />
+		vertexColors — 定义顶点如何着色。缺省是 THREE.NoColors。<br />
+		fog — 定义材质颜色是否受全局雾设置的影响。默认是false。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+		<div>通用属性请查看基类 [page:材料(Material)] 。</div>
+
+		<h3>[property:Integer color]</h3>
+		<div>设置线条的颜色。默认值是0xffffff。</div>
+
+		<h3>[property:Float linewidth]</h3>
+		<div>控制线宽。默认值是 1.</div>
+		<div>由于受限于 <a href="https://code.google.com/p/angleproject/" target="_blank">角度层（ANGLE layer）</a>，在Windows平台上使用 [page:WebGL渲染器(WebGLRenderer) WebGL]，线宽将总是为1而不管设置的值。</div>
+
+		<h3>[property:number scale]</h3>
+		<div>
+		线条中虚线部分的占比。
+		</div>
+
+		<h3>[property:number dashSize]</h3>
+		<div>
+		破折号（-）的大小。默认为3。
+		</div>
+
+		<h3>[property:number gapSize]</h3>
+		<div>
+		间隙的大小。默认为1。
+		</div>
+
+		<h3>[property:Integer vertexColors]</h3>
+		<div>定义顶点如何着色。可用值为 THREE.NoColors, THREE.FaceColors 和 THREE.VertexColors。缺省值为 THREE.NoColors.</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。</div>
+
+		<h3>[property:Boolean fog]</h3>
+		<div>定义材质颜色是否受全局雾设置的影响。</div>
+		<div>当使用一些特定渲染器时，此设置可能没有任何效果。比如，该属性被 [page:Canvas渲染器(CanvasRenderer) Canvas] 所忽略，但是对 [page:WebGL渲染器(WebGLRenderer) WebGL] 有效。</div>
+
+		<h2>方法（Methods）</h2>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

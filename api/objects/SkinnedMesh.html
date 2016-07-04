@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr;
+
+		<h1>蒙皮网孔（[name]）</h1>
+
+		<div class="desc">带 [page:骨架(Skeleton)] 和 [page:骨骼(Bone) bones] 的网孔，可以用来创建模型的顶点动画。</div>
+
+		<h2>例子</h2>
+		
+		<iframe src='scenes/bones-browser.html'></iframe>
+		
+		<code>
+		var geometry = new THREE.CylinderGeometry( 5, 5, 5, 5, 15, 5, 30 );
+		
+		//创建皮肤索引和皮肤重量
+		for ( var i = 0; i < geometry.vertices.length; i ++ ) {
+			
+			// 计算索引和权重的虚函数
+			// 这部分将需要根据你的骨架和模型而变
+			var skinIndex = calculateSkinIndex( geometry.vertices, i );
+			var skinWeight = calculateSkinWeight( geometry.vertices, i );
+			
+			// 骨骼之间的缓动
+			geometry.skinIndices.push( new THREE.Vector4( skinIndex, skinIndex + 1, 0, 0 ) );
+			geometry.skinWeights.push( new THREE.Vector4( 1 - skinWeight, skinWeight, 0, 0 ) );		
+			
+		}
+		
+		var mesh = THREE.SkinnedMesh( geometry, material );
+
+		// 查看 THREE.Skeleton 中 armSkeleton的例子
+		var rootBone = armSkeleton.bones[ 0 ];
+		mesh.add( rootBone );
+		
+		// 将骨架绑定到网孔
+		mesh.bind( armSkeleton );
+		
+		// 移动骨骼并操纵模型
+		armSkeleton.bones[ 0 ].rotation.x = -0.1;
+		armSkeleton.bones[ 1 ].rotation.x = 0.2;
+		</code>
+		
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:几何模型(Geometry) geometry], [page:材料(Material) material], [page:boolean useVertexTexture] )</h3>
+		<div>
+        geometry — 一个 [page:几何模型(Geometry)] 实例。 应该要设置 [page:几何模型(Geometry).skinIndices] 和 [page:几何模型(Geometry).skinWeights]。<br />
+        material — 一个 [page:材料(Material)] 实例 (可选)。<br />
+		useVertexTexture -- 定义是否可以用顶点纹理（可选）。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+		<h3>[property:array bones]</h3>
+		<div>
+		包含此网格的骨骼数组。应该在构造函数中设置。
+		</div>
+
+		<h3>[property:Matrix4 identityMatrix]</h3>
+		<div>
+		用来计算骨骼矩阵的单位矩阵。
+		</div>
+
+		<h3>[property:boolean useVertexTexture]</h3>
+		<div>
+		该布尔值定义是否使用一个顶点纹理来计算骨骼。这个布尔值不应该在构造函数后改变。
+		</div>
+
+		<h3>[property:array boneMatrices]</h3>
+		<div>
+		这个矩阵数组包含了骨骼矩阵。这是在构造函数中计算的。
+		</div>
+
+		<h3>[property:string bindMode]</h3>
+		<div>
+		可以为 "attached" 或 "detached"。"attached" 使用 [page:蒙皮网孔(SkinnedMesh).matrixWorld] 属性用于骨骼的基础变换矩阵。
+        "detached" 则使用 [page:蒙皮网孔(SkinnedMesh).bindMatrix]。
+		</div>
+		
+		<h3>[property:Matrix4 bindMatrix]</h3>
+		<div>
+		用于绑定骨骼转换的基础矩阵。
+		</div>
+
+		<h3>[property:Matrix4 inverseBindMatrix]</h3>
+		<div>
+		bindMatrix 的逆矩阵。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null bind]( [page:骨架(Skeleton) skeleton], [page:Matrix4 bindMatrix] )</h3>
+		<div>
+		skeleton — [page:骨架(Skeleton)]<br/>
+		bindMatrix — [page:Matrix4] 代表骨架的基础变换。
+		</div>
+		<div>
+		绑定一个骨架到蒙皮网孔。bindMatrix参数被保存到.bindMatrix属性，并计算出.bindMatrixInverse。
+		</div>
+		
+		<h3>[method:null normalizeSkinWeights]()</h3>
+		<div>
+		正规化 [page:几何模型(Geometry).skinWeights] 向量。不影响 [page:缓存几何模型(BufferGeometry)]。
+		</div>
+
+		<h3>[method:null pose]()</h3>
+		<div>
+		该方法设置蒙皮网孔处于休息姿势。
+		</div>
+
+		<h3>[method:Bone addBone]( [page:骨骼(Bone) bone] )</h3>
+		<div>
+		bone — 这是需要添加的骨骼。（可选）
+		</div>
+		<div>
+		如果给定了bone参数，则该方法把这个骨骼对象添加给蒙皮网孔，否则创建一个新的骨骼对象并添加。
+		</div>
+
+		<h3>[method:SkinnedMesh clone]()</h3>
+		<div>
+		返回该蒙皮网孔对象及其后代的克隆。
+		</div>
+
+		
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

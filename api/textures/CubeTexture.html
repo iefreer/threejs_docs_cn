@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:纹理(Texture)] &rarr;
+		
+		<h1>[name]</h1>
+
+		<div class="desc">Creates a cube texture made up of six images.</div>
+
+		<h2>例子</h2>
+
+		<code>
+		var loader = new THREE.CubeTextureLoader();
+		loader.setPath( 'textures/cube/pisa/' );
+		
+		var textureCube = loader.load( [
+			'px.png', 'nx.png',
+			'py.png', 'ny.png',
+			'pz.png', 'nz.png'
+		] );
+
+		var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
+		</code>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( images, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy )</h3>
+		
+		<div>
+		CubeTexture is almost equivalent in functionality and usage to [page:纹理(Texture)]. The only differences are that the
+		images are an array of 6 images as opposed to a single image, and the mapping options are
+		[page:纹理(Texture)s THREE.CubeReflectionMapping] (default) or [page:纹理(Texture)s THREE.CubeRefractionMapping]
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>See [page:纹理(Texture)]</h3>
+
+		<h2>方法（Methods）</h2>
+		
+
+		<h3>See [page:纹理(Texture)]</h3>
+		
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

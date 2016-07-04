@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>三角形（[name]）</h1>
+
+		<div class="desc">由三个向量（点）定义的三角形。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Vector3 a], [page:Vector3 b], [page:Vector3 c] )</h3>
+		<div>
+		a -- [page:Vector3] <br />
+		b -- [page:Vector3] <br />
+		c -- [page:Vector3]
+		</div>
+		<div>
+		使用给定的向量来设置三角形。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+
+		<h3>[property:Vector3 a]</h3>
+		<div>
+		三角形的第一个点。
+		</div>
+
+		<h3>[property:Vector3 b]</h3>
+		<div>
+		三角形的第二个点。
+		</div>
+
+		<h3>[property:Vector3 c]</h3>
+		<div>
+		三角形的第三个点。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h3>[method:Triangle setFromPointsAndIndices]( [page:Array points], [page:Integer i0], [page:Integer i1], [page:Integer i2] ) [page:Triangle this]</h3>
+		<div>
+		points -- [page:Vector3] 数组。<br />
+		i0 -- [page:Integer] 索引 <br />
+		i1 -- [page:Integer] 索引 <br />
+		i2 -- [page:Integer] 索引
+		</div>
+		<div>
+		将三角形的向量设置为数组中的向量。
+		</div>
+
+		<h3>[method:Triangle set]( [page:Vector3 a], [page:Vector3 b], [page:Vector3 c] ) [page:Triangle this]</h3>
+		<div>
+		a -- [page:Vector3] <br />
+		b -- [page:Vector3] <br />
+		c -- [page:Vector3]
+		</div>
+		<div>
+		将三角形的向量设置为传递的向量。
+		</div>
+
+		<h3>[method:Vector3 normal]( [page:Vector3 optionalTarget] )</h3>
+		<div>
+		optionalTarget -- 可选目标用来设置结果。
+		</div>
+		<div>
+		返回计算出的三角形法线。
+		</div>
+
+		<h3>[method:Vector3 barycoordFromPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] )</h3>
+		<div>
+		point -- [page:Vector3] <br />
+		optionalTarget -- 可选目标用来设置结果。
+		</div>
+		<div>
+		返回给定向量的重心坐标。<br/><br/>
+		[link:http://commons.wikimedia.org/wiki/File:Barycentric_coordinates_1.png](Picture of barycentric coordinates)
+		</div>
+
+		<h3>[method:Triangle clone]()</h3>
+		<div>
+		返回这个三角形的新副本。
+		</div>
+
+		<h3>[method:Float area]()</h3>
+		<div>
+		返回三角形面积。
+		</div>
+
+		<h3>[method:Vector3 midpoint]( [page:Vector3 optionalTarget] )</h3>
+		<div>
+		optionalTarget -- 可选目标用来设置结果。
+		</div>
+		<div>
+		返回三角形的中点。可以把结果设置给可选目标。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Triangle triangle] )</h3>
+		<div>
+		triangle -- [page:Triangle]
+		</div>
+		<div>
+		检查两个三角形是否相等（共享相同的向量）。
+		</div>
+
+		<h3>[method:Plane plane]( [page:Plane optionalTarget] )</h3>
+		<div>
+		optionalTarget -- 可选目标用来设置结果。
+		</div>
+		<div>
+		返回一个三角形所在的 [page:平面(Plane) plane]。包括一个可选目标平面。
+		</div>
+
+		<h3>[method:Boolean containsPoint]( [page:Vector3 point] )</h3>
+		<div>
+		point -- [page:Vector3]
+		</div>
+		<div>
+		检查给定点是否在三角形内。
+		</div>
+
+		<h3>[method:Vector3 closestPointToPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] )</h3>
+		<div>
+		point -- [page:Vector3] <br />
+		optionalTarget -- 可选目标用来设置结果。
+		</div>
+		<div>
+		返回三角形上的最接近点。
+		</div>
+
+		<h3>[method:Triangle copy]( [page:Triangle triangle] )</h3>
+		<div>
+		triangle -- [page:Triangle]
+		</div>
+		<div>
+		复制三角形。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

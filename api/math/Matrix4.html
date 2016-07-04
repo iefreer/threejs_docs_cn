@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>四维矩阵（[name]）</h1>
+
+		<div class="desc">一个 4x4 矩阵。</div>
+
+
+		<h2>例子</h2>
+
+		<code>// 绕3个轴旋转的简单操作。
+
+		var m = new THREE.Matrix4();
+
+		var m1 = new THREE.Matrix4();
+		var m2 = new THREE.Matrix4();
+		var m3 = new THREE.Matrix4();
+
+		var alpha = 0;
+		var beta = Math.PI;
+		var gamma = Math.PI/2;
+
+		m1.makeRotationX( alpha );
+		m2.makeRotationY( beta );
+		m3.makeRotationZ( gamma );
+
+		m.multiplyMatrices( m1, m2 );
+		m.multiply( m3 );
+		</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+
+		<div>
+		创建和初始化一个3x3的单位矩阵。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float32Array elements]</h3>
+		<div>矩阵值的列主列表。</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Matrix4 set]( [page:Float n11], [page:Float n12], [page:Float n13], [page:Float n14], [page:Float n21], [page:Float n22], [page:Float n23], [page:Float n24], [page:Float n31], [page:Float n32], [page:Float n33], [page:Float n34], [page:Float n41], [page:Float n42], [page:Float n43], [page:Float n44] ) [page:Matrix4 this]</h3>
+		<div>
+		使用给定的行主(row-major)序列数值n11:n44来设置该4乘4矩阵。
+		</div>
+
+		<h3>[method:Matrix4 identity]() [page:Matrix4 this]</h3>
+		<div>
+		重置该矩阵为单位矩阵。
+		</div>
+
+		<h3>[method:Matrix4 copy]( [page:Matrix4 m] ) [page:Matrix4 this]</h3>
+		<div>
+		将矩阵*m*的值复制到这个矩阵中。
+		</div>
+
+		<h3>[method:Matrix4 fromArray]( [page:Array array] ) [page:Matrix4 this]</h3>
+		<div>
+		array -- [page:Array] 从中读取元素的数组。
+		</div>
+		<div>
+		使用给定的列主(column-major)数组的数值来设置该矩阵的元素。
+		</div>
+
+		<h3>[method:Matrix4 copyPosition]( [page:Matrix4 m] ) [page:Matrix4 this]</h3>
+		<div>
+		拷贝给定的矩阵*m*的位移值到该矩阵中。
+		</div>
+
+		<h3>[method:Matrix4 makeBasis]( [page:Vector3 xAxis], [page:Vector3 yAxis], [page:Vector3 zAxis] ) [page:Matrix4 this]</h3>
+		<div>
+		创建由三个提供的轴向量组成的基础矩阵。返回当前矩阵。
+		</div>
+
+		<h3>[method:Matrix4 extractBasis]( [page:Vector3 xAxis], [page:Vector3 yAxis], [page:Vector3 zAxis] ) [page:Matrix4 this]</h3>
+		<div>
+		提取给定三个轴向量上的基准。返回当前矩阵。
+		</div>
+
+		<h3>[method:Matrix4 extractRotation]( [page:Matrix4 m] ) [page:Matrix4 this]</h3>
+		<div>
+		提取给定矩阵*m*的旋转分量到该矩阵中。
+		</div>
+
+		<h3>[method:Matrix4 lookAt]( [page:Vector3 eye], [page:Vector3 center], [page:Vector3 up], ) [page:Matrix4 this]</h3>
+		<div>
+		构造一个旋转矩阵。从*eye*位置看向*center*位置，使用up作为向上的方向。
+		</div>
+
+		<h3>[method:Matrix4 multiply]( [page:Matrix4 m] ) [page:Matrix4 this]</h3>
+		<div>
+		使用*m*右乘以（Post-multiplies）该矩阵。
+		</div>
+
+		<h3>[method:Matrix4 premultiply]( [page:Matrix4 m] ) [page:Matrix4 this]</h3>
+		<div>
+		使用*m*左乘以（Pre-multiplies）该矩阵。
+		</div>
+
+		<h3>[method:Matrix4 multiplyMatrices]( [page:Matrix4 a], [page:Matrix4 b] ) [page:Matrix4 this]</h3>
+		<div>
+		将此矩阵设置为*a* x *b*。
+		</div>
+
+		<h3>[method:Matrix4 multiplyToArray]( [page:Matrix4 a], [page:Matrix4 b], [page:Array r] ) [page:Matrix4 this]</h3>
+		<div>
+		将此矩阵设置为*a* x *b*，并将结果存储到平面数组 *r*中。<br />
+		*r* 可以是一个普通数组或者一个TypedArray。
+		</div>
+
+		<h3>[method:Matrix4 multiplyScalar]( [page:Float s] ) [page:Matrix4 this]</h3>
+		<div>
+		把矩阵中的每个元素乘以标量值*s*。
+		</div>
+
+		<h3>[method:Float determinant]() [page:Matrix4 this]</h3>
+		<div>
+		计算和返回此矩阵的行列式。
+		基于 [link:http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm]
+		</div>
+
+		<h3>[method:Matrix4 transpose]() [page:Matrix4 this]</h3>
+		<div>
+		矩阵置换。
+		</div>
+
+		<h3>[method:Matrix4 setPosition]( [page:Vector3 v] ) [page:Matrix4 this]</h3>
+		<div>
+		使用向量*v*来设置该矩阵的位置分量。
+		</div>
+
+		<h3>[method:Matrix4 getInverse]( [page:Matrix4 m] ) [page:Matrix4 this]</h3>
+		<div>
+		将此矩阵设置为矩阵*m*的逆矩阵。<br />
+		基于 [link:http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm].
+		</div>
+
+		<h3>[method:Matrix4 makeRotationFromEuler]( [page:欧拉角(Euler) euler] ) [page:Matrix4 this]</h3>
+		<div>
+		euler — 按顺序旋转矢量，例如，“XYZ”。
+		</div>
+		<div>
+		设置该矩阵的旋转子矩阵为给定的欧拉角所确定的旋转，矩阵的其余部分是单位矩阵。<br />
+		默认顺序是 *"XYZ"*。
+		</div>
+
+		<h3>[method:Matrix4 makeRotationFromQuaternion]( [page:四元数(Quaternion) q] ) [page:Matrix4 this]</h3>
+		<div>
+		设置该矩阵的旋转子矩阵为给定的四元数*q*所确定的旋转，矩阵的其余部分是单位矩阵。
+		</div>
+
+		<h3>[method:Matrix4 scale]( [page:Vector3 v] ) [page:Matrix4 this]</h3>
+		<div>
+		使用向量*v*乘以这个矩阵的列。
+		</div>
+
+		<h3>[method:Matrix4 compose]( [page:Vector3 translation], [page:四元数(Quaternion) quaternion], [page:Vector3 scale] ) [page:Matrix4 this]</h3>
+		<div>
+		设置这个矩阵为平移、四元数和缩放变换的组合变换。
+		</div>
+
+		<h3>[method:Array decompose]( [page:Vector3 translation], [page:四元数(Quaternion) quaternion], [page:Vector3 scale] ) [page:Matrix4 this]</h3>
+		<div>
+		将这个矩阵分解为平移，四元数和缩放分量。
+		</div>
+
+		<h3>[method:Matrix4 makeTranslation]( [page:Float x], [page:Float y], [page:Float z] ) [page:Matrix4 this]</h3>
+		<div>
+		设置这个矩阵为平移变换。
+		</div>
+
+		<h3>[method:Matrix4 makeRotationX]( [page:Float theta] ) [page:Matrix4 this]</h3>
+		<div>
+		theta — 旋转弧度。
+		</div>
+		<div>
+		设置此矩阵为绕X轴旋转*theta*弧度的旋转变换。
+		</div>
+
+		<h3>[method:Matrix4 makeRotationY]( [page:Float theta] ) [page:Matrix4 this]</h3>
+		<div>
+		theta — 旋转弧度。
+		</div>
+		<div>
+		设置此矩阵为绕Y轴旋转*theta*弧度的旋转变换。
+		</div>
+
+		<h3>[method:Matrix4 makeRotationZ]( [page:Float theta] ) [page:Matrix4 this]</h3>
+		<div>
+		theta — 旋转弧度。
+		</div>
+		<div>
+		设置此矩阵为绕Z轴旋转*theta*弧度的旋转变换。
+		</div>
+
+		<h3>[method:Matrix4 makeRotationAxis]( [page:Vector3 axis], [page:Float theta] ) [page:Matrix4 this]</h3>
+		<div>
+		axis — 被正规化的旋转轴。
+		theta — 旋转弧度。
+		</div>
+		<div>
+		设置此矩阵为绕*axis*轴旋转*theta*弧度的旋转变换。<br />
+		基于 [link:http://www.gamedev.net/reference/articles/article1199.asp].
+		</div>
+
+		<h3>[method:Matrix4 makeScale]( [page:Float x], [page:Float y], [page:Float z] ) [page:Matrix4 this]</h3>
+		<div>
+		设置此矩阵为缩放变换。
+		</div>
+
+		<h3>[method:Matrix4 makeFrustum]( [page:Float left], [page:Float right], [page:Float bottom], [page:Float top], [page:Float near], [page:Float far] ) [page:Matrix4 this]</h3>
+		<div>
+		创建一个 [page:视锥体(Frustum) frustum] 矩阵。
+		</div>
+
+		<h3>[method:Matrix4 makePerspective]( [page:Float fov], [page:Float aspect], [page:Float near], [page:Float far] ) [page:Matrix4 this]</h3>
+		<div>
+		创建一个透视投影矩阵。
+		</div>
+
+		<h3>[method:Matrix4 makeOrthographic]( [page:Float left], [page:Float right], [page:Float top], [page:Float bottom], [page:Float near], [page:Float far] ) [page:Matrix4 this]</h3>
+		<div>
+		创建一个正交投影矩阵。
+		</div>
+
+		<h3>[method:Array applyToVector3Array]( [page:Array a] ) [page:Matrix4 this]</h3>
+		<div>
+		array -- 格式为 [vector1x, vector1y, vector1z, vector2x, vector2y, vector2z, ...] 的一个数组。
+		</div>
+		<div>
+		把这个矩阵乘以数组中的每一个vector3。
+		</div>
+
+		<h3>[method:Float getMaxScaleOnAxis]() [page:Matrix4 this]</h3>
+		<div>
+		获取3个轴的最大缩放值。
+		</div>
+
+		<h3>[method:Matrix4 clone]() [page:Matrix4 this]</h3>
+		<div>
+		创建此矩阵的副本。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array], [page:Integer offset] ) [page:Matrix4 this]</h3>
+		<div>
+		array -- [page:Array] 可选。存储向量的数组。 <br />
+		offset -- [page:Integer] 可选。数组内的偏移。
+		</div>
+		<div>
+		将此矩阵的元素写入列主格式的数组中。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

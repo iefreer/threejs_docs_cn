@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:材料(Material)] &rarr;
+
+		<h1>深度网孔材料（[name]）</h1>
+
+		<div class="desc">一种通过深度绘制几何体的材料。深度基于相机的远近平面。白色是最近的，黑色是最远的。</div>
+
+		<iframe src='scenes/material-browser.html#MeshDepthMaterial'></iframe>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Object parameters] )</h3>
+		<div>参数是一个使用一个或多个属性定义材料外观的对象。</div>
+		<div>
+		morphTargets -- 定义材料是否使用 morphTargets。默认值是 false。<br/>
+		wireframe -- 渲染模型为线框图。默认是false。（也就是通过平滑着色渲染）。<br/>
+		wireframeLinewidth -- 控制线框图的线宽。默认为1。<br/>
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+		<div>通用属性请查看基类 [page:材料(Material)] 。</div>
+
+		<h3>[property:boolean morphTargets]</h3>
+		<div>定义材料是否使用 morphTargets。默认值是 false。</div>
+
+		<h3>[property:boolean wireframe]</h3>
+		<div>渲染模型为线框图。默认是false。（也就是通过平滑着色渲染）。</div>
+
+		<h3>[property:number wireframeLinewidth]</h3>
+		<div>
+			控制线框图的线宽。默认为1。<br/><br/>
+			由于 <a href="https://code.google.com/p/angleproject/" target="_blank">角度层（ANGLE layer）</a>的限制，在Windows平台上线宽将总是为1而不管设置的值。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

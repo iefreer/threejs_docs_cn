@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>事件调度器（[name]）</h1>
+
+		<div class="desc">自定义对象的JavaScript事件。</div>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		创建一个 EventDispatcher 对象。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null addEventListener]( [page:字符串(String) type], [page:函数(Function) listener] )</h3>
+		<div>
+		type - 侦听的事件类型。<br />
+		listener - 侦听器，即事件被触发时调用的函数。
+		</div>
+		<div>
+		为某类型事件添加侦听器。
+		</div>
+
+		<h3>[method:Boolean hasEventListener]( [page:字符串(String) type], [page:函数(Function) listener] )</h3>
+		<div>
+		type - 侦听的事件类型。<br />
+		listener - 侦听器，即事件被触发时调用的函数。
+		</div>
+		<div>
+		检测某类型事件是否已添加侦听器。
+		</div>
+
+		<h3>[method:null removeEventListener]( [page:字符串(String) type], [page:函数(Function) listener] )</h3>
+		<div>
+		type - 要删除的侦听器类型。<br />
+		listener - 要删除的侦听器函数。
+		</div>
+		<div>
+		删除某类型事件的侦听器。
+		</div>
+
+		<h3>[method:null dispatchEvent]( [page:object event] )</h3>
+		<div>
+		event - 被触发的事件。
+		</div>
+		<div>
+		触发某类型事件。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

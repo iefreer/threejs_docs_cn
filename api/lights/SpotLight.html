@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr; [page:Light] &rarr;
+
+		<h1>聚光光源（[name]）</h1>
+
+		<div class="desc">一种能投射锥形阴影区域的点光源。</div>
+
+		<div class="desc">使用 [page:MeshLambertMaterial] 或 [page:Phong网孔材料(MeshPhongMaterial)] 来影响对象。</div>
+
+
+		<h2>例子</h2>
+
+		<iframe src='../examples/webgl_lights_spotlight.html'></iframe>
+		<a target="THREE_Examples" href="../examples/#webgl_lights_spotlight">查看示例</a><br />
+		<h2>其他例子：</h2>
+
+		<div>[example:webgl_lights_spotlights lights / spotlights ]</div>
+		<div>[example:webgl_interactive_cubes_gpu interactive / cubes / gpu ]</div>
+		<div>[example:webgl_interactive_draggablecubes interactive / draggablecubes ]</div>
+		<div>[example:webgl_materials_bumpmap_skin materials / bumpmap / skin ]</div>
+		<div>[example:webgl_materials_cubemap_dynamic materials / cubemap / dynamic ]</div>
+		<div>[example:webgl_morphtargets_md2 morphtargets / md2 ]</div>
+		<div>[example:webgl_shading_physical shading / physical ]</div>
+
+		<h2>代码示例</h2>
+		<code>
+		// 白色聚光灯从侧面发光，投射阴影
+
+		var spotLight = new THREE.SpotLight( 0xffffff );
+		spotLight.position.set( 100, 1000, 100 );
+
+		spotLight.castShadow = true;
+
+		spotLight.shadow.mapSize.width = 1024;
+		spotLight.shadow.mapSize.height = 1024;
+
+		spotLight.shadow.camera.near = 500;
+		spotLight.shadow.camera.far = 4000;
+		spotLight.shadow.camera.fov = 30;
+
+		scene.add( spotLight );
+		</code>
+
+		<h2>其他例子：</h2>
+		<div>
+		[example:webgl_materials_bumpmap materials / bumpmap]<br/>
+		[example:webgl_shading_physical shading / physical]<br/>
+		[example:webgl_shadowmap shadowmap]<br/>
+		[example:webgl_shadowmap_viewer shadowmap / performance]<br/>
+		[example:webgl_shadowmap_viewer shadowmap / viewer]
+		</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Integer color], [page:Float intensity], [page:Float distance], [page:Radians angle], [page:Float penumbra], [page:Float decay] )</h3>
+		<div>
+		[page:Integer color] — 颜色的RBG数值。<br />
+		[page:Float intensity] — 光强的数值。<br />
+		[page:Number distance] -- 光强为0处到光源的距离，0表示无穷大。<br />
+		[page:Radians angle] -- 光线散射角度，最大为Math.PI/2。<br />
+		[page:Float penumbra] -- 聚光锥的半影衰减百分比。在0和1之间的值。默认为0。<br />
+		[page:Float decay] -- 沿着光照距离的衰退量。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		通用属性可查看基类 [page:光照(Light) Light] 。
+
+		<h3>[property:Object3D target]</h3>
+		<div>
+			聚光灯的焦点位于 target.position 处。<br />
+			缺省位置 — *(0,0,0)*.<br />
+			*注意*：目前为了target属性正常工作，它必须是 [page:Scene scene] 的一部分，也就是通过如下方法添加到场景中：<code>scene.add( light.target )</code>
+		</div>
+
+		<h3>[property:Float power]</h3>
+		<div>
+			光功率。<br />
+			在“物理正确”模式中，表示以"流明（光通量单位）"为单位的光功率。<br/>
+			Default - *4PI*。
+		</div>
+
+		<h3>[property:Float distance]</h3>
+		<div>
+			如果非0，光照将沿着光源处到该距离处线性衰减为零。<br />
+			缺省值 — *0.0*，表示光照一直到无穷远才衰减为零。
+		</div>
+
+		<h3>[property:Float angle]</h3>
+		<div>
+			光线散射角度（以弧度为单位），最大为 *Math.PI/2*。<br />
+			Default — *Math.PI/3*。
+		</div>
+
+		<h3>[property:Float penumbra]</h3>
+		<div>
+			聚光锥的半影衰减百分比。在0和1之间的值。<br />
+			默认值 — *0.0*。
+		</div>
+
+		<h3>[property:Float decay]</h3>
+		<div>
+			沿着光照距离的衰退量。<br />
+			在“物理正确”模式中，decay = 2将实现现实世界的光衰减。<br/>
+			缺省值 — *1*。
+		</div>
+
+		<h3>[property:SpotLightShadow shadow]</h3>
+		<div>
+			此属性存储用来渲染光照阴影的所有相关信息。<br />
+		</div>
+
+		<h3>[property:Boolean castShadow]</h3>
+		<div>
+			如果设置为 *true* ，光照将投射动态阴影。*警告*：该操作是很耗费计算资源的，并且需要精心调整才能正确工作。<br />
+			缺省值 — *false*.
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		通用方法可查看基类 [page:光照(Light) Light] 。
+
+		<h3>[method:SpotLight copy]( [page:SpotLight source] )</h3>
+		<div>
+		<br />
+		将 *source* 的值复制到这个聚光灯对象。
+		</div>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr;
+
+		<h1>骨骼（[name]）</h1>
+
+		<div class="desc">
+		骨骼（bone） 是 [page:骨架(Skeleton)]的一部分。骨架（Skeleton）转而被用于 [page:蒙皮网孔(SkinnedMesh)]。
+		骨骼几乎等同于一个空的 [page:3D对象(Object3D)]。
+		</div>
+		
+		<h3>例子</h3>
+		
+		<code>
+		var root = new THREE.Bone();
+		var child = new THREE.Bone();
+		
+		root.add( child );
+		child.position.y = 5;
+		</code>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:蒙皮网孔(SkinnedMesh) skin] )</h3>
+		<div>
+		skin — (可选) 该骨骼所属的 [page:蒙皮网孔(SkinnedMesh)]。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:SkinnedMesh skin]</h3>
+		<div>
+		一个可选的 [page:蒙皮网孔(SkinnedMesh)] 对象引用。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Bone clone]()</h3>
+		<div>
+		返回此骨骼对象及其后代的克隆。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

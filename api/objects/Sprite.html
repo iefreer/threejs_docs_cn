@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr;
+
+		<h1>精灵平面（[name]）</h1>
+
+		<div class="desc">精灵平面（Sprite）是一个在3D场景中总是面对着相机的平面。<br /><br />精灵平面不投射阴影，设置<code>castshadow = true</code>将没有效果。</div>
+		
+                <h2>例子</h2>
+
+                <code>
+                var map = new THREE.TextureLoader().load( "sprite.png" );
+                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
+                var sprite = new THREE.Sprite( material );
+                scene.add( sprite );
+                </code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:材料(Material) material] )</h3>
+		<div>
+                material — [page:材料(Material)] 的一个实例(可选)。
+		</div>
+		<div>
+		This 创建一个新的 sprite with an specific material.
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:SpriteMaterial material]</h3>
+		<div>
+		一个 [page:材料(Material)] 实例，定义该对象的外观。缺省是 [page:SpriteMaterial] ，一个白色平面。
+		</div>
+
+
+ 		<h2>方法（Methods）</h2>
+
+		<h3>[method:Sprite clone]()</h3>
+		<div>
+		返回这个精灵对象及其后代的克隆。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

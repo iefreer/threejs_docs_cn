@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>缓存几何模型（[name]）</h1>
+
+		<div class="desc">
+		<p>
+		该类是一个 [page:几何模型(Geometry)] 的高效替代，因为它使用缓存（buffer）来保存所有数据，包括顶点位置、面索引、法向量、颜色、UVs以及自定义属性。
+        这节约了向GPU传递全部这些数据的成本。但同时也使得BufferGeometry要比 [page:几何模型(Geometry)] 更难以处理，不是以对象的方式来访问，比如使用[page:Vector3]来访问位置数据，
+        以[page:Color]对象来访问颜色数据，你得从相应的[page:缓存属性(BufferAttribute) attribute]缓存中访问原始数据。
+        这使得BufferGeometry很适合用来存储静态对象，也就是当我们创建完模型实例后不太需要去操作它。
+		</p>
+
+		<h3>示例</h3>
+		<code>
+		var geometry = new THREE.BufferGeometry();
+		// create a simple square shape. We duplicate the top left and bottom right
+		// vertices because each vertex needs to appear once per triangle.
+		var vertices = new Float32Array( [
+			-1.0, -1.0,  1.0,
+			 1.0, -1.0,  1.0,
+			 1.0,  1.0,  1.0,
+
+			 1.0,  1.0,  1.0,
+			-1.0,  1.0,  1.0,
+			-1.0, -1.0,  1.0
+		] );
+
+		// itemSize = 3 because there are 3 values (components) per vertex
+		geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+		var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+		var mesh = new THREE.Mesh( geometry, material );
+		</code>
+		<p>更多示例： [example:webgl_buffergeometry Complex mesh with non-indexed faces], [example:webgl_buffergeometry_uint Complex mesh with indexed faces], [example:webgl_buffergeometry_lines Lines], [example:webgl_buffergeometry_lines_indexed Indexed Lines], [example:webgl_buffergeometry_custom_attributes_particles Particles], and [example:webgl_buffergeometry_rawshader Raw Shaders].</p>
+
+
+		<h3>访问属性（Accessing attributes）</h3>
+		<p>
+		WebGL 把和每个顶点模型关联的数据保存在 <em>属性（attributes）</em> 中。
+		比如顶点位置、顶点法向量、顶点颜色等。当使用 [page:几何模型(Geometry)] 时，[page:WebGL渲染器(WebGLRenderer) renderer] 负责封装这些信息到有类型数组缓存中并发送该数据到着色器。
+        当使用BufferGeometry时，所有这些和独立属性关联的数据都被保存进缓存中。
+		举例来说，这意味着为了获取一个顶点的关联位置数据，你必须调用 [page:.getAttribute] 来访问 'position' [page:缓存属性(BufferAttribute) attribute]，然后可以访问该位置属性的x/y/z坐标值。
+		</p>
+		<p>
+		下面的属性通过不同的类成员来设置：
+		</p>
+		<h4>[page:缓存属性(BufferAttribute) position] (itemSize: 3)</h4>
+		<div>
+		保存模型中每个顶点的x, y, 和 z 坐标。通过 [page:.fromGeometry]() 设置。
+		</div>
+
+		<h4>[page:缓存属性(BufferAttribute) normal] (itemSize: 3)</h4>
+		<div>
+		保存模型中每个顶点处的面或顶点法向量的x, y, 和 z 分量。通过 [page:.fromGeometry]() 设置。
+		</div>
+
+		<h4>[page:缓存属性(BufferAttribute) color] (itemSize: 3)</h4>
+		<div>
+		保存模型中每个顶点颜色的红、绿和蓝色通道。通过 [page:.fromGeometry]() 设置。
+		</div>
+
+		<h4>[page:缓存属性(BufferAttribute) index] (itemSize: 3)</h4>
+		允许顶点可以被在多个三角形（如相邻三角形）中复用；这被称为使用“索引三角形（indexed triangles）”，和在 [page:几何模型(Geometry)] 中的工作方式差不多：
+        每个三角形和三个顶点的索引值关联。此属性因此存储每个三角面上的每个顶点的索引。
+
+		如果该属性未被设置，[page:WebGL渲染器(WebGLRenderer) renderer] 假设每三个连续位置构成单个三角形。
+		</div>
+		<p>
+		除了内置的属性，你可以使用addattribute方法设置你自己的自定义属性。
+        使用 [page:几何模型(Geometry)]时，这些属性被设置和保存在 [page:材料(Material)] 中。
+        在BufferGeometry中，这些属性被保存在模型本身中。请注意，你仍然需要在材料中设置属性信息，不过每个属性的值被存储在 BufferGeometry 中。
+		</p>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]()</h3>
+		<div>
+		创建一个新的 [name]，并设置一些属性为默认值。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Integer id]</h3>
+		<div>
+		这个BufferGeometry实例的唯一编号。
+		</div>
+
+		<h3>[property:Hashmap attributes]</h3>
+		<div>
+		该哈希表中数据项的id用来设置属性名称，value用来设置 [page:缓存属性(BufferAttribute) buffer]。
+		使用addattribute和getAttribute方法来访问这个几何模型（geometry）属性，而不是直接访问该属性。
+		</div>
+
+		<!--
+ 		<h3>[property:Boolean dynamic]</h3>
+		<div>
+		When set, it holds certain buffers in memory to have faster updates for this object. When unset, it deletes those buffers and   saves memory.
+		</div> -->
+
+		<h3>[property:Array drawcalls] (之前是 [property:Array offsets])</h3>
+		<div>
+		对于使用索引三角形的几何模型，这个数组可以分为多个WebGL绘制调用。每个绘制调用将使用已配置的[page:材料(Material) shader]来绘制顶点的一些子集。
+        如果你的对象有65535个以上的顶点，这可能是必要的。每个元素是如下形式的一个对象：
+		<code>{ start: Integer, count: Integer, index: Integer }</code>
+		这里 start 指定本次绘制的第一个顶点的索引，count 指定要包含多少个顶点，而 index 指定一个可选的偏移量。
+
+		使用 addDrawCall 方法来添加绘制调用，而不是直接修改这个数组。
+		</div>
+
+		<h3>[property:Box3 boundingBox]</h3>
+		<div>
+		包围盒（Bounding box）。
+		<code>{ min: new THREE.Vector3(), max: new THREE.Vector3() }</code>
+		</div>
+
+		<h3>[property:Sphere boundingSphere]</h3>
+		<div>
+		包围球（Bounding sphere）。
+		<code>{ radius: float }</code>
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>该类拥有方法 [page:事件分发器(EventDispatcher) EventDispatcher]</h3>
+
+		<h3>[property:null addAttribute]( [page:字符串(String) name], [page:缓存属性(BufferAttribute) attribute] )</h3>
+		<div>
+		将属性添加到该几何体中。使用此方法而不是直接操作attributes属性，因为有一个内部attributes数组用来加快属性的迭代。
+		</div>
+
+		<h3>[method:null addDrawCall]( [page:Integer start], [page:Integer count], [page:Integer indexOffset] )</h3>
+		<div>
+		给这个几何模型添加一个绘图调用。细节请查阅 [page:缓存几何模型(BufferGeometry).drawcalls drawcalls] 属性。
+		</div>
+
+		<h3>[method:null clearDrawCalls]( )</h3>
+		<div>
+		清除所有绘制调用。
+		</div>
+
+		<h3>[method:null applyMatrix]( [page:Matrix4 matrix] )</h3>
+		<div>
+		给顶点坐标施加矩阵变换。
+		</div>
+
+		<h3>[method:null center] ()</h3>
+		<div>
+		使基于包围盒的几何模型居中。
+		</div>
+
+		<h3>[method:BufferGeometry rotateX] ( [page:Float radians] )</h3>
+		<div>
+		使模型绕X轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).rotation]。
+		</div>
+
+		<h3>[method:BufferGeometry rotateY] ( [page:Float radians] )</h3>
+		<div>
+		使模型绕Y轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).rotation]。
+		</div>
+
+		<h3>[method:BufferGeometry rotateZ] ( [page:Float radians] )</h3>
+		<div>
+		使模型绕Z轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).rotation]。
+		</div>
+
+		<h3>[method:BufferGeometry translate] ( [page:Float x], [page:Float y], [page:Float z] )</h3>
+		<div>
+		平移模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).position]。
+		</div>
+
+		<h3>[method:BufferGeometry scale] ( [page:Float x], [page:Float y], [page:Float z] )</h3>
+		<div>
+		缩放模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).scale]。
+		</div>
+
+		<h3>[method:BufferGeometry lookAt] ( [page:Vector3 vector] )</h3>
+		<div>
+		vector - 一个观察点世界向量<br />
+		</div>
+		<div>
+		旋转模型以面对观察点。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 [page:3D对象(Object3D).lookAt]。
+		</div>
+
+		<h3>[method:BufferGeometry setFromObject] ( [page:3D对象(Object3D) object] )</h3>
+		<div>
+		从一个[page:3D对象(Object3D)]对象来设置该BufferGeometry的attributes。
+		</div>
+
+		<h3>[method:null computeVertexNormals]()</h3>
+		<div>
+		通过平均面法线来计算顶点法线。<br />
+		</div>
+
+		<h3>[method:null computeBoundingBox]()</h3>
+		<div>
+		计算该模型的包围盒，更新 [page:几何模型(Geometry) Geometry.boundingBox] 属性。<br />
+		包围盒并不会默认计算，需要显式计算，否则它们为 *null*。
+		</div>
+
+		<h3>[method:null computeBoundingSphere]()</h3>
+		<div>
+		计算该模型的包围球，更新 [page:几何模型(Geometry) Geometry.boundingSphere] 属性。<br />
+		包围球并不会默认计算，需要显式计算，否则它们为 *null*。
+		</div>
+
+		<h3>[method:null computeOffsets] ( [page:Integer size] )</h3>
+		<div>
+		把大模型分成相连的65k可寻址顶点块，使用该方法计算绘制偏移。
+		该方法实际上将重写索引缓存，并重新映射所有属性以匹配新的索引值。
+		警告：这种方法也将扩大顶点计数防止随意扩展的三角形横跨绘制偏移。
+		size - 默认为65535 或者是 4294967296，如果支持扩展 OES_element_index_uint的话。允许较大或较小的顶点块。
+		</div>
+
+		<h3>[method:null merge]( [page:缓存几何模型(BufferGeometry) bufferGeometry], [page:Integer offset] )</h3>
+		<div>
+		合并另一个 BufferGeometry，带一个可选参数 offset 表示从哪里开始合并。
+		</div>
+
+		<h3>[method:null dispose]()</h3>
+		<div>
+		从内存中释放该对象。 <br />
+		当你想在程序运行期间删除BufferGeometry时，需要调用该方法。
+		</div>
+
+		<h3>[method:null fromGeometry]( [page:几何模型(Geometry)] )</h3>
+		<div>
+		从1个 [page:几何模型(Geometry)] 对象中生成BufferGeometry。
+		</div>
+
+		<h3>[method:BufferAttribute getAttribute]( [page:字符串(String) name] )</h3>
+		<div>
+		返回指定名称的 [page:缓存属性(BufferAttribute) attribute]。
+		</div>
+
+		<h3>[method:BufferAttribute removeAttribute]( [page:字符串(String) name] )</h3>
+		<div>
+		删除指定名称的 [page:缓存属性(BufferAttribute) attribute]。
+		</div>
+
+		<h3>[method:null normalizeNormals]()</h3>
+		<div>
+		正规化模型中的法向量，也就是将每个法向量的幅度变换为1。
+		这将修正模型表面的照明。
+		</div>
+
+		<h3>[method:Object toJSON]()</h3>
+		<div>
+		返回BufferGeometry原始数据对象。
+		</div>
+
+		<h3>[method:BufferGeometry clone]()</h3>
+		<div>
+		创建该BufferGeometry对象的一个克隆。
+		</div>
+
+		<h3>[method:BufferGeometry copy]( [page:缓存几何模型(BufferGeometry) bufferGeometry] )</h3>
+		<div>
+		把另外一个BufferGeometry拷贝到这个BufferGeometry中。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

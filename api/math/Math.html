@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>数学函数（[name]）</h1>
+
+		<div class="desc">常用的数学计算函数工具库</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Float clamp]( [page:Float value], [page:Float min], [page:Float max] )</h3>
+		<div>
+		value — 要被clamp的值。<br />
+		min — 最小值。<br />
+		max — 最大值。
+		</div>
+		<div>
+		把值锁定到最大和最小值之间。
+		</div>
+
+		<h3>[method:Float mapLinear]( [page:Float x], [page:Float a1], [page:Float a2], [page:Float b1], [page:Float b2] )</h3>
+		<div>
+		x — 要映射的值。<br />
+		a1 — 范围A的最小值。<br />
+		a2 — 范围A的最大值。<br />
+		b1 — 范围B的最小值。<br />
+		b2 — 范围B的最大值。
+		</div>
+		<div>
+		把 *x* 从范围 [*a1*, *a2*] 线性映射到 [*b1*, *b2*]。
+		</div>
+
+		<h3>[method:Float random16]()</h3>
+		<div>
+		16位随机性生成的0到1之间的随机浮动数。<br />
+		基础的Math.random()方法在较大的计算范围中会产生规律性重复模式。
+		</div>
+
+		<h3>[method:Integer randInt]( [page:Integer low], [page:Integer high] )</h3>
+		<div>
+		获取介于low和high之间的随机整数。
+		</div>
+
+		<h3>[method:Float randFloat]( [page:Float low], [page:Float high] )</h3>
+		<div>
+		获取介于low和high之间的随机浮点数。
+		</div>
+
+		<h3>[method:Float randFloatSpread]( [page:Float range] )</h3>
+		<div>
+		获取介于 *- range / 2* 到 *range / 2* 之间的随机浮点数。
+		</div>
+
+		<h3>[method:Float degToRad]( [page:Float degrees] )</h3>
+		<div>
+		degrees -- [page:Float]
+		</div>
+		<div>
+		把角度转换为弧度。
+		</div>
+
+		<h3>[method:Float radToDeg]( [page:Float radians] )</h3>
+		<div>
+		radians -- [page:Float]
+		</div>
+		<div>
+		把弧度转换为角度。
+		</div>
+
+		<h3>[method:Float smoothstep]( [page:Float x], [page:Float min], [page:Float max] )</h3>
+		<div>
+		x -- 根据它在min和max之间的位置评估其值。<br />
+		min -- 低于最小值的任何x值将为0 <br />
+		max -- 超过最大值的x值将为1。
+		</div>
+		<div>
+		返回一个0-1之间的值，代表x在min和max之间移动位置的百分比，在接近最小和最大值处变动更为平缓。<br/>
+
+		[link:http://en.wikipedia.org/wiki/Smoothstep Wikipedia]
+		</div>
+
+		<h3>[method:Float smootherstep]( [page:Float x], [page:Float min], [page:Float max] )</h3>
+		<div>
+		x -- 根据它在min和max之间的位置评估其值。<br />
+		min -- 低于最小值的任何x值将为0 <br />
+		max -- 超过最大值的x值将为1。
+		</div>
+		<div>
+		返回一个0-1之间的值。它和smoothstep相同，但变动更平缓。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

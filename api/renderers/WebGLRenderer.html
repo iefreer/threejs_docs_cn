@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>WebGL渲染器（[name]）</h1>
+
+		<div class="desc">WebGL渲染器使用WebGL来绘制您的场景，如果您的设备支持的话。使用WebGL将能够利用GPU硬件加速从而提高渲染性能。</div>
+		<div class="desc">这个渲染器比 [page:Canvas渲染器(CanvasRenderer)] 有更好的性能。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Object parameters] )</h3>
+
+		<div>parameters 是一个可选对象，包含用来定义渲染器行为的属性。当没有设置该参数时，将使用默认值。</div>
+
+		<div>
+		canvas — 一个用来绘制输出的 [page:Canvas] 对象。<br />
+		context — 所用的 [page:渲染上下文(RenderingContext)] 对象。<br />
+		precision — 着色器的精度。可以是*"highp"*, *"mediump"* 或 *"lowp"*. 默认为*"highp"*，如果设备支持的话。<br />
+		alpha — [page:Boolean], 默认为 *false*.<br />
+		premultipliedAlpha — [page:Boolean], 默认为 *true*.<br />
+		antialias — [page:Boolean], 默认为 *false*.<br />
+		stencil — [page:Boolean], 默认为 *true*.<br />
+		preserveDrawingBuffer — [page:Boolean], 默认为 *false*.<br />
+		depth — [page:Boolean], 默认为 *true*.<br />
+		logarithmicDepthBuffer — [page:Boolean], 默认为 *false*.<br />
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:DOMElement domElement]</h3>
+
+		<div>一个用来绘制输出的 [page:Canvas] 对象。<br />
+		该对象通过构造函数中的渲染器所自动创建（如果没有提供的话）；你只需要将其添加到您的网页中。</div>
+
+		<h3>[property:WebGLRenderingContext context]</h3>
+
+		<div>从HTML5 canvas中获取的用来绘图的WebGL渲染上下文。</div>
+
+		<h3>[property:Boolean autoClear]</h3>
+
+		<div>定义渲染器是否应该在渲染之前自动清除其输出。</div>
+
+
+		<h3>[property:Boolean autoClearColor]</h3>
+
+		<div>如果autoClear为true，该属性用来定义渲染器是否需要清除颜色缓存。默认为 true.</div>
+
+
+		<h3>[property:Boolean autoClearDepth]</h3>
+
+		<div>如果autoClear为true，该属性用来定义渲染器是否需要清除深度缓存。默认为 true.</div>
+
+
+		<h3>[property:Boolean autoClearStencil]</h3>
+
+		<div>如果autoClear为true，该属性用来定义渲染器是否需要清除模板缓存。默认为 true。</div>
+
+
+		<h3>[property:Boolean sortObjects]</h3>
+
+		<div>定义渲染器是否需要对对象排序。默认为 true。</div>
+        <p class="info">注：排序是用来试图正确地渲染具有一定程度透明度的对象。根据定义，排序对象可能在所有情况下都不工作。
+        根据应用程序的需要，我们可能需要关闭该排序功能，而使用其他方法处理透明渲染，比如手动确定物体的绘制顺序。</p>
+        </div>
+
+		<h3>[property:Array clippingPlanes]</h3>
+
+		<div>一个用户定义的在世界空间中的裁剪平面对象。这些平面是全局范围可用的。空间中的点和该平面的点积为负的将被裁剪掉。默认为 [].</div>
+
+		<h3>[property:Boolean localClippingEnabled]</h3>
+
+		<div>定义渲染器是否考虑对象级别的裁剪平面。默认为 false.</div>
+
+
+		<h3>[property:Boolean gammaInput]</h3>
+
+		<div>默认为 false. 如果设置了该参数，表示所有纹理和颜色应当使用预乘的gamma值来输入。</div>
+
+
+		<h3>[property:Boolean gammaOutput]</h3>
+
+		<div>默认为 false. 如果设置了该参数，表示所有纹理和颜色应当使用预乘的gamma值来输出。</div>
+
+		<h3>[property:WebGLShadowMap shadowMap]</h3>
+		<div>
+		实现阴影贴图（或阴影映射）的组件的引用。
+		</div>
+
+		<h3>[property:Boolean shadowMap.enabled]</h3>
+
+		<div>默认为 false. 如果设置了该参数，则启用在场景中的阴影贴图。</div>
+
+		<h3>[property:Integer shadowMap.type]</h3>
+
+		<div>阴影贴图类型定义 (未经过滤，百分比接近过滤，带着色器双线性过滤的百分比接近过滤)</div>
+		<div>可选取值有： THREE.BasicShadowMap, THREE.PCFShadowMap, THREE.PCFSoftShadowMap. 默认为 THREE.PCFShadowMap.</div>
+
+		<h3>[property:Boolean shadowMap.renderReverseSided]</h3>
+
+		<div>默认为 true。该属性表示是否将材质所指定的反面渲染到阴影贴图中。如果禁用，必须在表面光源上设置适当的shadow.bias，可以同时投射和接收阴影以正确渲染。</div>
+
+		<h3>[property:Boolean shadowMap.renderSingleSided]</h3>
+
+		<div>默认为 true. 是否将指定的材料视为双面，而在渲染阴影贴图时使用正面（front-side）。如果禁用，必须在表面光源上设置适当的shadow.bias，可以同时投射和接收阴影以正确渲染。</div>
+
+		<h3>[property:Integer maxMorphTargets]</h3>
+
+		<div>默认为 8. 着色器中允许的最大MorphTargets数量。记住，标准材料只允许8个MorphTargets。</div>
+
+
+		<h3>[property:Integer maxMorphNormals]</h3>
+
+		<div>默认为 4. 着色器中允许的最大MorphNormals数量。记住，标准材料只允许8个MorphNormals。</div>
+
+
+		<h3>[property:Object info]</h3>
+
+		<div>一个关于显卡内存和渲染过程统计信息的对象。便于调试和分析。该对象包含如下字段：</div>
+		<div>
+		<ul>
+			<li>memory:
+				<ul>
+					<li>geometries</li>
+					<li>textures</li>
+				</ul>
+			</li>
+			<li>render:
+				<ul>
+					<li>calls</li>
+					<li>vertices</li>
+					<li>faces</li>
+					<li>points</li>
+				</ul>
+			</li>
+			<li>programs
+			</li>
+		</ul>
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:WebGLRenderingContext getContext]()</h3>
+		<div>
+		返回WebGL渲染上下文。
+		</div>
+
+		<h3>[method:WebGLContextAttributes getContextAttributes]()</h3>
+		<div>
+		返回一个描述WebGL上下文创建时所设置属性的对象。
+		</div>
+
+		<h3>[method:Boolean supportsVertexTextures]()</h3>
+		<div>
+		返回一个 [page:Boolean]，如果该上下文支持顶点纹理，则为true。
+		</div>
+
+		<h3>[method:number getPixelRatio]()</h3>
+		<div>返回当前设备的像素比。</div>
+
+		<h3>[method:null setPixelRatio]( [page:number value] )</h3>
+		<div>设置设备像素比。通常用于HiDPI设备防止模糊输出canvas。</div>
+
+		<h3>[method:Object getSize]()</h3>
+		<div>返回一个包含渲染器输出canvas宽高的对象，以像素为单位。</div>
+
+		<h3>[method:null setSize]( [page:Integer width], [page:Integer height], [page:Boolean updateStyle] )</h3>
+		<div>调整输出canvas尺寸（宽度，高度），要考虑设备像素比，并且设置视口（viewport）以匹配该尺寸。如果设置 updateStyle 为true，则显式添加像素到输出canvas的样式中。</div>
+
+		<h3>[method:null setViewport]( [page:Integer x], [page:Integer y], [page:Integer width], [page:Integer height] )</h3>
+		<div>设置视口，从 (x, y) 到 (x + width, y + height)。</div>
+
+
+		<h3>[method:null setScissor]( [page:Integer x], [page:Integer y], [page:Integer width], [page:Integer height] )</h3>
+		<div>设置裁剪区域，从 (x, y) 到 (x + width, y + height).</div>
+
+		<div class="info">注：以上两种方法中点（x,y）是该区域的左下角。 该区域被定义从左到右的宽度，以及从底部到顶部的高度。该垂直方向的定义和HTML canvas元素的填充方向相反。</div>
+
+		<h3>[method:null setScissorTest]( [page:Boolean boolean] )</h3>
+		<div>启用或禁用裁剪测试。当被激活时，只有裁剪区域内的像素会被进一步的渲染行为所影响。</div>
+
+		<h3>[method:null setClearColor]( [page:Color color], [page:Float alpha] )</h3>
+		<div>设置清除的颜色和透明度。</div>
+
+		<code>// 创建一个具有红色背景的渲染器
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize( 200, 100 );
+		renderer.setClearColor( 0xff0000 );
+		</code>
+
+		<h3>[method:Color getClearColor]()</h3>
+		<div>返回一个使用当前清除颜色的 [page:Color THREE.Color] 实例。</div>
+
+		<h3>[method:Float getClearAlpha]()</h3>
+		<div>返回一个使用当前清除透明度的 [page:Float float]。范围从0到1。</div>
+
+		<h3>[method:null clear]( [page:Boolean color], [page:Boolean depth], [page:Boolean stencil] )</h3>
+		<div>告诉渲染器来清除其颜色、深度和模板绘制缓冲。该方法初始化颜色缓冲区为当前清除颜色值。</div>
+		<div>参数缺省为true。</div>
+
+		<h3>[method:null renderBufferImmediate]( [page:3D对象(Object3D) object], [page:shaderprogram program], [page:材料(Material) shading] )</h3>
+		<div>object — 一个 [page:3D对象(Object3D)] 实例<br />
+		program — 一个着色器程序（shaderProgram）实例<br />
+		shading — 一个材料（Material）实例。<br />
+		</div>
+		<div>
+		渲染一个即时缓冲区。被renderImmediateObject所调用。
+		</div>
+
+
+		<h3>[method:null renderBufferDirect]( [page:Camera camera], [page:Array lights], [page:Fog fog], [page:材料(Material) material], [page:Object geometryGroup], [page:3D对象(Object3D) object] )</h3>
+		<div>使用相机和正确的材料渲染缓冲模型组。</div>
+
+
+		<h3>[method:null renderBuffer]( [page:Camera camera], [page:Array lights], [page:Fog fog], [page:材料(Material) material], [page:Object geometryGroup], [page:3D对象(Object3D) object] )</h3>
+		<div>使用相机和正确的材料渲染模型组。</div>
+
+
+		<h3>[method:null render]( [page:Scene scene], [page:Camera camera], [page:WebGL渲染器目标(WebGLRenderTarget) renderTarget], [page:Boolean forceClear] )</h3>
+		<div>使用相机渲染一个场景。</div>
+		<div>如果指定了renderTarget，则渲染到上面，否则渲染到通常的canvas上。</div>
+		<div>如果forceClear为true, 颜色、深度和模板绘制缓冲将在渲染前被清除，即使渲染器的autoClear属性为false。</div>
+		<div>即使forceClear被设置为true，我们仍然可以通过设置.autoClearColor, .autoClearStencil 或 .autoClearDepth 属性为false来阻止特定的缓存被清除。</div>
+
+		<h3>[method:null readRenderTargetPixels]( [page:WebGL渲染器目标(WebGLRenderTarget) renderTarget], [page:Float x], [page:Float y], [page:Float width], [page:Float height], buffer )</h3>
+		<div>从渲染目标中读取像素数据到你给定的缓冲区中。缓存应该是一个Javascript Uint8Array对象，通过new Uint8Array( renderTargetWidth * renderTargetWidth * 4 )来实例化，考虑大小和颜色信息。这是gl.readPixels的封装。</div>
+
+		<h3>[method:null renderImmediateObject]( camera, lights, fog, material, object )</h3>
+		<div>使用相机渲染一个即时对象。</div>
+
+
+		<h3>[method:null setFaceCulling]( cullFace, frontFace )</h3>
+		<div>
+		[page:字符串(String) cullFace] —- "back", "front", "front_and_back", 或 false.<br />
+		[page:字符串(String) frontFace] —- "ccw" 或 "cw<br />
+		</div>
+		<div>用于设定GPU中gl的fontFace和cullFace状态，从而启用/禁用渲染时的面剔除。</div>
+		<div>If cullFace is false, culling will be disabled.</div>
+
+
+		<h3>[method:null setTexture]( [page:纹理(Texture) texture], [page:number slot] )</h3>
+		<div>
+		texture -- 需要设置的 [page:纹理(Texture) texture]。<br />
+		slot -- 纹理所要使用的槽（slot）编号。
+		</div>
+		<div>
+		此方法设置正确的纹理为wegl着色器的正确插槽。槽数可以被发现作为一个值的均匀的采样。
+		</div>
+
+		<h3>[method:null setRenderTarget]( [page:WebGL渲染器目标(WebGLRenderTarget) renderTarget] )</h3>
+		<div>
+		renderTarget -- 需要设置的 [page:WebGL渲染器目标(WebGLRenderTarget) renderTarget]（可选）。<br />
+		</div>
+		<div>
+		该方法设置当前渲染目标。如果参数被忽略，则设置要绘制的canvas为当前渲染目标。
+		</div>
+
+		<h3>[method:boolean supportsCompressedTextureS3TC]()</h3>
+		<div>
+		此方法返回true，如果WebGL支持S3TC格式的纹理压缩。
+		</div>
+
+		<h3>[method:number getMaxAnisotropy]()</h3>
+		<div>
+		返回的纹理的各向异性水平。
+		</div>
+
+		<h3>[method:string getPrecision]()</h3>
+		<div>
+		获取着色器所用精度。返回 "highp","mediump" 或 "lowp"。
+		</div>
+
+		<h3>[method:null setMaterialFaces]([page:材料(Material) material])</h3>
+		<div>
+		material -- 不该被剔除的面的 [page:材料(Material) material]。
+		</div>
+		<div>
+		该方法设置在WebGL渲染器中需要被剔除的面。
+		</div>
+
+		<h3>[method:boolean supportsStandardDerivatives]()</h3>
+		<div>
+		此方法返回true，如果设备WebGL的实现支持标准的衍生物。
+		</div>
+
+		<h3>[method:boolean supportsFloatTextures]()</h3>
+		<div>
+		此方法返回true，如果设备WebGL的实现支持浮点纹理。
+		</div>
+
+		<h3>[method:null clearTarget]([page:WebGL渲染器目标(WebGLRenderTarget) renderTarget], [page:boolean color], [page:boolean depth], [page:boolean stencil])</h3>
+		<div>
+		renderTarget -- 需要被清除的 [page:WebGL渲染器目标(WebGLRenderTarget) renderTarget]。<br />
+		color -- 如果设置，则颜色被清除。<br />
+		depth -- 如果设置，则深度被清除。<br />
+		stencil -- 如果设置，则模板被清除。
+		</div>
+		<div>
+		这个方法可以清除渲染目标。为此，它首先需要激活该渲染目标。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

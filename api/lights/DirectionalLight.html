@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr; [page:Light] &rarr;
+
+		<h1>平行光源（[name]）</h1>
+
+		<div class="desc">
+			影响使用 [page:兰伯特网孔材料(MeshLambertMaterial)] 或 [page:Phong网孔材料(MeshPhongMaterial)] 的对象。
+		</div>
+
+
+		<h2>例子</h2>
+		<div>[example:canvas_morphtargets_horse morphtargets / horse ]</div>
+		<div>[example:misc_controls_fly controls / fly ]</div>
+		<div>[example:misc_lights_test lights / test ]</div>
+		<div>[example:vr_cubes cubes ]</div>
+		<div>[example:webgl_effects_parallaxbarrier effects / parallaxbarrier ]</div>
+		<div>[example:webgl_effects_stereo effects / stereo ]</div>
+		<div>[example:webgl_geometry_extrude_splines geometry / extrude / splines ]</div>
+		<div>[example:webgl_materials_bumpmap materials / bumpmap ]</div>
+		<div>[example:webgl_materials_cubemap_balls_reflection materials / cubemap / balls / reflection ]</div>
+
+		<code>// 从正上方照射过来的白色平行光，0.5的光强。
+
+var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+directionalLight.position.set( 0, 1, 0 );
+scene.add( directionalLight );</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:Integer hex], [page:Float intensity] )</h3>
+		<div>
+		[page:Integer hex] -- 光源颜色的RGB数值。<br />
+		[page:Float intensity] -- 光源强度的数值。
+		</div>
+		<div>
+		创建一个光照，从一个特定的方向，而不是从一个特定的位置。这个光看起来就像光源位于无限远处，因此它产生的光线都是平行的。
+        最好的类比是一个像太阳一样的光源：太阳是如此遥远，所有的阳光照射到物体上都几乎来自同一个角度。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		通用属性可查看基类 [page:光照(Light) Light] 。
+
+		<h3>[property:Object3D target]</h3>
+		<div>
+			用于阴影相机定位的目标。
+		</div>
+
+		<h3>[property:DirectionalLightShadow shadow]</h3>
+		<div>
+			该属性存储渲染光照阴影的所有相关信息。<br />
+		</div>
+
+		<h3>[property:Boolean castShadow]</h3>
+		<div>
+			如果设置为*true*，光照将产生动态阴影。*警告*：这是代价高昂的，需要调整以使得阴影看起来是正确的。<br />
+			缺省值 — *false*.
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		通用方法可查看基类 [page:光照(Light) Light] 。
+
+		<h3>[method:DirectionalLight copy]( [page:DirectionalLight source] )</h3>
+		<div>
+		<br />
+		复制 *source* 的值到这个平行光源对象。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>[name]</h1>
+
+		<div class="desc">表示三维空间中的一个包围盒。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Vector3 min], [page:Vector3 max] )</h3>
+		<div>
+		min -- 包围盒的(x, y, z)下边界。<br />
+		max -- 包围盒的(x, y, z)上边界。
+		</div>
+		<div>
+		创建一个介于最小和最大值之间的包围盒。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+
+		<h3>[property:Vector3 min]</h3>
+		<div>
+		包围盒的(x, y, z)下边界。
+		</div>
+
+		<h3>[property:Vector3 max]</h3>
+		<div>
+		包围盒的(x, y, z)上边界。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+
+		<h3>[method:Box3 set]( [page:Vector3 min], [page:Vector3 max] ) [page:Box3 this]</h3>
+		<div>
+		min -- 包围盒的(x, y, z)下边界。 <br />
+		max -- 包围盒的(x, y, z)上边界。
+		</div>
+		<div>
+		设置这个包围盒的上下(x, y, z)的界限。
+		</div>
+
+		<h3>[method:Box3 applyMatrix4]( [page:Matrix4 matrix] ) [page:Box3 this]</h3>
+		<div>
+		matrix -- 要应用的 [page:Matrix4]。
+		</div>
+		<div>
+		使用提供的矩阵变换该盒子。
+		</div>
+
+		<h3>[method:Vector3 clampPoint]( [page:Vector3 point], [page:Vector3 optionalTarget] ) [page:Box3 this]</h3>
+		<div>
+		point -- clamp位置。 <br />
+		optionalTarget -- optionalTarget -- 如果指定，则clamp的结果将被复制在这里。
+		</div>
+		<div>
+		把*point*夹在在这个盒子的范围内。
+		</div>
+
+		<h3>[method:Boolean intersectsBox]( [page:Box3 box] ) [page:Box3 this]</h3>
+		<div>
+		box -- 用来检查相交的盒子。
+		</div>
+		<div>
+		确定该盒子是否和*box*相交。
+		</div>
+
+		<h3>[method:Box3 setFromPoints]( [page:Array points] ) [page:Box3 this]</h3>
+		<div>
+		points -- 点的集合，由这些点确定的框空间将被包围。
+		</div>
+		<div>
+		设置这个盒子的上下边界，来包含所有设置在*points*参数中的点。
+		</div>
+
+		<h3>[method:Box3 setFromObject]( [page:3D对象(Object3D) object] ) [page:Box3 this]</h3>
+		<div>
+		object -- 用来计算包围盒的[page:3D对象(Object3D)]。
+		</div>
+		<div>
+		计算和世界轴对齐的一个对象（含其子对象）的包围盒。
+		</div>
+
+
+		<h3>[method:Vector3 size]( [page:Vector3 optionalTarget] ) [page:Box3 this]</h3>
+		<div>
+		optionalTarget -- 如果指定，结果将被复制在这里。
+		</div>
+		<div>
+		返回此盒子的宽度（width）、高度（height）和长度（depth）。
+		</div>
+
+		<h3>[method:Box3 union]( [page:Box3 box] ) [page:Box3 this]</h3>
+		<div>
+		box -- 要联合的箱子。
+		</div>
+		<div>
+		在box参数的上边界和已有box对象的上边界之间取较大者，而对两者的下边界取较小者，这样获得一个新的较大的联合盒子。
+		</div>
+
+		<h3>[method:Vector3 getParameter]( [page:Vector3 point], [page:Vector3 optionalTarget] ) [page:Box3 this]</h3>
+		<div>
+		point -- 要参数化的点。
+		optionalTarget -- 如果指定，结果将被复制在这里。
+		</div>
+		<div>
+		返回一个点作为这个框的宽度和高度的比例。
+		</div>
+
+		<h3>[method:Box3 intersect]( [page:Box3 box] ) [page:Box3 this]</h3>
+		<div>
+		box -- 要相交的盒子。
+		</div>
+		<div>
+		和联合（union）相反，相交（intersect）将取两个box上边界的较小者，和下边界的较大者，这样获得一个新的较小的相交盒子。
+		</div>
+
+		<h3>[method:Boolean containsBox]( [page:Box3 box] ) [page:Box3 this]</h3>
+		<div>
+		box -- 要测试是否包容的盒子。
+		</div>
+		<div>
+		如果这个box完全包含了*box*的空间，则返回true。如果该box和*box*刚好重叠，该函数也返回true。
+		</div>
+
+		<h3>[method:Boolean containsPoint]( [page:Vector3 point] ) [page:Box3 this]</h3>
+		<div>
+		box -- 要测试是否包容的盒子。
+		</div>
+		<div>
+		如果这个box完全包含了*box*的空间，则返回true。如果该box和*box*刚好重叠，该函数也返回true。
+		</div>
+
+		<h3>[method:Box3 translate]( [page:Vector3 offset] ) [page:Box3 this]</h3>
+		<div>
+		offset -- 偏移方向和距离。
+		</div>
+		<div>
+		添加 *offset* 到这个框的上下边界，实际上在2D空间移动这个框 *offset* 个单位。
+		</div>
+
+		<h3>[method:Boolean isEmpty]() [page:Box3 this]</h3>
+		<div>
+		如果这个盒子包含0个顶点，则返回true。</br>
+		请注意，一个下上边界相等的的盒子仍然包括一个点，一个两个边界共享的点。
+		</div>
+
+		<h3>[method:Box3 clone]() [page:Box3 this]</h3>
+		<div>
+		返回该box的一个拷贝。
+		</div>
+
+		<h3>[method:Boolean equals]( [page:Box3 box] ) [page:Box3 this]</h3>
+		<div>
+		box -- 要对比的box。
+		</div>
+		<div>
+		如果这个box和*box*共享相同的上下边界，则返回真。
+		</div>
+
+		<h3>[method:Box3 expandByPoint]( [page:Vector3 point] ) [page:Box3 this]</h3>
+		<div>
+		point -- 要包括在盒子中的一个点。
+		</div>
+		<div>
+		扩展这个框的边界来包括这个点（*point*）。
+		</div>
+
+		<h3>[method:Box3 expandByScalar]( [page:float scalar] ) [page:Box3 this]</h3>
+		<div>
+		scalar -- 扩展距离。
+		</div>
+		<div>
+		在每个维度上扩展参数scalar所指定的距离，如果为负数，则盒子空间将收缩。
+		</div>
+
+		<h3>[method:Box3 expandByVector]( [page:Vector3 vector] ) [page:Box3 this]</h3>
+		<div>
+		vector -- 在每个维度中按该向量的数值进行扩展。
+		</div>
+		<div>
+		在每个维度中按*vector*的数值进行扩展。宽度扩展将由*vector*的x分量确定，高度扩展由y分量确定，长度扩展由z分量确定，在两个方向上。
+		</div>
+
+		<h3>[method:Box3 copy]( [page:Box3 box] ) [page:Box3 this]</h3>
+		<div>
+		box -- 要拷贝的box。
+		</div>
+		<div>
+		将*box*的值复制到这个box中。
+		</div>
+
+		<h3>[method:Box3 makeEmpty]() [page:Box3 this]</h3>
+		<div>
+		清空盒子。
+		</div>
+
+		<h3>[method:Vector3 center]( [page:Vector3 optionalTarget] ) [page:Box3 this]</h3>
+		<div>
+		optionalTarget -- 如果指定，结果将被复制在这里。
+		</div>
+		<div>
+		返回此box的中心点。
+		</div>
+
+		<h3>[method:Sphere getBoundingSphere]( [page:Sphere optionalTarget] ) [page:Box3 this]</h3>
+		<div>
+		optionalTarget -- 如果指定，结果将被复制在这里。
+		</div>
+		<div>
+		获取一个包围球。
+		</div>
+
+		<h3>[method:Float distanceToPoint]( [page:Vector3 point] ) [page:Box3 this]</h3>
+		<div>
+		point -- 用来测量距离的点。
+		</div>
+		<div>
+		返回这个box的任何边缘到指定点的距离。如果这个点位于这个盒子里，距离将是0。
+		</div>
+
+		<h3>[method:Box3 setFromCenterAndSize]( [page:Vector3 center], [page:Vector3 size] ) [page:Box3 this]</h3>
+		<div>
+		center -- 盒子所要设置的中心位置。<br />
+		size -- 盒子所要设置的x、y和z尺寸（宽/高/长）。
+		</div>
+		<div>
+		使盒子的中心点位于*center*，并设置长宽高为*size*中指定的值。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

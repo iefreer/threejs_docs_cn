@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:Line] &rarr;
+
+		<h1>[name]</h1>
+
+		<div class="desc">Renders [page:ArrowHelper arrows] to visualize an object's vertex normal vectors. Requires that normals have been specified in a [page:缓存属性(BufferAttribute) custom attribute] or have been calculated using [page:几何模型(Geometry).computeVertexNormals computeVertexNormals]. </div>
+
+		<h2>例子</h2>
+
+		<code>
+		geometry = new THREE.BoxGeometry( 10, 10, 10, 2, 2, 2 );
+		material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+		object = new THREE.Mesh( geometry, material );
+
+		edges = new THREE.VertexNormalsHelper( object, 2, 0x00ff00, 1 );
+
+		scene.add( object );
+		scene.add( edges );
+		</code>
+		[example:webgl_helpers Example using various helpers]
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:3D对象(Object3D) object], [page:Number size], [page:Color color], [page:Number linewidth] )</h3>
+		<div>object -- object for which to render vertex normals
+		size -- size (length) of the arrows
+		color -- color of the arrows
+		linewidth -- width of the arrow lines
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Object3D object]</h3>
+		<div>
+		The attached object
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+
+		<h3>[method:null update]()</h3>
+		<div>Updates the vertex normal preview based on movement of the object.</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+
+		<h1>光照阴影([name])</h1>
+
+		<div class="desc">TODO</div>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:相机(Camera) camera] )</h3>
+		<div>
+		[page:相机(Camera) camera] — 阴影的空间视角。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Camera camera]</h3>
+		<div>
+			阴影的空间观察视角。
+		</div>
+
+		<h3>[property:Float bias]</h3>
+        <p class="info">在本文中出现的词汇：阴影映射、阴影贴图和Shadow Map同义。</p>
+		<div>
+			阴影映射偏差，当决定一个曲面是否处于阴影中时，从正规化深度中增加或减少多少。<br />
+			缺省值 — *0*.
+		</div>
+
+		<h3>[property:Float radius]</h3>
+		<div>
+			阴影半径<br />
+			缺省值 - *0*.
+		</div>
+
+		<h3>[property:Vector2 mapSize]</h3>
+		<div>
+			存储在一个[page:Vector2 Vector2]中的阴影贴图的宽度和高度。<br />
+			Default — *( 512, 512 )*.
+		</div>
+
+		<h3>[property:WebGLRenderTarget map]</h3>
+		<div>
+			使用内置相机生成的深度图；超出像素深度的位置是在阴影中。在渲染期间内部计算。
+		</div>
+
+		<h3>[property:Matrix4 matrix]</h3>
+		<div>
+			在相机空间产生投影的模型，用来计算阴影贴图中的位置和深度。保存于一个[page:四维矩阵(Matrix4) Matrix4]对象中。在渲染期间内部计算。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+		<h3>[method:LightShadow copy]( [page:LightShadow source] )</h3>
+		<div>
+		把 *source* 的数值拷贝给这个LightShadow对象。
+		</div>
+
+		<h3>[method:LightShadow clone]()</h3>
+		<div>
+		返回一个LightShadow对象的克隆。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

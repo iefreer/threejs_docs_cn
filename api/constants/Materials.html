@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>材料常量（Material Constants）</h1>
+
+		<h2>面（Side）</h2>
+        <p>这些常量用来定义几何体哪些面需要应用材料。注意3D空间一个表面有内外两边，默认情况下是THREE.FrontSide（前外面）。</p>
+		<div>
+		THREE.FrontSide：前面<br />
+		THREE.BackSide：后面<br />
+		THREE.DoubleSide：双面（即内外两面都应用该材料）。
+		</div>
+
+		<h2>着色方式（Shading）</h2>
+        <p>着色是给骨架（线框轮廓）添加皮肤（色彩）的过程。</p>
+		<div>
+		THREE.FlatShading：平面着色，也称之为“恒量着色”，平面着色是最简单也是最快速的着色方法，每个多边形都会被指定一个单一且没有变化的颜色。<br />
+        这种方法虽然会产生出不真实的效果，不过它非常适用于快速成像及其它速度要求高于细致度的场合，如：生成预览动画。<br />
+		THREE.SmoothShading：平滑着色，用多种颜色进行绘制，每个顶点都是单独进行处理的，各顶点和各图元之间采用均匀插值。
+		</div>
+
+		<h2>颜色（Colors）</h2>
+        <p>在将Geometry对象转换为BufferGeometry对象时，用来设置转换后的对象顶点从哪里继承颜色。</p>
+		<div>
+		THREE.NoColors：顶点没有颜色<br />
+		THREE.FaceColors：顶点使用面的颜色<br />
+		THREE.VertexColors：顶点使用顶点的颜色。
+		</div>
+
+		<h2>混合模式（Blending Mode）</h2>
+        <p>这里定义材料混合模式常量。</p>
+		<div>
+		THREE.NoBlending：无混合<br />
+		THREE.NormalBlending：普通混合<br />
+		THREE.AdditiveBlending：加法混合<br />
+		THREE.SubtractiveBlending：减法混合<br />
+		THREE.MultiplyBlending：乘法混合<br />
+		THREE.CustomBlending：自定义混合。参见[page:自定义混合方程(CustomBlendingEquation)]。
+		</div>
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/Three.js src/Three.js]
+	</body>
+</html>

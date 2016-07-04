@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>时钟（[name]）</h1>
+
+		<div class="desc">跟踪时间的对象。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Boolean autoStart] )</h3>
+		<div>
+		autoStart — 用来初始化autoStart属性，表示是否自动启动时钟。默认是true。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Boolean autoStart]</h3>
+		<div>
+		如果设置为true，当第一次更新被调用时，自动启动时钟。
+		</div>
+
+		<h3>[property:Float startTime]</h3>
+		<div>
+		当时钟运行时，该属性用来保存时钟的起始时间。<br />
+		这个是从1 January 1970 00:00:00 UTC开始的毫秒数。
+ 		</div>
+
+
+		<h3>[property:Float oldTime]</h3>
+		<div>
+		当时钟运行时，该属性用来保存最近一次更新的时间。<br />
+		这个是从1 January 1970 00:00:00 UTC开始的毫秒数。
+ 		</div>
+
+		<h3>[property:Float elapsedTime]</h3>
+		<div>
+		当时钟运行时，该属性用来保存起始时间和最近一次更新时间之间的时间间隔。<br />
+		这个是从1 January 1970 00:00:00 UTC开始的毫秒数。
+ 		</div>
+
+		<h3>[property:Boolean running]</h3>
+		<div>
+		这个属性跟踪时钟是否正在运行。
+ 		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null start]()</h3>
+		<div>
+		启动时钟。
+		</div>
+
+		<h3>[method:null stop]()</h3>
+		<div>
+		停止时钟。
+		</div>
+
+		<h3>[method:Float getElapsedTime]()</h3>
+		<div>
+		获取时钟已运行时间。
+		</div>
+
+		<h3>[method:Float getDelta]()</h3>
+		<div>
+		获取时钟增量，也就是该函数本次调用和上次调用之间的时间间隔。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

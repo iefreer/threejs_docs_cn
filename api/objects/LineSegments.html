@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:Line] &rarr;
+
+		<h1>线段（[name]）</h1>
+
+		<div class="desc">成对的点之间的连线。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:几何模型(Geometry) geometry], [page:材料(Material) material] )</h3>
+
+		<div>
+		geometry — 代表每一个线段的顶点对。<br />
+		material — 线条材质，默认为 [page:基础线条材料(LineBasicMaterial) LineBasicMaterial].
+		</div>
+
+		<div>如果没有提供材料参数，将使用随机材料。</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Geometry geometry]</h3>
+		<div>
+		代表每一个线段的顶点对。
+		</div>
+
+		<h3>[property:Material material]</h3>
+		<div>
+		线条材质。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Array raycast]( [page:Raycaster raycaster], [page:Array intersects] )</h3>
+		<div>
+		得到该线段和光线投射之间的交点。[page:Raycaster.intersectObject] 将调用该方法。
+		</div>
+		
+		<h3>[method:LineSegments clone]()</h3>
+		<div>
+		返回该线段对象及其后代的克隆。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

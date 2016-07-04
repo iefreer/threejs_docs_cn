@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		<h1>[name]</h1>
+
+		<div class="desc">Euler Angles. <br/><br/>
+
+		Euler angles describe a rotation transformation by rotating an object on its various axes in specified amounts per axis, and a specified axis order.
+		(More information on <a href='http://en.wikipedia.org/wiki/Euler_angles' target='blank'>Wikipedia</a>)</div>
+
+		<h2>例子</h2>
+
+		<code>var a = new THREE.Euler( 0, 1, 1.57, 'XYZ' );
+		var b = new THREE.Vector3( 1, 0, 1 );
+		b.applyEuler(a);
+		</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>[name]( [page:Float x], [page:Float y], [page:Float z], [page:字符串(String) order] )</h3>
+		<div>
+		x -- [page:Float] x轴角度（单位为弧度）<br />
+		y -- [page:Float] y轴角度（单位为弧度）<br />
+		z -- [page:Float] z轴角度（单位为弧度）<br />
+		order -- [page:字符串(String)] 一个用来表示旋转顺序的字符串，默认为 'XYZ'（必须是大写）。
+		</div>
+		<div>
+		一个用来变换的欧拉角。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:Float x]</h3>
+
+		<h3>[property:Float y]</h3>
+
+		<h3>[property:Float z]</h3>
+
+		<h3>[property:String order]</h3>
+
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:Euler set]( [page:Float x], [page:Float y], [page:Float z], [page:字符串(String) order] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		x -- [page:Float] x轴角度（单位为弧度）<br />
+		y -- [page:Float] y轴角度（单位为弧度）<br />
+		z -- [page:Float] z轴角度（单位为弧度）<br />
+		order -- [page:字符串(String)] 坐标轴的顺序，默认为 'XYZ'（必须是大写）。
+		</div>
+		<div>
+		设置该欧拉角变换的角度。
+		</div>
+
+		<h3>[method:Euler copy]( [page:欧拉角(Euler) euler] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		拷贝 *euler* 的值给该欧拉角。
+		</div>
+
+		<h3>[method:Euler setFromRotationMatrix]( [page:Matrix4 m], [page:字符串(String) order] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		m -- [page:Matrix4] 假设矩阵上面的3x3部分是一个纯旋转变换（也就是不发生缩放）<br />
+		order -- [page:字符串(String)] 坐标轴的顺序，默认为 'XYZ'（必须是大写）。
+		</div>
+		<div>
+		以基于order所指定方向的一个纯旋转矩阵来设置欧拉角变换的角度。
+		</div>
+
+		<h3>[method:Euler setFromQuaternion]( [page:四元数(Quaternion) q], [page:字符串(String) order] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		q -- [page:四元数(Quaternion)] quaternion must be normalized<br />
+		order -- [page:字符串(String)] 坐标轴的顺序，默认为 'XYZ'（必须是大写）。
+		</div>
+		<div>
+		以基于order所指定方向的一个四元数来设置欧拉角变换的角度。
+		</div>
+
+		<h3>[method:Euler reorder]( [page:字符串(String) newOrder] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		使用newOrder新建一个四元数来重置欧拉角。<br />
+		警告: 这将弃用旋转信息。
+		</div>
+
+		<h3>[method:Euler setFromVector3]( [page:Vector3 vector], [page:字符串(String) order] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		vector -- [page:Vector3].
+		order -- [page:字符串(String)] Order of axes, defaults to 'XYZ' (must be upper case)
+		</div>
+		<div>
+		使用可选的Vector3参数来设置欧拉角的XYZ参数，并用order参数设置欧拉角的order属性。
+		</div>
+
+		<h3>[method:Vector3 toVector3]()</h3>
+		<div>
+		使用一个Vector3返回欧拉角的XYZ属性。
+		</div>
+
+		<h3>[method:Euler fromArray]( [page:Array array] ) [page:欧拉角(Euler) this]</h3>
+		<div>
+		array -- 长度为3或4的一个[page:Array]。array[3] 是一个可选的order参数。
+		</div>
+		<div>
+		把该欧拉角的x角度设置为 array[0]. <br />
+		把该欧拉角的y角度设置为 array[1]. <br />
+		把该欧拉角的z角度设置为 array[2]. <br />
+		设置该欧拉角的order为array[3]，可选。
+		</div>
+
+		<h3>[method:Array toArray]( [page:Array array] )</h3>
+		<div>
+		array -- 把欧拉角转换成一个数组。
+		</div>
+		<div>
+		返回一个数组：[x, y, z, order]
+		</div>
+
+		<h3>[method:Boolean equals]( [page:欧拉角(Euler) euler] )</h3>
+		<div>
+		判断该euler和参数*euler*是否相等。
+		</div>
+
+		<h3>[method:Euler clone]()</h3>
+		<div>
+		克隆一个欧拉角。
+		</div>
+
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>

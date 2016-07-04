@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body>
+		[page:3D对象(Object3D)] &rarr; [page:Camera] &rarr;
+
+		<h1>[name]</h1>
+
+		<div class="desc">正交投影相机</div>
+        <p>正交投影相机示意图如下：</p>
+        <p><img src="images/ortho.jpg"></p>
+		<h2>示例</h2>
+
+		<div>[example:canvas_camera_orthographic camera / orthographic ]</div>
+		<div>[example:canvas_camera_orthographic2 camera / orthographic2 ]</div>
+		<div>[example:webgl_camera camera ]</div>
+		<div>[example:webgl_interactive_cubes_ortho interactive / cubes / ortho ]</div>
+		<div>[example:webgl_materials_cubemap_dynamic materials / cubemap / dynamic ]</div>
+		<div>[example:webgl_postprocessing_advanced postprocessing / advanced ]</div>
+		<div>[example:webgl_postprocessing_dof2 postprocessing / dof2 ]</div>
+		<div>[example:webgl_postprocessing_godrays postprocessing / godrays ]</div>
+		<div>[example:webgl_rtt rtt ]</div>
+		<div>[example:webgl_shaders_tonemapping shaders / tonemapping ]</div>
+		<div>[example:webgl_shadowmap shadowmap ]</div>
+		<div>[example:webgl_terrain_dynamic terrain / dynamic ]</div>
+
+		<code>var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+scene.add( camera );</code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>[name]( [page:Float left], [page:Float right], [page:Float top], [page:Float bottom], [page:Float near], [page:Float far] )</h3>
+		<div>
+		left — 相机视椎体（Camera frustum）左面。<br />
+		right — 相机视椎体（Camera frustum）右面。<br />
+		top — 相机视椎体（Camera frustum）上面。<br />
+		bottom — 相机视椎体（Camera frustum）下面。<br />
+		near — 相机视椎体（Camera frustum）前面（靠近相机的这一面）。<br />
+		far — 相机视椎体（Camera frustum）后面（远离相机的这一面）。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3>[property:number zoom]</h3>
+		<div>获取和设置相机缩放因子。</div>
+
+		<h3>[property:Float left]</h3>
+		<div>相机视椎体（Camera frustum）左面</div>
+
+		<h3>[property:Float right]</h3>
+		<div>相机视椎体（Camera frustum）右面.</div>
+
+		<h3>[property:Float top]</h3>
+		<div>相机视椎体（Camera frustum）上面.</div>
+
+		<h3>[property:Float bottom]</h3>
+		<div>相机视椎体（Camera frustum）下面.</div>
+
+		<h3>[property:Float near]</h3>
+		<div>相机视椎体（Camera frustum）前面.</div>
+
+		<h3>[property:Float far]</h3>
+		<div>相机视椎体（Camera frustum）后面.</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>[method:null setViewOffset]( [page:Float fullWidth], [page:Float fullHeight], [page:Float x], [page:Float y], [page:Float width], [page:Float height] )</h3>
+		<div>
+		fullWidth — 多视图设置的全宽<br />
+		fullHeight — 多视图设置的全高<br />
+		x — 副摄像头的水平偏移<br />
+		y — 副摄像头的垂直偏移<br />
+		width — 副摄像头宽度<br />
+		height — 副摄像头高度
+		</div>
+
+		<div>
+		该方法用于在一个较大的视椎体中设置视图偏移。这对于多窗口或多监视器/多机设置是有用的。关于如何使用它，你可以查看 [page:远景相机(PerspectiveCamera)] 中的示例。
+		</div>
+
+		<h3>[method:null clearViewOffset]()</h3>
+		<div>
+		清除视图偏移。
+		</div>
+
+		<h3>[method:null updateProjectionMatrix]()</h3>
+		<div>
+		更新相机投影矩阵，必须在参数发生变化后调用。
+		</div>
+
+		<h3>[method:OrthographicCamera clone]()</h3>
+		<div>
+		<br />
+		返回一个OrthographicCamera对象的克隆。
+		</div>
+
+
+		<h3>[method:JSON toJSON]()</h3>
+		<div>
+		把相机数据转换成JSON格式。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+	</body>
+</html>
